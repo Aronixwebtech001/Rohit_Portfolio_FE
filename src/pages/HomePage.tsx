@@ -1,21 +1,35 @@
-import HeroSection from "../components/Home/HeroSection";
-import PartnerLogos from "../components/Home/PartnerLogos";
-import WhyChooseUs from "../components/Home/WhyChooseUs";
-import PartnershipsSection from "../components/Home/PartnershipsSection";
-import CaseStudiesSection from "../components/Home/CaseStudiesSection";
-import TestimonialsSection from "../components/Home/TestimonialsSection";
-import CTASection from "../components/shared/CTASection";
+import Header from "../components/common/Header";
+import Footer from "../components/common/Footer";
 
-export default function Home() {
+import Hero from "../components/home/Hero";
+import LogoStrip from "../components/home/LogoStrip";
+import RightChoice from "../components/home/RightChoice";
+import Partnerships from "../components/home/Partnerships";
+import CaseStudies from "../components/home/CaseStudies";
+import Testimonials from "../components/home/Testimonials";
+
+export default function HomePage() {
   return (
     <>
-      <HeroSection />
-      <PartnerLogos />
-      <WhyChooseUs />
-      <PartnershipsSection />
-      <CaseStudiesSection />
-      <TestimonialsSection />
-      <CTASection />
+      <Header />
+
+      <main>
+        <Hero />
+
+        <LogoStrip />
+
+        <section id="about">
+          <RightChoice />
+        </section>
+
+        <Partnerships />
+
+        <CaseStudies />
+
+        <Testimonials />
+      </main>
+
+      <Footer />
     </>
   );
 }
