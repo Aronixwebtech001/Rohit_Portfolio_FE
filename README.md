@@ -1,75 +1,48 @@
-# React + TypeScript + Vite
+# Rohit Jangir — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + TypeScript + Tailwind CSS site built from the provided Figma/design references.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Structure
 
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+src/
+├── pages/                 # one flat file per route (Home.tsx, About.tsx, ...)
+├── components/
+│   ├── Home/               # section components used only by Home.tsx
+│   ├── About/
+│   ├── Ventures/
+│   ├── Pitch/
+│   ├── Investor/
+│   ├── Mentorship/
+│   ├── Resources/
+│   ├── CaseStudy/
+│   └── shared/              # Navbar, Footer, CTASection, Stepper, Button, IconFeatureCard, Layout
+├── assets/images/          # logo + photos copied from your uploads
+├── types/                  # shared TypeScript interfaces
+├── App.tsx                 # react-router routes
+└── main.tsx
 ```
+
+Each page file only composes its section components — no raw markup lives directly in a page file. Anything reused across pages (Navbar, Footer, the "Ready to Transform Your Vision?" CTA, the numbered step process) lives in `components/shared/`.
+
+## Run it
+
+```bash
+npm install
+npm run dev
+```
+
+Then open the printed local URL (usually http://localhost:5173).
+
+To build for production:
+
+```bash
+npm run build
+npm run preview
+```
+
+## Notes
+
+- Colors, type (Playfair Display for headings, Inter for body), and layout were derived directly from the screenshots/PDFs you shared for Home, About, Ventures, Pitch, Investor, Mentorship, Resources, and Case Study.
+- A few images (hero illustrations, article thumbnails, client photos) are placeholder blocks (`bg-card`) since the original raster assets weren't available to embed — swap in your real photos/illustrations in the relevant component files under `src/assets/images/` and update the `<img>` tags.
+- Forms (Pitch, Investor Relations) are client-side only right now — wire up the `onSubmit` handlers in `PitchForm.tsx` / `InvestorForm.tsx` to your backend or a service like Formspree when ready.

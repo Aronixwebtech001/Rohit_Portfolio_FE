@@ -1,5 +1,5 @@
-import type { StatData } from "../../types";
-import handshake from "../../assets/images/rect-40064.png";
+import { StatData } from "../../types";
+import { Link } from "react-router-dom";
 
 const stats: StatData[] = [
   { value: "50+", label: "Startups Invested" },
@@ -10,28 +10,41 @@ const stats: StatData[] = [
 
 export default function PitchHero() {
   return (
-    <section className="bg-[#DCE4E6] relative overflow-hidden">
-      <div className="max-w-content mx-auto px-6 md:px-10 py-16 md:py-24 relative z-10">
-        <div className="md:w-[55%]">
-          <h1 className="font-serif text-4xl md:text-5xl mb-4 text-[#2C3E50]">Building Tomorrow's Success Stories</h1>
-          <p className="text-[#34495E] text-sm md:text-base mb-8 max-w-lg">
-            Partnering with visionary founders to transform innovative ideas into scalable businesses. Let's create something extraordinary together.
+    <section className="bg-[#DCE4E6]">
+      <div className="max-w-content mx-auto px-6 md:px-10 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 className="font-serif text-3xl md:text-4xl lg:text-[42px] mb-4 leading-tight">
+            Building Tomorrow's Success Stories
+          </h1>
+          <p className="text-navy/60 text-[15px] mb-6 max-w-md leading-relaxed">
+            Partnering with visionary founders to transform innovative ideas into scalable
+            businesses. Let's create something extraordinary together.
           </p>
-          <button className="w-full sm:w-auto px-6 py-3 rounded-md bg-[#1C2833] text-white text-sm font-medium hover:bg-black mb-12">
+          <Link
+            to="/pitch#form"
+            className="inline-block px-7 py-3 rounded-lg bg-navy text-white text-sm font-medium hover:bg-navy-dark transition-colors mb-8"
+          >
             Share Your Idea
-          </button>
-          <div className="flex flex-wrap gap-4">
+          </Link>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {stats.map((s) => (
-              <div key={s.label} className="bg-white rounded-xl py-4 px-6 text-center shadow-sm min-w-[120px]">
-                <p className="font-serif text-2xl font-semibold text-[#1C2833]">{s.value}</p>
-                <p className="text-xs text-gray-500 mt-1">{s.label}</p>
+              <div key={s.label} className="bg-white/60 backdrop-blur-sm rounded-xl p-4 text-center border border-white/40">
+                <p className="font-serif text-xl md:text-2xl text-navy">{s.value}</p>
+                <p className="text-[11px] text-navy/50 mt-1">{s.label}</p>
               </div>
             ))}
           </div>
         </div>
-      </div>
-      <div className="hidden md:block absolute right-[-5%] top-1/2 -translate-y-1/2 h-[120%] w-[50%] z-0">
-        <img src={handshake} alt="Handshake" className="w-full h-full object-contain object-right" />
+        {/* Handshake illustration placeholder */}
+        <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-white/30 flex items-center justify-center">
+          <div className="text-center text-navy/20">
+            <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="mx-auto mb-3">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <p className="text-sm">Illustration Placeholder</p>
+          </div>
+        </div>
       </div>
     </section>
   );

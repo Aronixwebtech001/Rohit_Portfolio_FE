@@ -5,7 +5,7 @@ const points = [
   {
     icon: <Lightbulb size={22} />,
     title: "Innovation",
-    description: "Learn to think like a successful entrepreneur and make better business decisions.",
+    description: "Unique ideas that solve real problems and disrupt traditional markets.",
   },
   {
     icon: <TrendingUp size={22} />,

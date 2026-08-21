@@ -1,4 +1,5 @@
-import type { StepData } from "../../types";
+import { StepData } from "../../types";
+import { ChevronRight } from "lucide-react";
 
 interface StepperProps {
   title: string;
@@ -10,22 +11,25 @@ export default function Stepper({ title, steps }: StepperProps) {
     <section className="bg-white">
       <div className="max-w-content mx-auto px-6 md:px-10 py-20">
         <h2 className="font-serif text-3xl md:text-4xl text-center mb-16">{title}</h2>
-        <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-4xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-4 md:gap-0">
           {steps.map((step, i) => (
-            <div key={step.number} className="flex flex-col md:flex-row items-center flex-1 relative">
-              <div className="flex flex-col items-center text-center w-full relative z-10">
-                <div className="w-16 h-16 rounded-full bg-white border-4 border-[#CFD8DC] flex items-center justify-center text-xl font-serif text-gray-800 mb-4">
+            <div key={step.number} className="flex items-center">
+              {/* Step */}
+              <div className="flex flex-col items-center text-center w-40 md:w-44">
+                <div className="w-16 h-16 rounded-full border-2 border-card bg-white flex items-center justify-center text-xl font-serif text-navy mb-4 shadow-sm">
                   {step.number}
                 </div>
-                <p className="font-medium text-xs text-gray-800">{step.title}</p>
+                <p className="font-medium text-sm text-navy mb-1">{step.title}</p>
                 {step.description && (
-                  <p className="text-gray-500 text-xs mt-2 leading-relaxed max-w-[120px] mx-auto">{step.description}</p>
+                  <p className="text-muted text-xs leading-relaxed px-2">{step.description}</p>
                 )}
               </div>
+
+              {/* Arrow connector */}
               {i < steps.length - 1 && (
-                <div className="hidden md:flex items-center absolute top-8 left-1/2 w-full -translate-y-1/2 z-0 pl-10 pr-10">
-                  <div className="flex-1 h-[2px] bg-[#CFD8DC]"></div>
-                  <div className="w-2 h-2 border-t-[2px] border-r-[2px] border-[#CFD8DC] transform rotate-45 -ml-1"></div>
+                <div className="hidden md:flex items-center mx-2 mt-[-3rem]">
+                  <div className="w-8 border-t border-dashed border-muted/40" />
+                  <ChevronRight size={16} className="text-muted/50 -ml-1" />
                 </div>
               )}
             </div>

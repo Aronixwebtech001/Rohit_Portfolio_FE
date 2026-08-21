@@ -5,17 +5,17 @@ const thesis = [
   {
     icon: <BarChart3 size={22} />,
     title: "Long Term Value Creation",
-    description: "Avoid common pitfalls and fast track your business growth.",
+    description: "Identifying high-potential ventures with sustainable competitive advantages and strong unit economics.",
   },
   {
     icon: <Settings2 size={22} />,
     title: "Technology Led Disruption",
-    description: "Get clarity on your goals and a concrete roadmap to achieve them.",
+    description: "Backing founders who leverage technology to create scalable, defensible market positions.",
   },
   {
     icon: <Handshake size={22} />,
     title: "Founder First Partnership",
-    description: "Learn to think like a successful entrepreneur and make better business decisions.",
+    description: "Building deep relationships with founders, providing hands-on support beyond just capital.",
   },
 ];
 

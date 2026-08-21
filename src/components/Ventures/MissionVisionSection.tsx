@@ -4,7 +4,7 @@ export default function MissionVisionSection() {
   return (
     <section className="bg-cream">
       <div className="max-w-content mx-auto px-6 md:px-10 pb-20">
-        <h2 className="font-serif text-3xl md:text-4xl mb-10">What Our Clients Say</h2>
+        <h2 className="font-serif text-3xl md:text-4xl mb-10">Our Purpose &amp; Direction</h2>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="bg-white rounded-2xl p-8">
             <Target size={22} className="text-teal mb-4" />

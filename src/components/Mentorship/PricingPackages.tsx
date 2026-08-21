@@ -1,5 +1,6 @@
 import { Check } from "lucide-react";
-import type { PricingPlan } from "../../types";
+import { PricingPlan } from "../../types";
+import { Link } from "react-router-dom";
 
 const plans: PricingPlan[] = [
   {
@@ -50,33 +51,53 @@ export default function PricingPackages() {
         <h2 className="font-serif text-3xl md:text-4xl text-center mb-3">
           Choose Your Mentorship Package
         </h2>
-        <p className="text-center text-muted text-sm mb-14 max-w-xl mx-auto">
+        <p className="text-center text-muted text-sm mb-14 max-w-xl mx-auto leading-relaxed">
           Select the package that best fits your needs. All sessions are conducted via video call
           and include personalized guidance.
         </p>
         <div className="grid md:grid-cols-3 gap-6">
           {plans.map((p) => (
-            <div key={p.name} className="bg-white rounded-2xl border border-black/5 p-7">
-              <div className="flex items-center justify-between mb-4">
+            <div
+              key={p.name}
+              className="bg-white rounded-2xl border border-black/5 p-7 flex flex-col hover:shadow-lg transition-shadow"
+            >
+              {/* Header with name + badge */}
+              <div className="flex items-center justify-between mb-5">
                 <h3 className="font-serif text-lg">{p.name}</h3>
-                <span className="text-[11px] bg-accent text-white px-2.5 py-1 rounded-full">
+                <span className="text-[11px] bg-accent text-white px-3 py-1 rounded-full font-medium">
                   {p.discountLabel}
                 </span>
               </div>
+
+              {/* Pricing */}
               <p className="text-muted text-sm line-through mb-1">{p.originalPrice}</p>
-              <p className="font-serif text-3xl mb-4">{p.price}</p>
-              <p className="text-muted text-sm mb-6">{p.description}</p>
-              <ul className="space-y-3 mb-8">
+              <p className="font-serif text-3xl mb-4 text-navy">{p.price}</p>
+
+              {/* Description */}
+              <p className="text-muted text-sm mb-6 leading-relaxed">{p.description}</p>
+
+              {/* Features */}
+              <ul className="space-y-3 mb-8 flex-1">
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-sm">
                     <Check size={15} className="text-teal mt-0.5 shrink-0" />
-                    {f}
+                    <span className="text-muted">{f}</span>
                   </li>
                 ))}
               </ul>
-              <button className="w-full border border-navy rounded-lg py-2.5 text-sm font-medium hover:bg-navy hover:text-white transition-colors">
+
+              {/* Book Now button */}
+              <Link
+                to="#"
+                onClick={(e) => e.preventDefault()}
+                className={`w-full py-3 rounded-full text-sm font-medium text-center transition-colors block border ${
+                  p.popular
+                    ? "bg-navy text-white border-navy hover:bg-navy-dark"
+                    : "bg-white text-navy border-navy hover:bg-cream"
+                }`}
+              >
                 Book Now
-              </button>
+              </Link>
             </div>
           ))}
         </div>
