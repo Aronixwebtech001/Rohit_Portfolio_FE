@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import handshake from "../../assets/images/rect-40064.png";
+import handshake from "../../assets/images/rect-43.png";
 
 const points = [
   "End to end planning and optimisation of daily bus routes and scheduling.",
@@ -11,8 +11,8 @@ const points = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="bg-white">
-      <div className="max-w-content mx-auto px-6 md:px-10 py-20 grid md:grid-cols-2 gap-12 items-center">
+    <section className="bg-cream">
+      <div className="max-w-content mx-auto px-6 md:px-10 py-20 md:py-24 grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div>
           <h2 className="font-serif text-3xl md:text-4xl mb-8 leading-snug">
             Why we're the right choice

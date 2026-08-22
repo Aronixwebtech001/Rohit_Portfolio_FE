@@ -56,7 +56,7 @@ const socialIcons = [
 export default function Footer() {
   return (
     <footer className="bg-navy-dark text-white">
-      {/* Email subscribe bar */}
+      {/* Newsletter subscribe bar — top of footer */}
       <div className="max-w-content mx-auto px-6 md:px-10 pt-14 pb-8 flex flex-col items-center">
         <form
           className="flex w-full max-w-md rounded-full overflow-hidden border border-white/20"
@@ -127,7 +127,9 @@ export default function Footer() {
         {/* Connect */}
         <div>
           <p className="text-white/40 font-medium mb-4 uppercase tracking-wider text-xs">Connect</p>
-          <p className="text-sm text-white/70 mb-5">connect@rohitjangir.com</p>
+          <a href="mailto:connect@rohitjangir.com" className="text-sm text-white/70 hover:text-teal transition-colors block mb-5">
+            connect@rohitjangir.com
+          </a>
           <div className="flex gap-3">
             {socialIcons.map((s) => (
               <span

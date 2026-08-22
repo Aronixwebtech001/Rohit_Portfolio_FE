@@ -43,3 +43,23 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #1E2E36;
 }
+
+/* Infinite marquee animation — moves logos to the RIGHT */
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 25s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}

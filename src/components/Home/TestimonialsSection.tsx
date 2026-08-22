@@ -1,24 +1,31 @@
 import { Star, ArrowLeft, ArrowRight } from "lucide-react";
 import { TestimonialData } from "../../types";
 
-const testimonials: TestimonialData[] = [
+interface TestimonialWithAvatar extends TestimonialData {
+  avatar: string;
+}
+
+const testimonials: TestimonialWithAvatar[] = [
   {
     quote:
       "The work they did for our brand was truly amazing. Everything looked great and our customers loved it. Their team is very creative and always delivers on time.",
     name: "Priya Mehta",
     role: "Founder, CEO @ Designify India",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80&auto=format&fit=crop&crop=face",
   },
   {
     quote:
       "They understood exactly what we needed and made it even better. The content was fresh, engaging and got us really good results. Highly recommend their work.",
     name: "Priya Mehta",
     role: "Founder @ Kreativ Studio",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80&auto=format&fit=crop&crop=face",
   },
   {
     quote:
       "Working with their team was a great experience. They are professional, creative and very easy to work with. Our brand has grown a lot since we started working with them.",
     name: "Arjun Kapoor",
     role: "Co-Founder @ BrandBazaar",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&auto=format&fit=crop&crop=face",
   },
 ];
 
@@ -42,8 +49,8 @@ export default function TestimonialsSection() {
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <div key={i} className="bg-white rounded-2xl p-6 shadow-sm">
-              {/* Stars */}
-              <div className="flex gap-1 text-accent mb-4">
+              {/* Stars — gold/yellow as per reference */}
+              <div className="flex gap-1 mb-4" style={{ color: "#F5A623" }}>
                 {Array.from({ length: 5 }).map((_, s) => (
                   <Star key={s} size={14} fill="currentColor" strokeWidth={0} />
                 ))}
@@ -60,10 +67,11 @@ export default function TestimonialsSection() {
               {/* Avatar + info */}
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-card shrink-0 overflow-hidden">
-                  {/* Avatar placeholder */}
-                  <div className="w-full h-full bg-gradient-to-br from-teal/20 to-navy/10 flex items-center justify-center text-navy font-serif text-sm">
-                    {t.name.charAt(0)}
-                  </div>
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <p className="text-sm font-medium">{t.name}</p>
