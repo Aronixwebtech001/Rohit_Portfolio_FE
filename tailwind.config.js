@@ -18,6 +18,7 @@ export default {
         cream: "#F7F8F8",
         card: "#EDF0F0",
         accent: "#E8623D",
+        gold: "#F5A623",
         muted: "#5B6B72",
       },
       fontFamily: {

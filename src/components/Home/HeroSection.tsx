@@ -1,10 +1,10 @@
-import portrait from "../../assets/images/rect-43.png";
+import portrait from "../../assets/images/rect-40064.png";
 import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-[#DCE4E6] overflow-hidden">
-      <div className="max-w-content mx-auto px-6 md:px-10 py-16 md:py-20 relative z-10">
+    <section className="relative bg-[#DCE4E6] overflow-hidden min-h-[520px] md:min-h-[580px]">
+      <div className="max-w-content mx-auto px-6 md:px-10 py-20 md:py-28 relative z-10">
         <div className="max-w-[55%]">
           <p className="uppercase tracking-[0.25em] text-xs text-muted mb-4">
             Entrepreneur &nbsp;|&nbsp; Innovator &nbsp;|&nbsp; Investor
@@ -38,10 +38,10 @@ export default function HeroSection() {
         <img
           src={portrait}
           alt="Rohit Jangir"
-          className="w-full h-full object-cover object-top"
+          className="w-full h-full object-cover object-center"
         />
         {/* Soft gradient fade on left edge */}
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#DCE4E6] to-transparent" />
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#DCE4E6] to-transparent" />
       </div>
 
       {/* Wave SVG divider at bottom */}

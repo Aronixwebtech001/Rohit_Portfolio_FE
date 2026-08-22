@@ -4,19 +4,19 @@ import { Link } from "react-router-dom";
 
 const cards: CaseStudyCard[] = [
   {
-    image: "",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80&auto=format&fit=crop",
     label: "Case Study",
     title: "Corporate Excellence Delivered",
     description: "How we turned an 18,000 sq.ft office into a scalable business asset",
   },
   {
-    image: "",
+    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80&auto=format&fit=crop",
     label: "Case Study",
     title: "Beyond Boundaries Farmhouse",
     description: "How we delivered a 23,400 sq.ft luxury farmhouse with precision and excellence",
   },
   {
-    image: "",
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80&auto=format&fit=crop",
     label: "Case Study",
     title: "Luxury Living Redefined",
     description: "How we built a world class 4 BHK home with zero operational waste",
@@ -38,13 +38,9 @@ export default function CaseStudiesSection() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {cards.map((c) => (
-              <div key={c.title} className="rounded-2xl border border-black/5 overflow-hidden hover:shadow-md transition-shadow group">
+              <div key={c.title} className="rounded-2xl border border-black/5 overflow-hidden hover:shadow-md transition-shadow group bg-white">
                 <div className="aspect-[4/3] bg-card overflow-hidden">
-                  {c.image ? (
-                    <img src={c.image} alt={c.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-card to-cream" />
-                  )}
+                  <img src={c.image} alt={c.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-5">
                   <p className="text-xs text-muted mb-2 uppercase tracking-wide">{c.label}</p>
