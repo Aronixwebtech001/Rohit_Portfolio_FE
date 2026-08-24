@@ -3,12 +3,12 @@ import { Target, Eye } from "lucide-react";
 export default function MissionVisionSection() {
   return (
     <section className="bg-cream">
-      <div className="max-w-content mx-auto px-6 md:px-10 pb-20">
-        <h2 className="font-serif text-3xl md:text-4xl mb-10">Our Purpose &amp; Direction</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-white rounded-2xl p-8">
-            <Target size={22} className="text-teal mb-4" />
-            <h3 className="font-serif text-xl mb-3">Mission</h3>
+      <div className="max-w-content mx-auto px-6 md:px-10 py-12">
+        <h2 className="font-serif text-2xl md:text-3xl mb-8">Our Purpose &amp; Direction</h2>
+        <div className="grid md:grid-cols-2 gap-5">
+          <div className="bg-white rounded-2xl p-7">
+            <Target size={20} className="text-teal mb-3" />
+            <h3 className="font-serif text-lg mb-2">Mission</h3>
             <p className="text-muted text-sm leading-relaxed">
               My mission is to empower ambitious entrepreneurs with the right capital,
               mentorship, and proven systems. I believe every great idea deserves a real chance —
@@ -17,9 +17,9 @@ export default function MissionVisionSection() {
               businesses that create meaningful value for both people and communities.
             </p>
           </div>
-          <div className="bg-white rounded-2xl p-8">
-            <Eye size={22} className="text-teal mb-4" />
-            <h3 className="font-serif text-xl mb-3">Vision</h3>
+          <div className="bg-white rounded-2xl p-7">
+            <Eye size={20} className="text-teal mb-3" />
+            <h3 className="font-serif text-lg mb-2">Vision</h3>
             <p className="text-muted text-sm leading-relaxed">
               My vision is to build a powerful ecosystem where no driven entrepreneur is ever held
               back by a lack of resources, guidance, or opportunity. I want to create a lasting

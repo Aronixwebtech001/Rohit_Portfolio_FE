@@ -1,5 +1,6 @@
 import { StatData } from "../../types";
 import { Link } from "react-router-dom";
+import handshakeImg from "../../assets/images/rect-43.png";
 
 const stats: StatData[] = [
   { value: "50+", label: "Startups Invested" },
@@ -11,7 +12,7 @@ const stats: StatData[] = [
 export default function PitchHero() {
   return (
     <section className="bg-[#DCE4E6]">
-      <div className="max-w-content mx-auto px-6 md:px-10 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+      <div className="max-w-content mx-auto px-6 md:px-10 py-14 md:py-16 grid md:grid-cols-2 gap-8 items-center">
         <div>
           <h1 className="font-serif text-3xl md:text-4xl lg:text-[42px] mb-4 leading-tight">
             Building Tomorrow's Success Stories
@@ -35,15 +36,12 @@ export default function PitchHero() {
             ))}
           </div>
         </div>
-        {/* Handshake illustration placeholder */}
-        <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-white/30 flex items-center justify-center">
-          <div className="text-center text-navy/20">
-            <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="mx-auto mb-3">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
-            <p className="text-sm">Illustration Placeholder</p>
-          </div>
+        <div className="flex justify-end">
+          <img
+            src={handshakeImg}
+            alt="Handshake partnership illustration"
+            className="w-full max-w-sm rounded-xl object-contain"
+          />
         </div>
       </div>
     </section>

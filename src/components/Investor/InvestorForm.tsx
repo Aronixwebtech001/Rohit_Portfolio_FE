@@ -1,23 +1,26 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 export default function InvestorForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!confirmed) return;
     setSubmitted(true);
-    // Real implementation would submit to backend here
     setTimeout(() => setSubmitted(false), 5000);
   };
 
+  const inputClass =
+    "w-full px-4 py-3 rounded-xl border border-black/10 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy transition-colors text-sm bg-cream/50";
+
   return (
     <section className="bg-cream">
-      <div className="max-w-content mx-auto px-6 md:px-10 py-20">
-        <div className="max-w-3xl mx-auto bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-black/5">
-          <h2 className="font-serif text-3xl md:text-4xl text-center mb-4">Partner With Us</h2>
-          <p className="text-center text-muted text-sm mb-10">
-            Interested in co-investing or joining our LP network? Leave your details below.
+      <div className="max-w-content mx-auto px-6 md:px-10 py-16">
+        <div className="max-w-3xl mx-auto bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-black/5">
+          <h2 className="font-serif text-2xl md:text-3xl text-center mb-2">Investor Relations</h2>
+          <p className="text-center text-muted text-sm mb-8">
+            Partner with us in building technology-driven infrastructure across India.
           </p>
 
           {submitted ? (
@@ -25,80 +28,80 @@ export default function InvestorForm() {
               <div className="w-16 h-16 bg-teal text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                 ✓
               </div>
-              <h3 className="font-serif text-2xl text-navy mb-2">Inquiry Submitted Successfully!</h3>
+              <h3 className="font-serif text-2xl text-navy mb-2">Form Submitted Successfully!</h3>
               <p className="text-muted text-sm">
                 Thank you for your interest. Our investor relations team will be in touch shortly.
               </p>
             </div>
           ) : (
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div className="grid md:grid-cols-2 gap-6">
+            <form className="space-y-5" onSubmit={handleSubmit}>
+              {/* Row 1: Full Name | Organisation Name */}
+              <div className="grid md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm font-medium text-navy mb-2">Full Name</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Enter your full name"
-                    className="w-full px-5 py-3 rounded-xl border border-black/10 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy transition-colors text-sm bg-cream/50"
-                  />
+                  <label className="block text-sm font-medium text-navy mb-1.5">Full Name *</label>
+                  <input type="text" required placeholder="" className={inputClass} />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-navy mb-2">Email Address</label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="your@email.com"
-                    className="w-full px-5 py-3 rounded-xl border border-black/10 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy transition-colors text-sm bg-cream/50"
-                  />
+                  <label className="block text-sm font-medium text-navy mb-1.5">
+                    Organisation Name (If not type NA) *
+                  </label>
+                  <input type="text" required placeholder="" className={inputClass} />
                 </div>
               </div>
-              <div className="grid md:grid-cols-2 gap-6">
+
+              {/* Row 2: Mobile Number | Country */}
+              <div className="grid md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm font-medium text-navy mb-2">Organization</label>
-                  <input
-                    type="text"
-                    placeholder="Enter organization name"
-                    className="w-full px-5 py-3 rounded-xl border border-black/10 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy transition-colors text-sm bg-cream/50"
-                  />
+                  <label className="block text-sm font-medium text-navy mb-1.5">Mobile Number *</label>
+                  <input type="tel" required placeholder="" className={inputClass} />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-navy mb-2">Phone Number</label>
-                  <input
-                    type="tel"
-                    placeholder="+91 XXXXX XXXXX"
-                    className="w-full px-5 py-3 rounded-xl border border-black/10 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy transition-colors text-sm bg-cream/50"
-                  />
+                  <label className="block text-sm font-medium text-navy mb-1.5">Country *</label>
+                  <input type="text" required placeholder="" className={inputClass} />
                 </div>
               </div>
+
+              {/* Row 3: Investment Category | Email Address */}
+              <div className="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-sm font-medium text-navy mb-1.5">Investment Category *</label>
+                  <input type="text" required placeholder="" className={inputClass} />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-navy mb-1.5">Email Address *</label>
+                  <input type="email" required placeholder="" className={inputClass} />
+                </div>
+              </div>
+
+              {/* Row 4: Message */}
               <div>
-                <label className="block text-sm font-medium text-navy mb-2">Investment Interest</label>
-                <select className="w-full px-5 py-3 rounded-xl border border-black/10 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy transition-colors text-sm bg-cream/50 text-navy">
-                  <option value="">Select your area of interest</option>
-                  <option value="co-investing">Co-Investing Opportunities</option>
-                  <option value="lp-network">Join LP Network</option>
-                  <option value="general">General Inquiry</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-navy mb-2">Message (Optional)</label>
+                <label className="block text-sm font-medium text-navy mb-1.5">Message (Optional)</label>
                 <textarea
-                  rows={4}
-                  placeholder="How can we help you?"
-                  className="w-full px-5 py-3 rounded-xl border border-black/10 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy transition-colors text-sm bg-cream/50 resize-none"
+                  rows={3}
+                  placeholder="Any additional information you'd like to share..."
+                  className={`${inputClass} resize-none`}
                 ></textarea>
               </div>
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p className="text-xs text-muted">
-                  Looking to pitch a startup instead?{" "}
-                  <Link to="/pitch" className="text-teal hover:underline">
-                    Go here
-                  </Link>
-                </p>
+
+              {/* Checkbox */}
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={confirmed}
+                  onChange={(e) => setConfirmed(e.target.checked)}
+                  className="w-4 h-4 rounded border-black/20 text-navy focus:ring-navy"
+                  required
+                />
+                <span className="text-sm text-navy">I confirm this is an investment enquiry. *</span>
+              </label>
+
+              {/* Submit */}
+              <div className="pt-2 flex justify-center">
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-8 py-3.5 bg-navy text-white font-medium rounded-xl hover:bg-navy-dark transition-colors"
+                  className="px-10 py-3 bg-navy text-white font-medium rounded-xl hover:bg-navy-dark transition-colors text-sm"
                 >
-                  Submit Inquiry
+                  Submit Form
                 </button>
               </div>
             </form>
