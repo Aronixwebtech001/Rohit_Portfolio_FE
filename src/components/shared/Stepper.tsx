@@ -15,21 +15,21 @@ export default function Stepper({ title, steps }: StepperProps) {
           {steps.map((step, i) => (
             <div key={step.number} className="flex items-center">
               {/* Step */}
-              <div className="flex flex-col items-center text-center w-40 md:w-44">
-                <div className="w-16 h-16 rounded-full border-2 border-card bg-white flex items-center justify-center text-xl font-serif text-navy mb-4 shadow-sm">
+              <div className="flex flex-col items-center text-center w-48 md:w-56">
+                <div className="w-20 h-20 rounded-full border-4 border-[#F1F3F4] bg-white flex items-center justify-center text-2xl font-serif text-navy mb-5 shadow-sm">
                   {step.number}
                 </div>
-                <p className="font-medium text-sm text-navy mb-1">{step.title}</p>
+                <p className="font-serif text-lg text-navy mb-2">{step.title}</p>
                 {step.description && (
-                  <p className="text-muted text-xs leading-relaxed px-2">{step.description}</p>
+                  <p className="text-muted text-sm leading-relaxed px-4">{step.description}</p>
                 )}
               </div>
 
               {/* Arrow connector */}
               {i < steps.length - 1 && (
-                <div className="hidden md:flex items-center mx-2 mt-[-3rem]">
-                  <div className="w-8 border-t border-dashed border-muted/40" />
-                  <ChevronRight size={16} className="text-muted/50 -ml-1" />
+                <div className="hidden md:flex items-center mx-2 mt-[-5rem]">
+                  <div className="w-12 border-t-2 border-black/10" />
+                  <ChevronRight size={20} className="text-black/30 -ml-2" />
                 </div>
               )}
             </div>
