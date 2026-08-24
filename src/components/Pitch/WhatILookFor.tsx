@@ -5,17 +5,17 @@ const points = [
   {
     icon: <Lightbulb size={22} />,
     title: "Innovation",
-    description: "Unique ideas that solve real problems and disrupt traditional markets.",
+    description: "Learn to think like a successful entrepreneur and make better business decisions",
   },
   {
     icon: <TrendingUp size={22} />,
     title: "Scalability",
-    description: "Business models with potential for rapid and sustainable growth.",
+    description: "Business models with potential for rapid and sustainable growth",
   },
   {
     icon: <Users size={22} />,
     title: "Strategic Thinking",
-    description: "Learn to think like a successful entrepreneur and make better business decisions.",
+    description: "Learn to think like a successful entrepreneur and make better business decisions",
   },
 ];
 

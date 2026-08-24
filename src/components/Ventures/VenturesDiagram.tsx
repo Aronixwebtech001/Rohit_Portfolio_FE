@@ -42,9 +42,9 @@ const ventures: VentureNode[] = [
 export default function VenturesDiagram() {
   return (
     <section className="bg-cream">
-      <div className="max-w-content mx-auto px-6 md:px-10 py-16">
+      <div className="max-w-content mx-auto px-6 md:px-10 pb-12">
         <div
-          className="relative rounded-2xl bg-card p-6 md:p-10 overflow-hidden min-h-[500px]"
+          className="relative rounded-2xl bg-card/60 p-5 md:p-8 overflow-hidden"
           style={{
             backgroundImage: `url(${worldMap})`,
             backgroundSize: "cover",
@@ -52,78 +52,99 @@ export default function VenturesDiagram() {
             backgroundRepeat: "no-repeat",
           }}
         >
-          {/* Slight overlay to soften the map */}
-          <div className="absolute inset-0 bg-card/80" />
+          {/* Overlay to soften the map */}
+          <div className="absolute inset-0 bg-card/85" />
 
-          <div className="relative z-10">
-            {/* Center-left Rohit Jangir node */}
-            <div className="hidden md:block absolute left-8 top-1/2 -translate-y-1/2">
-              <div className="bg-white rounded-xl px-6 py-4 shadow-lg border border-black/5">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal to-teal-dark flex items-center justify-center text-white font-serif text-lg">
+          {/* Desktop layout: two-column grid */}
+          <div className="relative z-10 hidden md:grid md:grid-cols-[200px_80px_1fr] items-center">
+            {/* Column 1: Rohit Jangir card */}
+            <div className="flex items-center justify-center self-center">
+              <div className="bg-white rounded-xl px-5 py-3 shadow-md border border-black/5">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal to-teal-dark flex items-center justify-center text-white font-serif text-sm">
                     R
                   </div>
-                  <span className="font-serif text-lg text-navy">Rohit Jangir</span>
+                  <span className="font-serif text-base text-navy whitespace-nowrap">Rohit Jangir</span>
                 </div>
               </div>
             </div>
 
-            {/* Mobile: show name at top */}
-            <div className="md:hidden mb-6">
-              <div className="inline-block bg-white rounded-xl px-6 py-4 shadow-sm font-serif text-lg">
-                Rohit Jangir
-              </div>
+            {/* Column 2: SVG connector lines */}
+            <div className="relative h-full">
+              <svg
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                viewBox="0 0 80 500"
+                preserveAspectRatio="none"
+                fill="none"
+              >
+                {ventures.map((v, i) => {
+                  const startY = 250;
+                  const endY = 42 + i * 100;
+                  return (
+                    <path
+                      key={v.key}
+                      d={`M0,${startY} C50,${startY} 30,${endY} 80,${endY}`}
+                      stroke={v.color}
+                      strokeWidth="1.5"
+                      strokeDasharray="5 3"
+                      opacity="0.5"
+                    />
+                  );
+                })}
+              </svg>
             </div>
 
-            {/* Venture cards - positioned on the right side on desktop */}
-            <div className="md:ml-[35%] space-y-4">
+            {/* Column 3: Venture cards */}
+            <div className="space-y-3">
               {ventures.map((v) => (
                 <div
                   key={v.key}
-                  className="bg-white rounded-xl p-5 border-l-4 shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-white rounded-lg p-4 border-l-[3px] shadow-sm hover:shadow-md transition-shadow"
                   style={{ borderColor: v.color }}
                 >
-                  <div className="flex items-start gap-4">
-                    {/* Colored dot connector */}
-                    <div className="hidden md:block mt-1">
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 shrink-0">
                       <div
-                        className="w-3 h-3 rounded-full"
+                        className="w-2.5 h-2.5 rounded-full"
                         style={{ backgroundColor: v.color }}
                       />
                     </div>
-                    <div className="flex-1">
-                      <p className="font-bold text-sm mb-1.5 tracking-wide" style={{ color: v.color }}>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-bold text-xs mb-1 tracking-wide" style={{ color: v.color }}>
                         {v.name}
                       </p>
-                      <p className="text-muted text-xs leading-relaxed">{v.description}</p>
+                      <p className="text-muted text-[11px] leading-relaxed">{v.description}</p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
+          </div>
 
-            {/* Connecting lines (desktop only) — drawn with absolute positioned elements */}
-            <svg
-              className="hidden md:block absolute left-[180px] top-0 w-[calc(35%-180px)] h-full pointer-events-none"
-              viewBox="0 0 200 500"
-              preserveAspectRatio="none"
-              fill="none"
-            >
-              {ventures.map((v, i) => {
-                const startY = 250; // center
-                const endY = 50 + i * 95; // distribute evenly
-                return (
-                  <path
-                    key={v.key}
-                    d={`M0,${startY} C100,${startY} 100,${endY} 200,${endY}`}
-                    stroke={v.color}
-                    strokeWidth="2"
-                    strokeDasharray="6 3"
-                    opacity="0.5"
-                  />
-                );
-              })}
-            </svg>
+          {/* Mobile layout: simple stacked */}
+          <div className="relative z-10 md:hidden">
+            <div className="mb-4">
+              <div className="inline-flex items-center gap-2 bg-white rounded-xl px-4 py-3 shadow-sm">
+                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-teal to-teal-dark flex items-center justify-center text-white font-serif text-xs">
+                  R
+                </div>
+                <span className="font-serif text-sm">Rohit Jangir</span>
+              </div>
+            </div>
+            <div className="space-y-3">
+              {ventures.map((v) => (
+                <div
+                  key={v.key}
+                  className="bg-white rounded-lg p-4 border-l-[3px] shadow-sm"
+                  style={{ borderColor: v.color }}
+                >
+                  <p className="font-bold text-xs mb-1 tracking-wide" style={{ color: v.color }}>
+                    {v.name}
+                  </p>
+                  <p className="text-muted text-[11px] leading-relaxed">{v.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

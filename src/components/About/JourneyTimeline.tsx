@@ -34,29 +34,29 @@ const milestones = [
 export default function JourneyTimeline() {
   return (
     <section className="bg-white">
-      <div className="max-w-content mx-auto px-6 md:px-10 py-20">
+      <div className="max-w-content mx-auto px-6 md:px-10 py-16">
         <p className="uppercase text-xs tracking-widest text-muted mb-2 text-center">My Journey</p>
-        <h2 className="font-serif text-2xl md:text-3xl mb-14 text-center">
+        <h2 className="font-serif text-2xl md:text-3xl mb-12 text-center">
           Building a Legacy, One Venture at a Time
         </h2>
 
-        <div className="relative">
+        <div className="relative max-w-2xl mx-auto">
           {/* Vertical timeline line */}
           <div className="absolute left-[72px] md:left-[90px] top-0 bottom-0 w-px bg-teal/30" />
 
-          <div className="space-y-10">
-            {milestones.map((m, i) => (
-              <div key={m.year} className="grid grid-cols-[auto_1fr] gap-6 md:gap-8 items-start">
+          <div className="space-y-8">
+            {milestones.map((m) => (
+              <div key={m.year} className="grid grid-cols-[auto_1fr] gap-4 md:gap-6 items-start">
                 <div className="flex flex-col items-center relative z-10">
-                  <span className="font-serif text-3xl md:text-5xl text-navy">{m.year}</span>
+                  <span className="font-serif text-2xl md:text-4xl text-navy">{m.year}</span>
                 </div>
-                <div className="pt-1 md:pt-2">
+                <div className="pt-0.5 md:pt-1">
                   {/* Timeline dot */}
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-3 h-3 rounded-full bg-teal border-2 border-white shadow-sm" />
-                    <h3 className="font-serif text-xl md:text-2xl">{m.title}</h3>
+                  <div className="flex items-center gap-3 mb-1">
+                    <div className="w-2.5 h-2.5 rounded-full bg-teal border-2 border-white shadow-sm" />
+                    <h3 className="font-serif text-lg md:text-xl">{m.title}</h3>
                   </div>
-                  <p className="text-muted text-sm ml-6 leading-relaxed">{m.description}</p>
+                  <p className="text-muted text-sm ml-[22px] leading-relaxed">{m.description}</p>
                 </div>
               </div>
             ))}
