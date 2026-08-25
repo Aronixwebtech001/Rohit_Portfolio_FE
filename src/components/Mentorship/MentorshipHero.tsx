@@ -1,3 +1,5 @@
+import heroImage from "../../assets/images/investor-hero.jpg";
+
 export default function MentorshipHero() {
   return (
     <section className="bg-[#DCE4E6]">
@@ -7,15 +9,8 @@ export default function MentorshipHero() {
           <br />
           Different
         </h1>
-        {/* Illustration placeholder */}
-        <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-white/30 flex items-center justify-center">
-          <div className="text-center text-navy/20">
-            <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="mx-auto mb-3">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-            </svg>
-            <p className="text-sm">Illustration Placeholder</p>
-          </div>
+        <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-card flex items-center justify-center">
+          <img src={heroImage} alt="Mentorship" className="w-full h-full object-cover" />
         </div>
       </div>
     </section>

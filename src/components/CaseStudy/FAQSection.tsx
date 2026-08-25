@@ -3,24 +3,24 @@ import { ChevronRight } from "lucide-react";
 
 const faqs = [
   {
-    q: "What industries do you focus on?",
-    a: "Our portfolio spans mobility, technology, real estate, and social impact. We are always looking for innovative ideas across these sectors and beyond.",
+    q: "What is a Payment Gateway?",
+    a: "A payment gateway is a technology used by merchants to accept debit or credit card purchases from customers. The term includes not only the physical card-reading devices found in brick-and-mortar retail stores but also the payment processing portals found in online stores.",
   },
   {
-    q: "What is the typical investment range?",
-    a: "We invest in early-stage startups with investment amounts ranging from ₹10 Lakhs to ₹1 Crore, depending on the stage, traction, and market opportunity.",
+    q: "Do I need to pay to Instapay even when there is no transaction going on in my business?",
+    a: "No, you do not need to pay Instapay when there is no transaction happening. With one of the lowest transaction charges in the industry, pay only when you get paid!",
   },
   {
-    q: "How long does the evaluation process take?",
-    a: "The initial screening takes 1–2 weeks. If your pitch is shortlisted, we schedule a deep-dive meeting within the following week. The entire process typically takes 3–4 weeks.",
+    q: "What platforms does ACME payment gateway support?",
+    a: "ACME payment gateway supports a wide variety of platforms including Shopify, WooCommerce, Magento, and custom built websites via our robust REST APIs.",
   },
   {
-    q: "Do you provide mentorship along with investment?",
-    a: "Absolutely. Every founder we back gets hands-on mentorship covering strategy, operations, fundraising, and growth — not just capital.",
+    q: "Does ACME provide international payments support?",
+    a: "Yes, we support payments in over 100+ international currencies allowing you to seamlessly accept payments from customers globally.",
   },
   {
-    q: "What stage of startups do you typically invest in?",
-    a: "We primarily focus on seed and pre-Series A startups that have demonstrated initial traction, a clear market opportunity, and a strong founding team.",
+    q: "Is there any setup fee or annual maintenance fee that I need to pay regularly?",
+    a: "We do not charge any setup fee or annual maintenance fees. You only pay a small, transparent transaction fee for each successful payment processed.",
   },
 ];
 

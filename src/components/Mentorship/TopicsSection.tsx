@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import meetingPhoto from "../../assets/images/rect-40064.png";
+import meetingPhoto from "../../assets/images/rect-43.png";
 
 const topics = [
   {
@@ -28,13 +28,13 @@ export default function TopicsSection() {
           <h2 className="font-serif text-2xl md:text-3xl mb-8">Topics I Can Help You With</h2>
           <div className="grid grid-cols-2 gap-6">
             {topics.map((t) => (
-              <div key={t.group}>
-                <p className="font-medium mb-3">{t.group}</p>
-                <ul className="space-y-2">
+              <div key={t.group} className="bg-white rounded-2xl border border-black/5 p-6 shadow-sm">
+                <p className="font-serif text-lg mb-4">{t.group}</p>
+                <ul className="space-y-3">
                   {t.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-xs text-muted">
-                      <Check size={13} className="text-teal mt-0.5 shrink-0" />
-                      {item}
+                    <li key={item} className="flex items-start gap-2 text-sm text-muted">
+                      <Check size={16} className="text-teal mt-0.5 shrink-0" />
+                      <span className="leading-tight">{item}</span>
                     </li>
                   ))}
                 </ul>

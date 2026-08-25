@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import heroImage from "../../assets/images/world-map.png";
 
 const tabs = ["Product Design", "UX Research", "Leadership", "Design System"];
 
@@ -81,12 +82,7 @@ export default function CaseStudyHero() {
             </Link>
           </div>
           <div className="aspect-[4/3] rounded-2xl bg-card overflow-hidden">
-            <div className={`w-full h-full bg-gradient-to-br transition-all duration-700 ${
-              active === 0 ? "from-navy/5 to-teal/5" :
-              active === 1 ? "from-teal/5 to-accent/5" :
-              active === 2 ? "from-accent/5 to-navy/5" :
-              "from-navy/10 to-teal/10"
-            }`} />
+            <img src={heroImage} alt="Case Study" className="w-full h-full object-cover" />
           </div>
         </div>
       </div>
