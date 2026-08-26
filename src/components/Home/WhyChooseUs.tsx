@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import handshake from "../../assets/images/rect-43.png";
+import handshake from "../../assets/images/final/home-handshake.png";
 
 const points = [
   "End to end planning and optimisation of daily bus routes and scheduling.",

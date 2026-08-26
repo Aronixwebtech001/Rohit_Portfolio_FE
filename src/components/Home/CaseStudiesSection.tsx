@@ -1,25 +1,28 @@
 import { CaseStudyCard } from "../../types";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import officeImg from "../../assets/images/final/home-case-study-office.png";
+import farmhouseImg from "../../assets/images/final/home-case-study-farmhouse.png";
+import luxuryImg from "../../assets/images/final/home-case-study-luxury.png";
 
 const cards: CaseStudyCard[] = [
   {
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80&auto=format&fit=crop",
+    image: officeImg,
     label: "Case Study",
     title: "Corporate Excellence Delivered",
     description: "How we turned an 18,000 sq.ft office into a scalable business asset",
   },
   {
-    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80&auto=format&fit=crop",
+    image: farmhouseImg,
     label: "Case Study",
-    title: "Beyond Boundaries Farmhouse",
-    description: "How we delivered a 23,400 sq.ft luxury farmhouse with precision and excellence",
+    title: "Mobility Infrastructure",
+    description: "How we built scalable transport networks with precision and excellence",
   },
   {
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80&auto=format&fit=crop",
+    image: luxuryImg,
     label: "Case Study",
-    title: "Luxury Living Redefined",
-    description: "How we built a world class 4 BHK home with zero operational waste",
+    title: "Data-Driven Operations",
+    description: "Achieving operational excellence through real-time data analytics",
   },
 ];
 
@@ -27,7 +30,9 @@ export default function CaseStudiesSection() {
   return (
     <section className="bg-white">
       <div className="max-w-content mx-auto px-6 md:px-10 py-20">
-        <h2 className="font-serif text-3xl md:text-4xl text-center mb-14">Case Studies</h2>
+        <h2 className="font-serif text-3xl md:text-4xl text-center mb-14 text-navy">
+          Case Studies
+        </h2>
 
         {/* Card row with side arrow controls */}
         <div className="relative">

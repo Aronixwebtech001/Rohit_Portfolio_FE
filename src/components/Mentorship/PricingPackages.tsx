@@ -88,8 +88,8 @@ export default function PricingPackages() {
 
               {/* Book Now button */}
               <Link
-                to="#"
-                onClick={(e) => e.preventDefault()}
+                to="/book-mentorship"
+                state={{ planName: p.name, price: p.price.replace("₹", "") }}
                 className={`w-full py-3 rounded-full text-sm font-medium text-center transition-colors block border ${
                   p.popular
                     ? "bg-navy text-white border-navy hover:bg-navy-dark"

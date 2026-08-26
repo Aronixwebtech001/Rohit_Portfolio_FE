@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import heroImage from "../../assets/images/world-map.png";
+import heroImage from "../../assets/images/final/case-study-hero.png";
 
 const tabs = ["Product Design", "UX Research", "Leadership", "Design System"];
 

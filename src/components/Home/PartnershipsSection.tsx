@@ -1,5 +1,4 @@
-// Partnership meeting placeholder — use Unsplash corporate meeting image
-const meetingPhoto = "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80&auto=format&fit=crop";
+import meetingPhoto from "../../assets/images/final/home-meeting.png";
 
 export default function PartnershipsSection() {
   return (

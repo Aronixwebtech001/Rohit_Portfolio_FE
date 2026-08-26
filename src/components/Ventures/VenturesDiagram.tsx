@@ -42,7 +42,10 @@ const ventures: VentureNode[] = [
 export default function VenturesDiagram() {
   return (
     <section className="bg-cream">
-      <div className="max-w-content mx-auto px-6 md:px-10 pb-12">
+      <div className="max-w-content mx-auto px-6 md:px-10 pb-12 pt-16">
+        <h2 className="font-serif uppercase text-2xl md:text-3xl text-center mb-10 tracking-widest text-navy">
+          My Ventures
+        </h2>
         <div
           className="relative rounded-2xl bg-card/60 p-5 md:p-8 overflow-hidden"
           style={{

@@ -1,3 +1,10 @@
+import img1 from "../../assets/images/case-study/image2.jpg";
+import img2 from "../../assets/images/case-study/image3.jpg";
+import img3 from "../../assets/images/case-study/image4.jpg";
+import img4 from "../../assets/images/case-study/image5.jpg";
+import img5 from "../../assets/images/case-study/image6.jpg";
+import img6 from "../../assets/images/case-study/image7.jpg";
+
 export default function ClientLogosGrid() {
   return (
     <section className="bg-white">
@@ -8,14 +15,7 @@ export default function ClientLogosGrid() {
           {" "}Generation of Companies
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-          {[
-            "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1513628253939-010e64ac66cd?w=600&q=80&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&q=80&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600&q=80&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80&auto=format&fit=crop"
-          ].map((src, i) => (
+          {[img1, img2, img3, img4, img5, img6].map((src, i) => (
             <div
               key={i}
               className="aspect-[4/3] rounded-xl overflow-hidden hover:shadow-md transition-shadow relative"

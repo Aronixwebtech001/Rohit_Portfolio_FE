@@ -38,8 +38,8 @@ export default function ArticlesGrid() {
   return (
     <section className="bg-cream">
       <div className="max-w-content mx-auto px-6 md:px-10 py-20">
-        <h2 className="font-serif text-3xl md:text-4xl text-center mb-14">
-          Latest Articles &amp; Insights
+        <h2 className="font-serif uppercase text-3xl md:text-4xl text-center mb-14 tracking-widest text-navy">
+          RESOURCES & TOOLS
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {articles.map((a, i) => (
