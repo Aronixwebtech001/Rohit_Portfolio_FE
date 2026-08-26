@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import meetingPhoto from "../../assets/images/rect-43.png";
+import meetingPhoto from "../../assets/images/mentorship/image2.jpg";
 
 const topics = [
   {

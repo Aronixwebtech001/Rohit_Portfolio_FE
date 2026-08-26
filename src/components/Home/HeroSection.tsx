@@ -1,11 +1,11 @@
-import portrait from "../../assets/images/rect-40064.png";
+import portrait from "../../assets/images/final/home-hero-portrait.png";
 import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
     <section className="relative bg-[#DCE4E6] overflow-hidden min-h-[520px] md:min-h-[580px]">
       <div className="max-w-content mx-auto px-6 md:px-10 py-20 md:py-28 relative z-10">
-        <div className="max-w-[55%]">
+        <div className="w-full md:max-w-[55%] z-20 relative">
           <p className="uppercase tracking-[0.25em] text-xs text-muted mb-4">
             Entrepreneur &nbsp;|&nbsp; Innovator &nbsp;|&nbsp; Investor
           </p>
@@ -33,15 +33,17 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Full-bleed portrait — absolute right, fills hero height */}
-      <div className="hidden md:block absolute right-0 top-0 h-full w-[42%]">
+      {/* Full-bleed portrait — stacked on mobile, absolute on desktop */}
+      <div className="w-full h-[400px] md:h-full md:absolute md:right-0 md:top-0 md:w-[42%] relative">
         <img
           src={portrait}
           alt="Rohit Jangir"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-[center_top] md:object-center"
         />
-        {/* Soft gradient fade on left edge */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#DCE4E6] to-transparent" />
+        {/* Soft gradient fade on left edge for desktop */}
+        <div className="hidden md:block absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#DCE4E6] to-transparent" />
+        {/* Soft gradient fade on top edge for mobile */}
+        <div className="block md:hidden absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#DCE4E6] to-transparent" />
       </div>
 
       {/* Wave SVG divider at bottom */}

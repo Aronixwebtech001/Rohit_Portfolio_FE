@@ -3,24 +3,24 @@ import { ChevronRight } from "lucide-react";
 
 const faqs = [
   {
-    q: "What is a Payment Gateway?",
-    a: "A payment gateway is a technology used by merchants to accept debit or credit card purchases from customers. The term includes not only the physical card-reading devices found in brick-and-mortar retail stores but also the payment processing portals found in online stores.",
+    q: "What were the primary challenges in designing the 18,000 sq.ft office space?",
+    a: "The main challenges included balancing an open, collaborative environment with the need for focused, quiet work zones, ensuring optimal natural light distribution across a deep floor plan, and completing the project within a strict three-month timeline without compromising quality.",
   },
   {
-    q: "Do I need to pay to Instapay even when there is no transaction going on in my business?",
-    a: "No, you do not need to pay Instapay when there is no transaction happening. With one of the lowest transaction charges in the industry, pay only when you get paid!",
+    q: "How did JFAM integrate sustainability into the office design?",
+    a: "We prioritized eco-friendly materials, energy-efficient HVAC systems, and automated lighting controls. Additionally, we incorporated biophilic design elements such as indoor greenery and maximized natural light to reduce energy consumption and boost employee well-being.",
   },
   {
-    q: "What platforms does ACME payment gateway support?",
-    a: "ACME payment gateway supports a wide variety of platforms including Shopify, WooCommerce, Magento, and custom built websites via our robust REST APIs.",
+    q: "What was the approach to technology integration in the workspace?",
+    a: "The office was equipped with smart conference rooms featuring seamless AV integration, high-density Wi-Fi networks, and IoT-based environmental controls. This ensures a frictionless experience for both in-house teams and remote collaborations.",
   },
   {
-    q: "Does ACME provide international payments support?",
-    a: "Yes, we support payments in over 100+ international currencies allowing you to seamlessly accept payments from customers globally.",
+    q: "Did the project adhere to the initial budget constraints?",
+    a: "Yes, through meticulous value engineering and direct sourcing of materials, we managed to deliver the project 5% under the allocated budget while maintaining all premium finishes and functional requirements.",
   },
   {
-    q: "Is there any setup fee or annual maintenance fee that I need to pay regularly?",
-    a: "We do not charge any setup fee or annual maintenance fees. You only pay a small, transparent transaction fee for each successful payment processed.",
+    q: "How has the new office design impacted employee productivity?",
+    a: "Post-occupancy surveys indicated a 24% increase in reported employee satisfaction and a noticeable boost in collaborative productivity, directly attributed to the versatile layout and enhanced environmental comfort.",
   },
 ];
 

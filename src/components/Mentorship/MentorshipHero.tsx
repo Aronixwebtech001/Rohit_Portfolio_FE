@@ -1,4 +1,4 @@
-import heroImage from "../../assets/images/investor-hero.jpg";
+import heroImage from "../../assets/images/mentorship/image1.png";
 
 export default function MentorshipHero() {
   return (

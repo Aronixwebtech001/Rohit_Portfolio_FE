@@ -35,28 +35,29 @@ export default function JourneyTimeline() {
   return (
     <section className="bg-white">
       <div className="max-w-content mx-auto px-6 md:px-10 py-16">
-        <p className="uppercase text-xs tracking-widest text-muted mb-2 text-center">My Journey</p>
-        <h2 className="font-serif text-2xl md:text-3xl mb-12 text-center">
-          Building a Legacy, One Venture at a Time
+        <h2 className="font-serif uppercase text-2xl md:text-3xl mb-16 text-center">
+          MY JOURNEY
         </h2>
+        <p className="text-xl text-gray-700 font-serif mb-12 text-center">
+          Building a legacy of innovation and impact
+        </p>
 
         <div className="relative max-w-2xl mx-auto">
-          {/* Vertical timeline line */}
-          <div className="absolute left-[72px] md:left-[90px] top-0 bottom-0 w-px bg-teal/30" />
+          <div className="absolute left-[100px] md:left-[160px] top-6 bottom-0 w-px bg-teal/50" />
 
-          <div className="space-y-8">
+          <div className="space-y-12">
             {milestones.map((m) => (
-              <div key={m.year} className="grid grid-cols-[auto_1fr] gap-4 md:gap-6 items-start">
-                <div className="flex flex-col items-center relative z-10">
-                  <span className="font-serif text-2xl md:text-4xl text-navy">{m.year}</span>
+              <div key={m.year} className="grid grid-cols-[100px_1fr] md:grid-cols-[160px_1fr] gap-6 items-start relative">
+                <div className="flex justify-end pt-1 pr-4 md:pr-8">
+                  <span className="font-serif text-4xl md:text-6xl text-navy tracking-tight">{m.year}</span>
                 </div>
-                <div className="pt-0.5 md:pt-1">
-                  {/* Timeline dot */}
-                  <div className="flex items-center gap-3 mb-1">
-                    <div className="w-2.5 h-2.5 rounded-full bg-teal border-2 border-white shadow-sm" />
-                    <h3 className="font-serif text-lg md:text-xl">{m.title}</h3>
-                  </div>
-                  <p className="text-muted text-sm ml-[22px] leading-relaxed">{m.description}</p>
+                
+                {/* Timeline dot */}
+                <div className="absolute left-[96px] md:left-[156px] top-[14px] md:top-[22px] w-2.5 h-2.5 rounded-full bg-teal z-10" />
+
+                <div className="pt-2 md:pt-4 pl-4 md:pl-8">
+                  <h3 className="font-serif text-2xl md:text-3xl mb-2">{m.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{m.description}</p>
                 </div>
               </div>
             ))}

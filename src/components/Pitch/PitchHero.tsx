@@ -12,26 +12,26 @@ const stats: StatData[] = [
 export default function PitchHero() {
   return (
     <section className="bg-[#DCE4E6]">
-      <div className="max-w-content mx-auto px-6 md:px-10 py-14 md:py-16 grid md:grid-cols-2 gap-8 items-center">
+      <div className="max-w-content mx-auto px-6 md:px-10 py-14 md:py-20 grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h1 className="font-serif text-3xl md:text-4xl lg:text-[42px] mb-4 leading-tight">
-            Building Tomorrow's Success Stories
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] mb-6 leading-[1.1] text-navy">
+            Building Tomorrow's<br />Success Stories
           </h1>
-          <p className="text-navy/60 text-[15px] mb-6 max-w-md leading-relaxed">
+          <p className="text-muted text-[17px] mb-10 max-w-lg leading-relaxed">
             Partnering with visionary founders to transform innovative ideas into scalable
             businesses. Let's create something extraordinary together.
           </p>
           <Link
             to="/pitch#form"
-            className="inline-block px-7 py-3 rounded-lg bg-navy text-white text-sm font-medium hover:bg-navy-dark transition-colors mb-8"
+            className="inline-block px-8 py-3.5 rounded-lg bg-navy text-white text-[15px] font-medium hover:bg-navy-dark transition-colors mb-16"
           >
             Share Your Idea
           </Link>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {stats.map((s) => (
-              <div key={s.label} className="bg-white/60 backdrop-blur-sm rounded-xl p-4 text-center border border-white/40">
-                <p className="font-serif text-xl md:text-2xl text-navy">{s.value}</p>
-                <p className="text-[11px] text-navy/50 mt-1">{s.label}</p>
+              <div key={s.label} className="bg-card rounded-xl p-5 text-center flex flex-col justify-center shadow-sm">
+                <p className="font-serif text-2xl md:text-[28px] text-navy mb-1">{s.value}</p>
+                <p className="text-[12px] text-muted">{s.label}</p>
               </div>
             ))}
           </div>
@@ -40,7 +40,7 @@ export default function PitchHero() {
           <img
             src={handshakeImg}
             alt="Handshake partnership illustration"
-            className="w-full max-w-sm rounded-xl object-contain"
+            className="w-full max-w-xl rounded-2xl object-cover"
           />
         </div>
       </div>

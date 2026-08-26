@@ -32,6 +32,7 @@ export interface PricingPlan {
   discountLabel: string;
   description: string;
   features: string[];
+  popular?: boolean;
 }
 
 export interface ArticleCard {

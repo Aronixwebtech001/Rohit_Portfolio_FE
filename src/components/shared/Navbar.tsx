@@ -53,7 +53,7 @@ export default function Navbar() {
               key={link.to}
               to={link.to}
               onClick={() => setOpen(false)}
-              className="text-navy text-base"
+              className="text-navy text-base py-3 border-b border-black/5 last:border-0"
             >
               {link.label}
             </NavLink>

@@ -23,7 +23,7 @@ export default function ExpertiseSection() {
   return (
     <section className="bg-cream">
       <div className="max-w-content mx-auto px-6 md:px-10 py-20">
-        <h2 className="font-serif text-3xl md:text-4xl text-center mb-14">Areas of Expertise</h2>
+        <h2 className="font-serif uppercase text-2xl md:text-3xl text-center mb-16">AREAS OF EXPERTISE</h2>
         <div className="grid md:grid-cols-3 gap-8 pt-6">
           {expertise.map((e) => (
             <IconFeatureCard key={e.title} {...e} />

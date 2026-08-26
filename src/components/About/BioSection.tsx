@@ -1,4 +1,4 @@
-import portrait from "../../assets/images/rect-43.png";
+import portrait from "../../assets/images/final/about-bio-portrait.png";
 import { ArrowUpRight } from "lucide-react";
 
 const stats = [
@@ -17,9 +17,9 @@ export default function BioSection() {
             <img src={portrait} alt="Rohit Jangir" className="w-full h-full object-cover" />
           </div>
           <div>
-            <h2 className="font-serif text-3xl mb-1">Rohit Jangir</h2>
-            <p className="text-teal text-sm mb-5 font-medium italic">
-              Entrepreneur, Innovator &amp; Investor
+            <h2 className="font-serif text-3xl mb-3 uppercase">ROHIT JANGIR</h2>
+            <p className="text-gray-600 text-[15px] mb-5">
+              Entrepreneur, Innovator & Investor
             </p>
             <p className="text-muted text-sm leading-relaxed">
               With over 5 years of experience in building businesses from the ground up, I've
@@ -28,11 +28,11 @@ export default function BioSection() {
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-black/5 pt-8">
+        <div className="flex flex-wrap justify-between items-center gap-6 border-t border-black/5 pt-8">
           {stats.map((s) => (
-            <p key={s} className="text-sm text-muted flex items-center gap-2">
-              <ArrowUpRight size={14} className="text-teal shrink-0" />
+            <p key={s} className="text-[13px] font-medium text-navy flex items-center gap-2">
               <span>{s}</span>
+              <ArrowUpRight size={14} className="text-navy shrink-0" />
             </p>
           ))}
         </div>

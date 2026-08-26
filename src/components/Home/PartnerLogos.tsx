@@ -19,7 +19,7 @@ function LogoItem({ name, logo }: { name: string; logo: string | null }) {
     );
   }
   return (
-    <span className="text-white/50 font-serif text-sm md:text-base tracking-[0.2em] uppercase whitespace-nowrap hover:text-white/80 transition-colors">
+    <span className="text-navy/50 font-serif text-sm md:text-base tracking-[0.2em] uppercase whitespace-nowrap hover:text-navy/80 transition-colors">
       {name}
     </span>
   );
@@ -30,10 +30,10 @@ export default function PartnerLogos() {
   const doubled = [...partners, ...partners];
 
   return (
-    <section className="relative bg-navy-dark overflow-hidden">
+    <section className="relative bg-white overflow-hidden">
       {/* Wave top edge — connects to hero bottom wave */}
 
-      <div className="py-8 md:py-10 overflow-hidden">
+      <div className="pt-8 pb-16 md:pt-10 md:pb-24 overflow-hidden">
         <div className="marquee-track">
           {doubled.map((p, i) => (
             <div
