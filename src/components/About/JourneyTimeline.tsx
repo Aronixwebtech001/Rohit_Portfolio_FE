@@ -1,69 +1,113 @@
-const milestones = [
-  {
-    year: "2018.",
-    title: "The Spark",
-    description: "A vision took shape — the idea of JFAM was born.",
-  },
-  {
-    year: "2019.",
-    title: "Building the Foundation",
-    description: "JFAM launched its first interior design and construction projects.",
-  },
-  {
-    year: "2020.",
-    title: "Expanding Horizons",
-    description: "Aaru Mobility was founded — entering the professional transport industry.",
-  },
-  {
-    year: "2021.",
-    title: "Scaling Up",
-    description: "Aronix Web Technology launched — building digital solutions for businesses.",
-  },
-  {
-    year: "2022.",
-    title: "Real Estate Entry",
-    description: "Aaru Developers was established — residential and commercial projects began.",
-  },
-  {
-    year: "2023.",
-    title: "Social Impact",
-    description: "Aaru Care Foundation launched — giving back to the community through education and healthcare.",
-  },
+import { useState, useEffect, useRef } from "react";
+import ScrollReveal from "../shared/ScrollReveal";
+
+const journeySteps = [
+  { year: "2018", title: "The Beginning", desc: "Started the entrepreneurial journey with a vision to create impactful businesses." },
+  { year: "2019", title: "First Venture", desc: "Launched the first business venture, laying the foundation for future growth." },
+  { year: "2020", title: "Building Scale", desc: "Expanded operations and built a team of dedicated professionals." },
+  { year: "2021", title: "Diversification", desc: "Entered new sectors including mobility and infrastructure development." },
+  { year: "2022", title: "JFAM Launch", desc: "Founded JFAM, marking a significant milestone in the portfolio." },
+  { year: "2023", title: "Tech Revolution", desc: "Launched Aronix Web Tech, bringing cutting-edge digital solutions." },
+  { year: "2024", title: "Mobility Vision", desc: "Established Aaru Mobility for sustainable transportation solutions." },
+  { year: "2025", title: "Growth & Impact", desc: "Expanded to 200+ team members and ₹150+ crores in project value." },
+  { year: "2026", title: "Future Forward", desc: "Continuing to build, innovate, and empower the next generation." },
 ];
 
 export default function JourneyTimeline() {
-  return (
-    <section className="bg-white">
-      <div className="max-w-content mx-auto px-6 md:px-10 py-16">
-        <h2 className="font-serif uppercase text-2xl md:text-3xl mb-16 text-center">
-          MY JOURNEY
-        </h2>
-        <p className="text-xl text-gray-700 font-serif mb-12 text-center">
-          Building a legacy of innovation and impact
-        </p>
+  const [activeStep, setActiveStep] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-        <div className="relative max-w-2xl mx-auto">
-          <div className="absolute left-[100px] md:left-[160px] top-6 bottom-0 w-px bg-teal/50" />
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
-          <div className="space-y-12">
-            {milestones.map((m) => (
-              <div key={m.year} className="grid grid-cols-[100px_1fr] md:grid-cols-[160px_1fr] gap-6 items-start relative">
-                <div className="flex justify-end pt-1 pr-4 md:pr-8">
-                  <span className="font-serif text-4xl md:text-6xl text-navy tracking-tight">{m.year}</span>
-                </div>
-                
-                {/* Timeline dot */}
-                <div className="absolute left-[96px] md:left-[156px] top-[14px] md:top-[22px] w-2.5 h-2.5 rounded-full bg-teal z-10" />
+  useEffect(() => {
+    if (isMobile) return;
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
 
-                <div className="pt-2 md:pt-4 pl-4 md:pl-8">
-                  <h3 className="font-serif text-2xl md:text-3xl mb-2">{m.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{m.description}</p>
+    const handleScroll = () => {
+      const rect = wrapper.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const scrollRange = rect.height - vh;
+      if (scrollRange <= 0) return;
+      const progress = Math.max(0, Math.min(0.999, -rect.top / scrollRange));
+      const stepIndex = Math.floor(progress * journeySteps.length);
+      setActiveStep(stepIndex);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobile]);
+
+  // Mobile: simple list
+  if (isMobile) {
+    return (
+      <section className="py-16 bg-bg-light" style={{ padding: "60px 5%" }}>
+        <ScrollReveal className="text-center mb-10">
+          <h2 className="font-serif text-[clamp(1.6rem,4vw,2.5rem)] text-navy">My Journey</h2>
+        </ScrollReveal>
+        <div className="max-w-[600px] mx-auto space-y-6">
+          {journeySteps.map((step, i) => (
+            <ScrollReveal key={i} delay={i * 60}>
+              <div className="flex gap-4 items-start">
+                <span className="text-2xl font-serif text-accent font-bold min-w-[60px]">{step.year}</span>
+                <div>
+                  <h3 className="font-serif text-lg text-navy mb-1">{step.title}</h3>
+                  <p className="text-sm text-[#4A5568]">{step.desc}</p>
                 </div>
               </div>
-            ))}
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  // Desktop: sticky scroll
+  return (
+    <div ref={wrapperRef} style={{ height: `${journeySteps.length * 100}vh` }}>
+      <div className="sticky top-0 h-screen flex items-center bg-bg-light" style={{ padding: "0 5%" }}>
+        <div className="max-w-content mx-auto w-full">
+          <h2 className="font-serif text-[clamp(1.6rem,3vw,2.5rem)] text-navy mb-10">My Journey</h2>
+
+          <div className="flex gap-12 items-stretch">
+            {/* Left: Year Display */}
+            <div className="flex items-center">
+              <span className="font-serif text-[clamp(3rem,8vw,6rem)] text-navy leading-none font-bold">
+                {journeySteps[activeStep].year}
+              </span>
+            </div>
+
+            {/* Center: Progress Line */}
+            <div className="relative w-[3px] bg-navy/10 rounded-full min-h-[400px]">
+              <div
+                className="absolute top-0 left-0 w-full bg-accent rounded-full transition-all duration-500"
+                style={{ height: `${((activeStep + 1) / journeySteps.length) * 100}%` }}
+              />
+              <div
+                className="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-accent rounded-full shadow-md transition-all duration-500"
+                style={{ top: `${((activeStep + 0.5) / journeySteps.length) * 100}%` }}
+              />
+            </div>
+
+            {/* Right: Content */}
+            <div className="flex-1 flex items-center">
+              <div className="transition-all duration-500">
+                <h3 className="font-serif text-2xl text-navy mb-3">{journeySteps[activeStep].title}</h3>
+                <p className="text-[#4A5568] text-base leading-relaxed max-w-[500px]">
+                  {journeySteps[activeStep].desc}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

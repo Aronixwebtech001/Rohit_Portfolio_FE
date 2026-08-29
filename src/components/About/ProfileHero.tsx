@@ -1,13 +1,16 @@
+import ScrollReveal from "../shared/ScrollReveal";
+
 export default function ProfileHero() {
   return (
-    <section className="bg-navy text-white">
-      <div className="max-w-content mx-auto px-6 md:px-10 py-20 text-center">
-        <h1 className="font-serif text-4xl md:text-5xl mb-4">Rohit Jangir</h1>
-        <p className="text-white/60 text-sm max-w-lg mx-auto leading-relaxed">
-          From designing spaces to designing solutions — my journey as a creator, founder, and
-          mentor.
-        </p>
-      </div>
+    <section className="relative" style={{ paddingTop: 80 }}>
+      <ScrollReveal className="w-full">
+        <img
+          src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208449/images/about/hero_bg.jpeg.jpg"
+          alt="Rohit Jangir's Entrepreneurial Journey"
+          className="w-full h-[300px] md:h-[450px] lg:h-[550px] object-cover"
+          fetchPriority="high"
+        />
+      </ScrollReveal>
     </section>
   );
 }

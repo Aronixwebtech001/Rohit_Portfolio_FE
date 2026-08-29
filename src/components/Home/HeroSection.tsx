@@ -1,63 +1,66 @@
-import portrait from "../../assets/images/final/home-hero-portrait.png";
 import { Link } from "react-router-dom";
+import ScrollReveal from "../shared/ScrollReveal";
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-[#DCE4E6] overflow-hidden min-h-[520px] md:min-h-[580px]">
-      <div className="max-w-content mx-auto px-6 md:px-10 py-20 md:py-28 relative z-10">
-        <div className="w-full md:max-w-[55%] z-20 relative">
-          <p className="uppercase tracking-[0.25em] text-xs text-muted mb-4">
-            Entrepreneur &nbsp;|&nbsp; Innovator &nbsp;|&nbsp; Investor
-          </p>
-          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-5 leading-[1.1]">
+    <section className="relative bg-hero-bg" style={{ paddingTop: 80 }}>
+      <div className="max-w-content mx-auto px-[5%] py-16 md:py-20 lg:py-24 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+        {/* Left Content */}
+        <ScrollReveal direction="left" className="flex-1 text-center lg:text-left">
+          <h3 className="text-sm md:text-base uppercase tracking-[3px] text-accent font-sans font-medium mb-4 fade-in">
+            CEO | INNOVATOR | INVESTOR
+          </h3>
+          <h1 className="font-serif text-[clamp(2.5rem,7vw,5rem)] leading-[1.1] text-navy mb-6 text-fade-up">
             ROHIT JANGIR
           </h1>
-          <p className="text-muted leading-relaxed mb-8 max-w-md text-[15px]">
-            Founder &amp; CEO of multiple companies across Mobility, Technology, Construction, and
-            Social Impact. On a mission to empower people with ideas, innovation, and integrity.
+          <p className="text-base md:text-lg text-[#4A5568] leading-relaxed max-w-[550px] mx-auto lg:mx-0 mb-8 text-fade-up" style={{ animationDelay: "0.2s" }}>
+            As an Entrepreneur and CEO , I specialise in architecting high growth companies within the
+            Mobility, Tech and Infrastructure sectors.
           </p>
-          <div className="flex gap-4 flex-wrap">
+          <div className="flex flex-wrap gap-4 justify-center lg:justify-start text-fade-up" style={{ animationDelay: "0.4s" }}>
             <Link
               to="/pitch"
-              className="px-7 py-3 rounded-lg bg-navy text-white text-sm font-medium hover:bg-navy-dark transition-colors"
+              className="inline-flex items-center justify-center py-3 px-8 rounded-md text-base font-semibold no-underline transition-all duration-300
+                bg-navy text-white border-[1.5px] border-navy
+                hover:bg-transparent hover:text-navy"
             >
               Pitch Your Idea
             </Link>
             <Link
               to="/mentorship"
-              className="px-7 py-3 rounded-lg border border-navy text-sm font-medium hover:bg-navy hover:text-white transition-colors"
+              className="inline-flex items-center justify-center py-3 px-8 rounded-md text-base font-semibold no-underline transition-all duration-300
+                bg-transparent text-navy border-[1.5px] border-navy
+                hover:bg-navy hover:text-white"
             >
               Book 1:1 Consultant
             </Link>
           </div>
-        </div>
+        </ScrollReveal>
+
+        {/* Right Image */}
+        <ScrollReveal direction="right" className="flex-1 flex justify-center lg:justify-end">
+          <img
+            src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208359/images/ventures/global/heroimage.png.png"
+            alt="Rohit Jangir"
+            className="w-full max-w-[500px] lg:max-w-[600px] h-auto object-contain"
+            fetchPriority="high"
+            width={600}
+          />
+        </ScrollReveal>
       </div>
 
-      {/* Full-bleed portrait — stacked on mobile, absolute on desktop */}
-      <div className="w-full h-[400px] md:h-full md:absolute md:right-0 md:top-0 md:w-[42%] relative">
-        <img
-          src={portrait}
-          alt="Rohit Jangir"
-          className="w-full h-full object-cover object-[center_top] md:object-center"
-        />
-        {/* Soft gradient fade on left edge for desktop */}
-        <div className="hidden md:block absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#DCE4E6] to-transparent" />
-        {/* Soft gradient fade on top edge for mobile */}
-        <div className="block md:hidden absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#DCE4E6] to-transparent" />
-      </div>
-
-      {/* Wave SVG divider at bottom */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-20">
+      {/* Wave divider - matching Project A */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden" style={{ lineHeight: 0 }}>
         <svg
           viewBox="0 0 1440 80"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-auto"
           preserveAspectRatio="none"
+          className="w-full h-[60px] md:h-[80px]"
         >
           <path
-            d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z"
-            fill="#0F1B21"
+            d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"
+            fill="#1C323A"
           />
         </svg>
       </div>

@@ -10,6 +10,9 @@ import Mentorship from "./pages/Mentorship";
 import BookMentorship from "./pages/BookMentorship";
 import Resources from "./pages/Resources";
 import CaseStudy from "./pages/CaseStudy";
+import JFAM from "./pages/JFAM";
+import AaruDevelopers from "./pages/AaruDevelopers";
+import AaruCare from "./pages/AaruCare";
 
 export default function App() {
   return (
@@ -26,6 +29,9 @@ export default function App() {
           <Route path="/book-mentorship" element={<BookMentorship />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/case-study" element={<CaseStudy />} />
+          <Route path="/jfam" element={<JFAM />} />
+          <Route path="/aaru-developers" element={<AaruDevelopers />} />
+          <Route path="/aaru-care" element={<AaruCare />} />
         </Route>
       </Routes>
     </>
