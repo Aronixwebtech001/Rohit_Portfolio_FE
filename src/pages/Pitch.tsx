@@ -75,7 +75,7 @@ export default function Pitch() {
       </section>
 
       {/* What I Look For */}
-      <section className="py-16 md:py-24 bg-bg-light" style={{ padding: "80px 5%" }}>
+      <section className="py-16 md:py-24 bg-bg-light px-4 md:px-[5%]">
         <div className="max-w-content mx-auto">
           <ScrollReveal className="text-center mb-12">
             <h2 className="font-serif text-[clamp(1.6rem,4vw,2.5rem)] text-navy">What I Look For</h2>
@@ -95,7 +95,7 @@ export default function Pitch() {
       </section>
 
       {/* Process Steps */}
-      <section className="py-16 md:py-24 bg-white" style={{ padding: "80px 5%" }}>
+      <section className="py-16 md:py-24 bg-white px-4 md:px-[5%]">
         <div className="max-w-content mx-auto">
           <ScrollReveal className="text-center mb-12">
             <h2 className="font-serif text-[clamp(1.6rem,4vw,2.5rem)] text-navy">The Process</h2>
@@ -115,7 +115,7 @@ export default function Pitch() {
       </section>
 
       {/* Pitch Form */}
-      <section id="pitch-form" className="py-16 md:py-24 bg-bg-light" style={{ padding: "80px 5%" }}>
+      <section id="pitch-form" className="py-16 md:py-24 bg-bg-light px-4 md:px-[5%]">
         <div className="max-w-[700px] mx-auto">
           <ScrollReveal className="text-center mb-10">
             <h2 className="font-serif text-[clamp(1.6rem,4vw,2.5rem)] text-navy mb-4">Submit Your Pitch</h2>

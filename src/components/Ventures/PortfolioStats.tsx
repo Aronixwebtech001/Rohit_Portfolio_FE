@@ -53,18 +53,17 @@ function AnimatedStat({ target, suffix = "", prefix = "", label, isFloat = false
   }, [target, isFloat, duration]);
 
   return (
-    <div ref={ref} className="flex flex-col items-center text-center" style={{ flex: 1, minWidth: 150, maxWidth: 200 }}>
-      <div className="stat-circle relative flex justify-center items-center"
-        style={{ width: 180, height: 180 }}>
+    <div ref={ref} className="flex flex-col items-center text-center flex-1 min-w-[130px] md:min-w-[150px] max-w-[200px]">
+      <div className="stat-circle relative flex justify-center items-center w-[140px] h-[140px] md:w-[180px] md:h-[180px]">
         <svg viewBox="0 0 100 100" className="absolute top-0 left-0 w-full h-full">
           <circle cx="50" cy="50" r="45" fill="none" stroke="#CBD5E1" strokeWidth="8" />
         </svg>
         <div className="relative z-[1] flex flex-col items-center justify-center">
-          <h3 className="font-sans text-[2.1rem] font-normal text-[#1A202C] m-0 leading-[1.1]"
+          <h3 className="font-sans text-2xl md:text-[2.1rem] font-normal text-[#1A202C] m-0 leading-[1.1]"
             style={{ letterSpacing: "0.5px" }}>
             {prefix}{isFloat ? value.toFixed(1) : value}{suffix}
           </h3>
-          <p className="font-sans text-[1.3rem] text-[#1A202C] font-normal mt-1 m-0">
+          <p className="font-sans text-[0.9rem] md:text-[1.3rem] text-[#1A202C] font-normal mt-1 m-0">
             {label}
           </p>
         </div>
@@ -77,8 +76,8 @@ export default function PortfolioStats() {
   return (
     <section className="bg-white" style={{ marginTop: "1rem" }}>
       <ScrollReveal>
-        <div className="flex justify-center items-center flex-wrap mx-auto"
-          style={{ gap: 80, maxWidth: 1200, padding: "0 15px" }}>
+        <div className="flex justify-center items-center flex-wrap mx-auto gap-8 md:gap-[80px] px-4"
+          style={{ maxWidth: 1200 }}>
           {stats.map((stat, i) => (
             <AnimatedStat key={i} {...stat} />
           ))}

@@ -62,7 +62,7 @@ export default function CaseStudy() {
     <>
       {/* HERO SECTION */}
       <section 
-        className="w-full h-[60vh] min-h-[400px] mt-[70px] bg-no-repeat bg-center bg-cover relative flex flex-col justify-center text-center"
+        className="w-full h-[60vh] min-h-[400px] pt-[80px] bg-no-repeat bg-center bg-cover relative flex flex-col justify-center text-center"
         style={{ backgroundImage: "url('https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208514/images/case-study/bg.jpeg.png')" }}
       >
         <div className="hero-content"></div>
@@ -71,7 +71,7 @@ export default function CaseStudy() {
       {/* TABS SECTION */}
       <section className="py-[30px] px-[5%] bg-white border-b border-[#e2e8f0]">
         <div className="max-w-[1200px] mx-auto animate-fade-up opacity-0" style={{ animationDelay: '0.2s' }}>
-          <ul className="flex gap-[60px] justify-start flex-wrap list-none p-0 m-0">
+          <ul className="flex gap-4 md:gap-[60px] justify-start flex-wrap list-none p-0 m-0">
             {caseStudyItems.map((item, index) => (
               <li 
                 key={index} 
@@ -94,7 +94,7 @@ export default function CaseStudy() {
           {caseStudyItems.map((item, index) => (
             <div 
               key={index}
-              className={`${activeTab === index ? 'grid' : 'hidden'} grid-cols-1 lg:grid-cols-2 gap-[50px] items-center bg-white rounded-[30px] p-[40px] lg:p-[60px] animate-[fadeIn_0.5s_ease_forwards]`}
+              className={`${activeTab === index ? 'grid' : 'hidden'} grid-cols-1 lg:grid-cols-2 gap-[50px] items-center bg-white rounded-[30px] p-6 md:p-[40px] lg:p-[60px] animate-[fadeIn_0.5s_ease_forwards]`}
             >
               <div className="item-content">
                 <h2 className="font-forum text-[clamp(2rem,3vw,2.5rem)] text-[#21333e] mb-5 leading-[1.2] font-normal">

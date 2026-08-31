@@ -56,23 +56,27 @@ export default function QuoteBanner() {
 
         @media (max-width: 768px) {
           .about-quote {
-            background-image: linear-gradient(rgba(28, 50, 58, 0.4), rgba(28, 50, 58, 0.4)), url(${aboutResponsive}) !important;
+            background-image: linear-gradient(rgba(28, 50, 58, 0.65), rgba(28, 50, 58, 0.65)), url(${aboutResponsive}) !important;
             background-attachment: scroll !important;
-            background-position: 80% center !important;
+            background-position: center !important;
             padding: 6rem 1.5rem !important;
           }
           .quote-text, .quote-author {
-            max-width: 60% !important;
+            max-width: 100% !important;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
           }
         }
 
         @media (max-width: 480px) {
           .about-quote {
-            padding: 3rem 4% !important;
+            padding: 4rem 5% !important;
           }
-          .quote-text, .quote-author {
-            max-width: 60% !important;
-            font-size: 1rem !important;
+          .quote-text {
+            font-size: 1.1rem !important;
+          }
+          .quote-author {
+            font-size: 1.25rem !important;
+            text-align: left !important;
           }
         }
       `}</style>

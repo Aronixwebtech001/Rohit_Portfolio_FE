@@ -29,7 +29,7 @@ export default function WhyChooseUs() {
 
         {/* Right: Video */}
         <ScrollReveal direction="right" className="flex-none w-full lg:w-[clamp(300px,45vw,600px)]">
-          <div className="relative rounded-[18px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.08)] h-full">
+          <div className="relative rounded-[18px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.08)] h-full aspect-video lg:aspect-auto min-h-[250px]">
             <video
               src="https://res.cloudinary.com/dqfuozgjq/video/upload/v1773208355/images/ventures/global/why.mp4.mp4"
               autoPlay
