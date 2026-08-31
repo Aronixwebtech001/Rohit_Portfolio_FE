@@ -1,154 +1,255 @@
-import worldMap from "../../assets/images/world-map.png";
-import { VentureNode } from "../../types";
+import { useState } from "react";
+import ScrollReveal from "../shared/ScrollReveal";
 
-const ventures: VentureNode[] = [
+interface VentureItem {
+  name: string;
+  heading: string;
+  logo: string;
+  desc: string;
+  link: string;
+  accentColor: string;
+  position: { top: string; left: string };
+  zIndex?: number;
+  logoWidth?: number;
+  headingMargin?: string;
+  textMargin?: string;
+  clickMeBottom?: string;
+}
+
+const ventures: VentureItem[] = [
   {
-    key: "jfam",
-    name: "JFAM",
-    color: "#3FA66B",
-    description:
-      "JFam is a multidisciplinary firm delivering interior design, architecture, construction, and government tender projects with quality and reliability.",
+    name: "aronix",
+    heading: "ARONIX WEB TECHNOLOGY",
+    logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208330/images/ventures/AWT-logo.png.png",
+    desc: "A specialized digital laboratory delivering high end web architecture, UI/UX design, and brand transformation.",
+    link: "https://www.aronixwebtech.com/",
+    accentColor: "#8B00CD",
+    position: { top: "68%", left: "48.5%" },
+    zIndex: 15,
+    logoWidth: 90,
+    headingMargin: "ml-[35px] -mt-[25px]",
+    textMargin: "ml-[35px]",
+    clickMeBottom: "-20px",
   },
   {
-    key: "aaru-mobility",
-    name: "AARU MOBILITY",
-    color: "#D14343",
-    description:
-      "Aaru Mobility is a professional mobility solutions company offering chauffeur-driven car rentals, employee transport services, event travel, and premium fleet solutions with a focus on safety, reliability, and customer comfort.",
+    name: "aaru",
+    heading: "AARU DEVELOPER",
+    logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208333/images/ventures/aaru-logo.png.png",
+    desc: "An elite real estate and infrastructure firm dedicated to high value residential and commercial projects.",
+    link: "/aaru-developers",
+    accentColor: "#CD00AC",
+    position: { top: "40%", left: "58.5%" },
+    logoWidth: 160,
+    headingMargin: "ml-[10px] mt-[30px]",
+    textMargin: "ml-[10px]",
+    clickMeBottom: "33px",
   },
   {
-    key: "aaru-developers",
-    name: "AARU DEVELOPERS",
-    color: "#C23D9C",
-    description:
-      "Aaru Developers is a real estate company specializing in residential and commercial projects, delivering quality construction, modern design, and reliable property solutions.",
+    name: "jfam",
+    heading: "JFAM",
+    logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208316/images/ventures/jfam.png.png",
+    desc: "A multidisciplinary firm executing complex interior design, government tenders, and architectural projects.",
+    link: "https://www.jfam.co.in/",
+    accentColor: "#26BF19",
+    position: { top: "10%", left: "30%" },
+    logoWidth: 120,
+    headingMargin: "ml-[20px]",
+    textMargin: "ml-[20px]",
+    clickMeBottom: "-23px",
   },
   {
-    key: "awt",
-    name: "ARONIX WEB TECHNOLOGY",
-    color: "#7A3FCF",
-    description:
-      "Aronix Web Tech is a digital solutions company providing web development, UI/UX design, branding, and technology services to help businesses grow online.",
+    name: "mobility",
+    heading: "AARU MOBILITY",
+    logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208315/images/ventures/aaru-mobility.png.png",
+    desc: "A mobility powerhouse providing chauffeur driven rentals and corporate fleet solutions",
+    link: "https://www.aarumobility.com/",
+    accentColor: "#CD0000",
+    position: { top: "22%", left: "46.5%" },
+    logoWidth: 135,
+    headingMargin: "ml-[15px]",
+    textMargin: "ml-[15px]",
+    clickMeBottom: "23px",
   },
   {
-    key: "aaru-care",
-    name: "AARU CARE FOUNDATION",
-    color: "#2E7FD1",
-    description:
-      "Aaru Care Foundation is a non-profit organization dedicated to social welfare, community development, education, healthcare support, and empowering underprivileged individuals.",
+    name: "care",
+    heading: "AARU CARE FOUNDATION",
+    logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208314/images/ventures/aaru-care-logo-ventures.png.png",
+    desc: "Driving social change through education, healthcare, and empowerment.",
+    link: "/aaru-care",
+    accentColor: "#0077CD",
+    position: { top: "72%", left: "29%" },
+    zIndex: 10,
+    logoWidth: 140,
+    headingMargin: "ml-[15px] mt-[75px]",
+    textMargin: "ml-[15px]",
+    clickMeBottom: "18px",
   },
 ];
 
-export default function VenturesDiagram() {
+function InfographicBox({ venture }: { venture: VentureItem }) {
+  const [hovered, setHovered] = useState(false);
+  const isExternal = venture.link.startsWith("http");
+
   return (
-    <section className="bg-cream">
-      <div className="max-w-content mx-auto px-6 md:px-10 pb-12 pt-16">
-        <h2 className="font-serif uppercase text-2xl md:text-3xl text-center mb-10 tracking-widest text-navy">
-          My Ventures
-        </h2>
-        <div
-          className="relative rounded-2xl bg-card/60 p-5 md:p-8 overflow-hidden"
+    <a
+      href={venture.link}
+      target={isExternal ? "_blank" : "_self"}
+      rel={isExternal ? "noopener noreferrer" : ""}
+      className="absolute flex flex-row items-start justify-start z-10 text-left no-underline"
+      style={{
+        top: venture.position.top,
+        left: venture.position.left,
+        gap: 10,
+        zIndex: venture.zIndex || 10,
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Logo + Click Me */}
+      <div className="relative flex flex-col items-center flex-shrink-0">
+        <img
+          src={venture.logo}
+          alt={`${venture.heading} Logo`}
+          style={{ width: venture.logoWidth || 100, height: "auto" }}
+          className="object-contain"
+          loading="lazy"
+        />
+        <span
+          className="absolute left-1/2 text-[0.70rem] font-sans font-semibold text-[#1a202c] bg-white px-2 py-[2px] rounded-xl whitespace-nowrap pointer-events-none z-[15] transition-all duration-300"
           style={{
-            backgroundImage: `url(${worldMap})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
+            bottom: venture.clickMeBottom || "-18px",
+            transform: `translateX(-50%) translateY(${hovered ? "0" : "5px"})`,
+            opacity: hovered ? 1 : 0,
+            boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
           }}
         >
-          {/* Overlay to soften the map */}
-          <div className="absolute inset-0 bg-card/85" />
+          Click Me →
+        </span>
+      </div>
 
-          {/* Desktop layout: two-column grid */}
-          <div className="relative z-10 hidden md:grid md:grid-cols-[200px_80px_1fr] items-center">
-            {/* Column 1: Rohit Jangir card */}
-            <div className="flex items-center justify-center self-center">
-              <div className="bg-white rounded-xl px-5 py-3 shadow-md border border-black/5">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal to-teal-dark flex items-center justify-center text-white font-serif text-sm">
-                    R
-                  </div>
-                  <span className="font-serif text-base text-navy whitespace-nowrap">Rohit Jangir</span>
-                </div>
-              </div>
-            </div>
+      {/* Content */}
+      <div className="flex flex-col items-start" style={{ gap: 5 }}>
+        <h4
+          className={`text-[0.85rem] font-sans font-bold m-0 leading-[1.2] ${venture.headingMargin || ""}`}
+          style={{ color: venture.accentColor }}
+        >
+          {venture.heading}
+        </h4>
+        <p
+          className={`text-[0.75rem] font-sans font-medium opacity-90 m-0 text-[#3B3B3B] ${venture.textMargin || ""}`}
+          style={{ maxWidth: 300 }}
+        >
+          {venture.desc}
+        </p>
+      </div>
+    </a>
+  );
+}
 
-            {/* Column 2: SVG connector lines */}
-            <div className="relative h-full">
-              <svg
-                className="absolute inset-0 w-full h-full pointer-events-none"
-                viewBox="0 0 80 500"
-                preserveAspectRatio="none"
-                fill="none"
-              >
-                {ventures.map((v, i) => {
-                  const startY = 250;
-                  const endY = 42 + i * 100;
-                  return (
-                    <path
-                      key={v.key}
-                      d={`M0,${startY} C50,${startY} 30,${endY} 80,${endY}`}
-                      stroke={v.color}
-                      strokeWidth="1.5"
-                      strokeDasharray="5 3"
-                      opacity="0.5"
-                    />
-                  );
-                })}
-              </svg>
-            </div>
+// Mobile card for responsive fallback
+function VentureCard({ venture }: { venture: VentureItem }) {
+  const isExternal = venture.link.startsWith("http");
+  return (
+    <a
+      href={venture.link}
+      target={isExternal ? "_blank" : "_self"}
+      rel={isExternal ? "noopener noreferrer" : ""}
+      className="block no-underline"
+    >
+      <div className="flex flex-col items-center text-center gap-2 p-5 bg-white rounded-lg"
+        style={{ boxShadow: "0 2px 10px rgba(0,0,0,0.1)", maxWidth: 280 }}>
+        <img
+          src={venture.logo}
+          alt={venture.heading}
+          className="w-[100px] h-auto object-contain"
+          loading="lazy"
+        />
+        <div className="flex flex-col items-center gap-[5px]">
+          <h4
+            className="text-base font-sans font-bold m-0"
+            style={{ color: venture.accentColor }}
+          >
+            {venture.heading}
+          </h4>
+          <p className="text-[0.85rem] font-sans font-medium text-[#3B3B3B] text-center m-0">
+            {venture.desc}
+          </p>
+        </div>
+      </div>
+    </a>
+  );
+}
 
-            {/* Column 3: Venture cards */}
-            <div className="space-y-3">
-              {ventures.map((v) => (
-                <div
-                  key={v.key}
-                  className="bg-white rounded-lg p-4 border-l-[3px] shadow-sm hover:shadow-md transition-shadow"
-                  style={{ borderColor: v.color }}
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 shrink-0">
-                      <div
-                        className="w-2.5 h-2.5 rounded-full"
-                        style={{ backgroundColor: v.color }}
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-bold text-xs mb-1 tracking-wide" style={{ color: v.color }}>
-                        {v.name}
-                      </p>
-                      <p className="text-muted text-[11px] leading-relaxed">{v.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+export default function VenturesDiagram() {
+  return (
+    <section className="flex justify-center items-center" style={{ padding: "40px 20px" }}>
+      {/* Desktop: Infographic with positioned overlays */}
+      <div className="hidden lg:block w-full">
+        <ScrollReveal className="w-full">
+          <div
+            className="ventures-map-box relative flex justify-center items-center mx-auto"
+            style={{
+              border: "1px solid #000000",
+              backgroundColor: "#F4F4F4",
+            }}
+          >
+            {/* SVG Infographic Background */}
+            <img
+              src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208331/images/ventures/Infographics.svg.svg"
+              alt="Rohit Jangir Venture Ecosystem Infographic"
+              className="ventures-infographics w-full h-full object-contain"
+              style={{ maxWidth: "100%", maxHeight: "100%" }}
+              loading="lazy"
+            />
+
+            {/* Venture Boxes */}
+            {ventures.map((v) => (
+              <InfographicBox key={v.name} venture={v} />
+            ))}
+
+            {/* Center RJ Logo */}
+            <a
+              href="/"
+              className="absolute flex justify-center items-center infographic-box-media"
+              style={{ top: "33%", left: "2.5%" }}
+            >
+              <img
+                src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208363/images/logos/rj-logo.png.png"
+                alt="Rohit Jangir"
+                className="rj-logo-img h-auto object-contain"
+                style={{ width: 300 }}
+                loading="lazy"
+              />
+            </a>
           </div>
+        </ScrollReveal>
+      </div>
 
-          {/* Mobile layout: simple stacked */}
-          <div className="relative z-10 md:hidden">
-            <div className="mb-4">
-              <div className="inline-flex items-center gap-2 bg-white rounded-xl px-4 py-3 shadow-sm">
-                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-teal to-teal-dark flex items-center justify-center text-white font-serif text-xs">
-                  R
-                </div>
-                <span className="font-serif text-sm">Rohit Jangir</span>
-              </div>
+      {/* Mobile/Tablet: Card grid fallback */}
+      <div className="lg:hidden w-full">
+        {/* Center RJ logo card first on mobile */}
+        <div className="flex justify-center mb-5">
+          <a href="/" className="block no-underline">
+            <div className="flex justify-center items-center bg-white rounded-lg p-0 overflow-hidden"
+              style={{ width: 280, height: 120, boxShadow: "0 2px 10px rgba(0,0,0,0.1)" }}>
+              <img
+                src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208363/images/logos/rj-logo.png.png"
+                alt="Rohit Jangir"
+                className="h-auto flex-shrink-0"
+                style={{ width: 450 }}
+                loading="lazy"
+              />
             </div>
-            <div className="space-y-3">
-              {ventures.map((v) => (
-                <div
-                  key={v.key}
-                  className="bg-white rounded-lg p-4 border-l-[3px] shadow-sm"
-                  style={{ borderColor: v.color }}
-                >
-                  <p className="font-bold text-xs mb-1 tracking-wide" style={{ color: v.color }}>
-                    {v.name}
-                  </p>
-                  <p className="text-muted text-[11px] leading-relaxed">{v.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          </a>
+        </div>
+
+        <div className="grid gap-5 px-5 justify-items-center"
+          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
+          {ventures.map((v) => (
+            <ScrollReveal key={v.name}>
+              <VentureCard venture={v} />
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>
