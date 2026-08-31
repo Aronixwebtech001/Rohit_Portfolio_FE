@@ -1,78 +1,79 @@
 import { Link } from "react-router-dom";
-import ScrollReveal from "../components/shared/ScrollReveal";
-import CTASection from "../components/shared/CTASection";
-
-import mentorImage from "../assets/images/mentorship/image2.jpg";
-import resourceImage from "../assets/images/case-study/image6.jpg";
-
-const resources = [
-  {
-    title: "Building a High Performance Team Culture",
-    desc: "Learn the 10 core principles for building a team that stays aligned and grows the business autonomously.",
-    link: "/article?id=team-culture",
-    image: mentorImage,
-    btnText: "Read Team Culture Article →"
-  },
-  {
-    title: "10 Essential Steps to Launch Your Startup",
-    desc: "A comprehensive guide to turning your idea into a successful business venture.",
-    link: "/article?id=startup",
-    image: resourceImage,
-    btnText: "Master Startup Launch Steps →"
-  }
-];
 
 export default function Resources() {
   return (
     <>
-      <div className="pt-20"></div>
-
       {/* HERO SECTION */}
-      <section className="bg-bg-light">
-        <ScrollReveal className="w-full">
-          <img 
-            src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208423/images/resources/RESOURCES.png.png" 
-            alt="Resources" 
-            className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover"
-            loading="lazy"
-          />
-        </ScrollReveal>
+      <section className="w-full bg-white block p-0 mt-[70px] mb-0 overflow-hidden">
+        <img 
+          src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208423/images/resources/RESOURCES.png.png" 
+          alt="resource" 
+          decoding="async" 
+          loading="lazy" 
+          className="w-full h-auto block m-0 p-0"
+        />
       </section>
 
       {/* RESOURCES SECTION */}
-      <section className="py-16 md:py-24 bg-white" style={{ padding: "80px 5%" }}>
-        <div className="max-w-content mx-auto">
-          <ScrollReveal className="text-center mb-12">
-            <h2 className="font-serif text-[clamp(1.6rem,4vw,2.5rem)] text-navy">Latest Articles & Insights</h2>
-          </ScrollReveal>
+      <section className="bg-white px-5 py-20">
+        <h2 className="font-forum text-[2.5rem] font-normal mb-[50px] text-center text-[#1f2937]">
+          Latest Articles & Insights
+        </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {resources.map((resource, i) => (
-              <ScrollReveal key={i} delay={i * 100}>
-                <Link to={resource.link} className="block group h-full">
-                  <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-400 hover:-translate-y-2 h-full flex flex-col border border-gray-100">
-                    <div className="h-[240px] overflow-hidden">
-                      <img 
-                        src={resource.image} 
-                        alt={resource.title} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="p-8 flex flex-col flex-1">
-                      <h3 className="font-serif text-xl text-navy mb-3 group-hover:text-accent transition-colors">{resource.title}</h3>
-                      <p className="text-[#4A5568] text-sm leading-relaxed mb-6 flex-1">{resource.desc}</p>
-                      <span className="text-navy font-semibold text-sm group-hover:text-accent transition-colors">{resource.btnText}</span>
-                    </div>
-                  </div>
-                </Link>
-              </ScrollReveal>
-            ))}
-          </div>
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
+          
+          {/* CARD 2 */}
+          <Link 
+            to="/article?id=team-culture" 
+            className="bg-white rounded-xl overflow-hidden no-underline text-inherit border border-[#E5E7EB] transition-all duration-300 ease-out hover:-translate-y-[5px] hover:shadow-[0_12px_24px_rgba(0,0,0,0.06)] flex flex-col w-full group"
+          >
+            <img 
+              src="/images/team_culture.jpg" 
+              alt="Guide: Building a High Performance Team Culture" 
+              loading="lazy"
+              decoding="async"
+              className="w-full h-[220px] object-cover block"
+            />
+            <div className="p-6 text-left flex flex-col h-full">
+              <h3 className="font-outfit text-xl mb-3 text-[#1f2937] leading-[1.4] font-semibold group-hover:text-[#1f2937]">
+                Building a High Performance Team Culture
+              </h3>
+              <p className="font-outfit text-[0.95rem] text-[#4B5563] leading-[1.6] mb-6 flex-grow">
+                Learn the 10 core principles for building a team that stays aligned and grows the business autonomously.
+              </p>
+              <span className="font-outfit text-[0.9rem] font-medium text-[#374151] flex items-center gap-1.5 transition-colors duration-200 group-hover:text-black">
+                Read Team Culture Article &rarr;
+              </span>
+            </div>
+          </Link>
+
+          {/* CARD 1 */}
+          <Link 
+            to="/article?id=startup" 
+            className="bg-white rounded-xl overflow-hidden no-underline text-inherit border border-[#E5E7EB] transition-all duration-300 ease-out hover:-translate-y-[5px] hover:shadow-[0_12px_24px_rgba(0,0,0,0.06)] flex flex-col w-full group"
+          >
+            <img 
+              src="/images/startup_launch.jpg" 
+              alt="Guide: Launching Your First Startup" 
+              loading="lazy"
+              decoding="async"
+              className="w-full h-[220px] object-cover block"
+            />
+            <div className="p-6 text-left flex flex-col h-full">
+              <h3 className="font-outfit text-xl mb-3 text-[#1f2937] leading-[1.4] font-semibold group-hover:text-[#1f2937]">
+                10 Essential Steps to Launch Your Startup
+              </h3>
+              <p className="font-outfit text-[0.95rem] text-[#4B5563] leading-[1.6] mb-6 flex-grow">
+                A comprehensive guide to turning your idea into a successful business venture.
+              </p>
+              <span className="font-outfit text-[0.9rem] font-medium text-[#374151] flex items-center gap-1.5 transition-colors duration-200 group-hover:text-black">
+                Master Startup Launch Steps &rarr;
+              </span>
+            </div>
+          </Link>
+
         </div>
       </section>
-
-      <CTASection />
     </>
   );
 }

@@ -13,6 +13,7 @@ import CaseStudy from "./pages/CaseStudy";
 import JFAM from "./pages/JFAM";
 import AaruDevelopers from "./pages/AaruDevelopers";
 import AaruCare from "./pages/AaruCare";
+import MediaPress from "./pages/MediaPress";
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/book-mentorship" element={<BookMentorship />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/case-study" element={<CaseStudy />} />
+          <Route path="/media" element={<MediaPress />} />
           <Route path="/jfam" element={<JFAM />} />
           <Route path="/aaru-developers" element={<AaruDevelopers />} />
           <Route path="/aaru-care" element={<AaruCare />} />

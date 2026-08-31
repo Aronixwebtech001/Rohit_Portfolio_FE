@@ -1,45 +1,255 @@
+import { useState } from "react";
 import ScrollReveal from "../shared/ScrollReveal";
 
-const ventures = [
-  { name: "Aronix Web Tech", logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208337/images/ventures/awt.png.png", desc: "Digital solutions & technology services", link: "https://aronix.com" },
-  { name: "JFAM", logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208325/images/ventures/jfam-logo.png.png", desc: "Infrastructure & real estate development", link: "/jfam" },
-  { name: "Aaru Mobility", logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208315/images/ventures/aaru-mobility.png.png", desc: "Sustainable transportation & fleet management", link: "https://www.aarumobility.com/" },
-  { name: "Aaru Developers", logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208336/images/ventures/aaru.png.png", desc: "Construction & development excellence", link: "/aaru-developers" },
-  { name: "Aaru Care Foundation", logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208329/images/ventures/aaru-care-logo.png.png", desc: "Social impact & community welfare", link: "/aaru-care" },
-  { name: "Aaru Logistics", logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208322/images/ventures/aaru-log.png.png", desc: "Supply chain & logistics solutions", link: "#" },
+interface VentureItem {
+  name: string;
+  heading: string;
+  logo: string;
+  desc: string;
+  link: string;
+  accentColor: string;
+  position: { top: string; left: string };
+  zIndex?: number;
+  logoWidth?: number;
+  headingMargin?: string;
+  textMargin?: string;
+  clickMeBottom?: string;
+}
+
+const ventures: VentureItem[] = [
+  {
+    name: "aronix",
+    heading: "ARONIX WEB TECHNOLOGY",
+    logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208330/images/ventures/AWT-logo.png.png",
+    desc: "A specialized digital laboratory delivering high end web architecture, UI/UX design, and brand transformation.",
+    link: "https://www.aronixwebtech.com/",
+    accentColor: "#8B00CD",
+    position: { top: "68%", left: "48.5%" },
+    zIndex: 15,
+    logoWidth: 90,
+    headingMargin: "ml-[35px] -mt-[25px]",
+    textMargin: "ml-[35px]",
+    clickMeBottom: "-20px",
+  },
+  {
+    name: "aaru",
+    heading: "AARU DEVELOPER",
+    logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208333/images/ventures/aaru-logo.png.png",
+    desc: "An elite real estate and infrastructure firm dedicated to high value residential and commercial projects.",
+    link: "/aaru-developers",
+    accentColor: "#CD00AC",
+    position: { top: "40%", left: "58.5%" },
+    logoWidth: 160,
+    headingMargin: "ml-[10px] mt-[30px]",
+    textMargin: "ml-[10px]",
+    clickMeBottom: "33px",
+  },
+  {
+    name: "jfam",
+    heading: "JFAM",
+    logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208316/images/ventures/jfam.png.png",
+    desc: "A multidisciplinary firm executing complex interior design, government tenders, and architectural projects.",
+    link: "https://www.jfam.co.in/",
+    accentColor: "#26BF19",
+    position: { top: "10%", left: "30%" },
+    logoWidth: 120,
+    headingMargin: "ml-[20px]",
+    textMargin: "ml-[20px]",
+    clickMeBottom: "-23px",
+  },
+  {
+    name: "mobility",
+    heading: "AARU MOBILITY",
+    logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208315/images/ventures/aaru-mobility.png.png",
+    desc: "A mobility powerhouse providing chauffeur driven rentals and corporate fleet solutions",
+    link: "https://www.aarumobility.com/",
+    accentColor: "#CD0000",
+    position: { top: "22%", left: "46.5%" },
+    logoWidth: 135,
+    headingMargin: "ml-[15px]",
+    textMargin: "ml-[15px]",
+    clickMeBottom: "23px",
+  },
+  {
+    name: "care",
+    heading: "AARU CARE FOUNDATION",
+    logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208314/images/ventures/aaru-care-logo-ventures.png.png",
+    desc: "Driving social change through education, healthcare, and empowerment.",
+    link: "/aaru-care",
+    accentColor: "#0077CD",
+    position: { top: "72%", left: "29%" },
+    zIndex: 10,
+    logoWidth: 140,
+    headingMargin: "ml-[15px] mt-[75px]",
+    textMargin: "ml-[15px]",
+    clickMeBottom: "18px",
+  },
 ];
+
+function InfographicBox({ venture }: { venture: VentureItem }) {
+  const [hovered, setHovered] = useState(false);
+  const isExternal = venture.link.startsWith("http");
+
+  return (
+    <a
+      href={venture.link}
+      target={isExternal ? "_blank" : "_self"}
+      rel={isExternal ? "noopener noreferrer" : ""}
+      className="absolute flex flex-row items-start justify-start z-10 text-left no-underline"
+      style={{
+        top: venture.position.top,
+        left: venture.position.left,
+        gap: 10,
+        zIndex: venture.zIndex || 10,
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Logo + Click Me */}
+      <div className="relative flex flex-col items-center flex-shrink-0">
+        <img
+          src={venture.logo}
+          alt={`${venture.heading} Logo`}
+          style={{ width: venture.logoWidth || 100, height: "auto" }}
+          className="object-contain"
+          loading="lazy"
+        />
+        <span
+          className="absolute left-1/2 text-[0.70rem] font-sans font-semibold text-[#1a202c] bg-white px-2 py-[2px] rounded-xl whitespace-nowrap pointer-events-none z-[15] transition-all duration-300"
+          style={{
+            bottom: venture.clickMeBottom || "-18px",
+            transform: `translateX(-50%) translateY(${hovered ? "0" : "5px"})`,
+            opacity: hovered ? 1 : 0,
+            boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+          }}
+        >
+          Click Me →
+        </span>
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-col items-start" style={{ gap: 5 }}>
+        <h4
+          className={`text-[0.85rem] font-sans font-bold m-0 leading-[1.2] ${venture.headingMargin || ""}`}
+          style={{ color: venture.accentColor }}
+        >
+          {venture.heading}
+        </h4>
+        <p
+          className={`text-[0.75rem] font-sans font-medium opacity-90 m-0 text-[#3B3B3B] ${venture.textMargin || ""}`}
+          style={{ maxWidth: 300 }}
+        >
+          {venture.desc}
+        </p>
+      </div>
+    </a>
+  );
+}
+
+// Mobile card for responsive fallback
+function VentureCard({ venture }: { venture: VentureItem }) {
+  const isExternal = venture.link.startsWith("http");
+  return (
+    <a
+      href={venture.link}
+      target={isExternal ? "_blank" : "_self"}
+      rel={isExternal ? "noopener noreferrer" : ""}
+      className="block no-underline"
+    >
+      <div className="flex flex-col items-center text-center gap-2 p-5 bg-white rounded-lg"
+        style={{ boxShadow: "0 2px 10px rgba(0,0,0,0.1)", maxWidth: 280 }}>
+        <img
+          src={venture.logo}
+          alt={venture.heading}
+          className="w-[100px] h-auto object-contain"
+          loading="lazy"
+        />
+        <div className="flex flex-col items-center gap-[5px]">
+          <h4
+            className="text-base font-sans font-bold m-0"
+            style={{ color: venture.accentColor }}
+          >
+            {venture.heading}
+          </h4>
+          <p className="text-[0.85rem] font-sans font-medium text-[#3B3B3B] text-center m-0">
+            {venture.desc}
+          </p>
+        </div>
+      </div>
+    </a>
+  );
+}
 
 export default function VenturesDiagram() {
   return (
-    <section className="py-16 md:py-24 bg-bg-light" style={{ padding: "80px 5%" }}>
-      <div className="max-w-content mx-auto">
-        <ScrollReveal className="text-center mb-12">
-          <h2 className="font-serif text-[clamp(1.6rem,4vw,2.5rem)] text-navy mb-4">Our Ecosystem</h2>
-          <p className="text-[#4A5568] max-w-[600px] mx-auto">
-            A diverse portfolio of companies driving innovation across technology, mobility, infrastructure, and social impact.
-          </p>
-        </ScrollReveal>
+    <section className="flex justify-center items-center" style={{ padding: "40px 20px" }}>
+      {/* Desktop: Infographic with positioned overlays */}
+      <div className="hidden lg:block w-full">
+        <ScrollReveal className="w-full">
+          <div
+            className="ventures-map-box relative flex justify-center items-center mx-auto"
+            style={{
+              border: "1px solid #000000",
+              backgroundColor: "#F4F4F4",
+            }}
+          >
+            {/* SVG Infographic Background */}
+            <img
+              src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208331/images/ventures/Infographics.svg.svg"
+              alt="Rohit Jangir Venture Ecosystem Infographic"
+              className="ventures-infographics w-full h-full object-contain"
+              style={{ maxWidth: "100%", maxHeight: "100%" }}
+              loading="lazy"
+            />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {ventures.map((v, i) => {
-            const isExternal = v.link.startsWith("http");
-            return (
-              <ScrollReveal key={i} delay={i * 80}>
-                <a 
-                  href={v.link} 
-                  target={isExternal ? "_blank" : "_self"}
-                  rel={isExternal ? "noopener noreferrer" : ""}
-                  className="block h-full"
-                >
-                  <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-400 hover:-translate-y-2 cursor-pointer text-center group h-full">
-                    <img src={v.logo} alt={v.name} className="h-[80px] w-auto object-contain mx-auto mb-6 opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" />
-                    <h3 className="font-serif text-lg text-navy mb-2 group-hover:text-accent transition-colors">{v.name}</h3>
-                    <p className="text-sm text-[#4A5568]">{v.desc}</p>
-                  </div>
-                </a>
-              </ScrollReveal>
-            );
-          })}
+            {/* Venture Boxes */}
+            {ventures.map((v) => (
+              <InfographicBox key={v.name} venture={v} />
+            ))}
+
+            {/* Center RJ Logo */}
+            <a
+              href="/"
+              className="absolute flex justify-center items-center infographic-box-media"
+              style={{ top: "33%", left: "2.5%" }}
+            >
+              <img
+                src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208363/images/logos/rj-logo.png.png"
+                alt="Rohit Jangir"
+                className="rj-logo-img h-auto object-contain"
+                style={{ width: 300 }}
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </ScrollReveal>
+      </div>
+
+      {/* Mobile/Tablet: Card grid fallback */}
+      <div className="lg:hidden w-full">
+        {/* Center RJ logo card first on mobile */}
+        <div className="flex justify-center mb-5">
+          <a href="/" className="block no-underline">
+            <div className="flex justify-center items-center bg-white rounded-lg p-0 overflow-hidden"
+              style={{ width: 280, height: 120, boxShadow: "0 2px 10px rgba(0,0,0,0.1)" }}>
+              <img
+                src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208363/images/logos/rj-logo.png.png"
+                alt="Rohit Jangir"
+                className="h-auto flex-shrink-0"
+                style={{ width: 450 }}
+                loading="lazy"
+              />
+            </div>
+          </a>
+        </div>
+
+        <div className="grid gap-5 px-5 justify-items-center"
+          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
+          {ventures.map((v) => (
+            <ScrollReveal key={v.name}>
+              <VentureCard venture={v} />
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>

@@ -218,3 +218,174 @@ body {
     font-size: 0.95rem;
   }
 }
+
+/* ========================================
+   TIMELINE ANIMATION — How to Invest
+   ======================================== */
+.timeline-step {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.timeline-step.timeline-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-line {
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.timeline-line.timeline-visible {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Responsive timeline */
+@media (max-width: 992px) {
+  .timeline-step .step-circle {
+    width: 70px !important;
+    height: 70px !important;
+  }
+  .timeline-step .step-circle > div {
+    width: 52px !important;
+    height: 52px !important;
+  }
+  .timeline-step .step-circle span {
+    font-size: 1.3rem !important;
+  }
+  .timeline-step p {
+    margin-top: 10px !important;
+    font-size: 0.85rem !important;
+    width: 100px !important;
+    margin-left: -15px !important;
+    margin-right: -15px !important;
+  }
+  .timeline-line {
+    margin-top: 35px !important;
+  }
+  .timeline-line .arrow {
+    width: 10px !important;
+    height: 10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-step .step-circle {
+    width: 46px !important;
+    height: 46px !important;
+  }
+  .timeline-step .step-circle > div {
+    width: 34px !important;
+    height: 34px !important;
+  }
+  .timeline-step .step-circle span {
+    font-size: 0.95rem !important;
+  }
+  .timeline-step p {
+    font-size: 0.65rem !important;
+    margin-top: 6px !important;
+    width: 70px !important;
+    margin-left: -12px !important;
+    margin-right: -12px !important;
+  }
+  .timeline-line {
+    margin-top: 23px !important;
+    min-width: 15px !important;
+  }
+  .timeline-line .arrow {
+    width: 8px !important;
+    height: 8px !important;
+    border-width: 1.5px !important;
+  }
+}
+
+/* ========================================
+   RESPONSIVE STATS — Ventures
+   ======================================== */
+@media (max-width: 992px) {
+  .stat-circle {
+    width: 140px !important;
+    height: 140px !important;
+  }
+  .stat-circle ~ .relative h3 {
+    font-size: 1.9rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .stat-circle {
+    width: 120px !important;
+    height: 120px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-circle {
+    width: 110px !important;
+    height: 110px !important;
+  }
+}
+
+/* ========================================
+   VENTURES ECOSYSTEM MAP — Responsive
+   ======================================== */
+.ventures-map-box {
+  width: 1080px;
+  height: 809px;
+  margin: 10px auto;
+  border: 1px solid #000000;
+  background-color: #F4F4F4;
+}
+
+.ventures-infographics {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 1400px) {
+  .ventures-map-box {
+    width: 95% !important;
+    height: auto !important;
+    aspect-ratio: 1080 / 809 !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .ventures-map-box {
+    width: 100% !important;
+    aspect-ratio: 1080 / 809 !important;
+  }
+  
+  /* scale down overlay boxes logo images */
+  .ventures-map-box img:not(.rj-logo-img):not(.ventures-infographics) {
+    width: 80px !important;
+  }
+  
+  .ventures-map-box .rj-logo-img {
+    width: 220px !important;
+  }
+  
+  .ventures-map-box h4 {
+    font-size: 0.7rem !important;
+    margin-left: 10px !important;
+    margin-top: 0 !important;
+  }
+  
+  .ventures-map-box p {
+    font-size: 0.6rem !important;
+    max-width: 160px !important;
+    margin-left: 10px !important;
+  }
+  
+  .ventures-map-box a {
+    gap: 5px !important;
+  }
+}

@@ -1,35 +1,115 @@
 import ScrollReveal from "../shared/ScrollReveal";
 
-const expertiseItems = [
-  { title: "Business Strategy", desc: "Architecting growth frameworks for scalable ventures." },
-  { title: "Technology & Innovation", desc: "Leveraging cutting-edge tech for operational excellence." },
-  { title: "Investment & Finance", desc: "Strategic capital deployment across emerging sectors." },
-  { title: "Infrastructure", desc: "Building world-class commercial and residential projects." },
-  { title: "Mobility Solutions", desc: "Sustainable transportation and fleet management systems." },
-  { title: "Mentorship", desc: "Empowering the next generation of entrepreneurs." },
+interface ExpertiseItem {
+  icon: string;
+  iconAlt: string;
+  title: string;
+  desc: string;
+}
+
+const expertiseItems: ExpertiseItem[] = [
+  {
+    icon: "https://img.icons8.com/material-outlined/48/0F1F22/bar-chart.png",
+    iconAlt: "Expertise in Investment Strategy",
+    title: "Investment Strategy",
+    desc: "Identifying high-potential ideas with strategic investment opportunities.",
+  },
+  {
+    icon: "https://img.icons8.com/material-outlined/48/0F1F22/settings--v1.png",
+    iconAlt: "Expertise in Business Development",
+    title: "Business Development",
+    desc: "Strategic planning, market analysis, and scaling businesses for sustainable growth.",
+  },
+  {
+    icon: "https://img.icons8.com/material-outlined/48/0F1F22/handshake.png",
+    iconAlt: "Expertise in Mentorship",
+    title: "Mentorship",
+    desc: "Guiding entrepreneurs through challenges and helping them achieve their vision.",
+  },
 ];
 
 export default function ExpertiseSection() {
   return (
-    <section className="py-16 md:py-24 bg-bg-light" style={{ padding: "80px 5%" }}>
-      <div className="max-w-content mx-auto">
-        <ScrollReveal className="text-center mb-12">
-          <h2 className="font-serif text-[clamp(1.6rem,4vw,2.5rem)] text-navy">Areas of Expertise</h2>
+    <section className="expertise-section text-center" style={{ padding: "6rem 2rem", backgroundColor: "#ffffff" }}>
+      <div className="mx-auto" style={{ maxWidth: 1400, padding: "0 4%" }}>
+        <ScrollReveal>
+          <h2
+            className="font-serif text-[#0F1F22] font-normal uppercase"
+            style={{ fontSize: "clamp(2rem, 5vw, 3rem)", marginBottom: "4rem" }}
+          >
+            AREAS OF EXPERTISE
+          </h2>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="expertise-grid flex justify-center flex-wrap" style={{ gap: 30, marginTop: 80 }}>
           {expertiseItems.map((item, i) => (
-            <ScrollReveal key={i} delay={i * 80}>
-              <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-400 hover:-translate-y-1 cursor-default group">
-                <h3 className="font-serif text-lg text-navy mb-3 group-hover:text-accent transition-colors duration-300">
+            <ScrollReveal key={i} delay={i * 100}>
+              <div
+                className="expertise-card relative flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-[5px]"
+                style={{
+                  backgroundColor: "#F8FBFE",
+                  border: "1px solid #E6EBED",
+                  borderRadius: 24,
+                  padding: "60px 30px 40px",
+                  width: 320,
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.boxShadow = "0 10px 30px rgba(15, 31, 34, 0.05)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                }}
+              >
+                {/* Floating icon above card */}
+                <div
+                  className="card-icon-wrapper absolute left-1/2 -translate-x-1/2 flex items-center justify-center rounded-full"
+                  style={{
+                    top: -45,
+                    width: 90,
+                    height: 90,
+                    backgroundColor: "#FFFFFF",
+                    boxShadow: "0 4px 15px rgba(15, 31, 34, 0.05)",
+                  }}
+                >
+                  <div
+                    className="card-icon flex items-center justify-center rounded-full"
+                    style={{
+                      width: 70,
+                      height: 70,
+                      backgroundColor: "#E6EBED",
+                    }}
+                  >
+                    <img src={item.icon} alt={item.iconAlt} className="w-8 h-8" loading="lazy" />
+                  </div>
+                </div>
+
+                <h3
+                  className="font-serif text-[#0F1F22] font-normal"
+                  style={{ fontSize: "1.6rem", marginBottom: 15 }}
+                >
                   {item.title}
                 </h3>
-                <p className="text-sm text-[#4A5568] leading-relaxed">{item.desc}</p>
+                <p
+                  className="font-sans text-[#485E68] font-light leading-[1.5]"
+                  style={{ fontSize: "1rem" }}
+                >
+                  {item.desc}
+                </p>
               </div>
             </ScrollReveal>
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 480px) {
+          .expertise-card {
+            width: 100% !important;
+            max-width: 320px !important;
+            margin-top: 45px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

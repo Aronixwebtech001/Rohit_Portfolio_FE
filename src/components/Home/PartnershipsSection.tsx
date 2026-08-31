@@ -28,7 +28,7 @@ const steps = [
     title: "Founder Support",
     description: "Empowering the next generation of entrepreneurs through direct investment, mentorship, and access to our global network of experts and resources.",
     designation: "Building Legacies",
-    image: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208442/images/resources/founder-support.JPG.jpg",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200", // Placeholder for people mentoring (since AI generation is currently rate limited)
   },
   {
     tag: "Venture",

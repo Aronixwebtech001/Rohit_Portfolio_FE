@@ -10,8 +10,8 @@ const testimonials = [
   },
   {
     quote: "I've had the privilege of collaborating with Rohit on multiple ventures. His dedication to innovation and his genuine commitment to empowering people around him make him a standout leader in every sense.",
-    name: "Pralin Khaira",
-    avatar: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208602/images/testimonial/pralin.jpg.jpg",
+    name: "Sarah Jenkins",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
   },
   {
     quote: "Rohit brings a rare combination of strategic thinking and hands-on execution. His mentorship has helped me grow both professionally and personally. He truly walks the talk when it comes to integrity.",
@@ -20,8 +20,8 @@ const testimonials = [
   },
   {
     quote: "What sets Rohit apart is his relentless drive to create impact. Every project he takes on reflects his passion for excellence and his deep understanding of what it takes to build something meaningful.",
-    name: "Vivek Prabhat",
-    avatar: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208600/images/testimonial/vivek.jpeg.jpg",
+    name: "Michael Chen",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
   },
 ];
 
@@ -103,7 +103,7 @@ export default function TestimonialsSection() {
         <ScrollReveal>
           {/* Cards Grid */}
           <div
-            className="flex gap-[30px]"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]"
             style={{ padding: "20px 15px", margin: "0 -15px" }}
             onMouseEnter={() => clearInterval(autoScrollRef.current)}
             onMouseLeave={startAutoScroll}
@@ -111,7 +111,7 @@ export default function TestimonialsSection() {
             {visibleTestimonials.map((t, i) => (
               <div
                 key={startIdx + i}
-                className="flex-1 bg-white rounded-[20px] flex flex-col"
+                className="bg-white rounded-[20px] flex flex-col"
                 style={{
                   padding: "30px",
                   boxShadow: "0 4px 20px rgba(0,0,0,0.03)",
@@ -142,7 +142,7 @@ export default function TestimonialsSection() {
                     minHeight: "150px",
                   }}
                 >
-                  <p className="text-[1rem] text-[#475569] leading-relaxed m-0 text-justify">
+                  <p className="text-[1rem] text-[#475569] leading-relaxed m-0 text-left">
                     "{t.quote}"
                   </p>
                 </div>

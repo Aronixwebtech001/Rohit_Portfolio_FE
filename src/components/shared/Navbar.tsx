@@ -11,6 +11,7 @@ const navLinks = [
 ];
 
 const exploreLinks = [
+  { label: "Media & Press", to: "/media" },
   { label: "Resources", to: "/resources" },
   { label: "Case Studies", to: "/case-study" },
 ];
