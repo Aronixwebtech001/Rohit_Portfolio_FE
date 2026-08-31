@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
+import { subscribeApi } from "../../features/subscribe/api.subscribe";
+import { useState } from "react";
 
 const quickLinks = [
   { label: "About", to: "/about" },
@@ -54,18 +56,52 @@ const socialIcons = [
 ];
 
 export default function Footer() {
+   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+
+    if (!email) {
+      setError("Please enter your email.");
+      return;
+    }
+
+     const strictEmailRegex = /^(?![0-9])[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (!strictEmailRegex.test(email)) {
+      setError("Please provide a valid email address.");
+      return;
+    }
+
+    try {
+     
+      const res = await subscribeApi.create({ email: email.trim().toLowerCase() });
+      setSuccess(res.message);
+      setEmail("");
+    } catch (err: any) {
+      console.error(err);
+      setError("Subscription failed. Please try again.");
+    }
+  };
+
   return (
     <footer className="bg-navy-dark text-white">
       {/* Newsletter subscribe bar — top of footer */}
       <div className="max-w-content mx-auto px-6 md:px-10 pt-14 pb-8 flex flex-col items-center">
         <form
           className="flex w-full max-w-md rounded-full overflow-hidden border border-white/20"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubscribe}
         >
           <input
             type="email"
             placeholder="Email Address"
             className="flex-1 px-5 py-3 text-white text-sm outline-none bg-transparent placeholder:text-white/40"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
           />
           <button
             type="submit"
@@ -74,6 +110,8 @@ export default function Footer() {
             Subscribe
           </button>
         </form>
+        {error && <p className="text-red-400 text-xs mt-2">{error}</p>}
+        {success && <p className="text-green-400 text-xs mt-2">{success}</p>}
       </div>
 
       {/* Footer columns */}
