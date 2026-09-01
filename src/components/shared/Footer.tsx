@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="max-w-[600px] mx-auto mb-[60px] text-center">
           <form
             onSubmit={handleSubscribe}
-            className="flex items-center bg-[#E8EDF0] rounded-[50px] p-[6px] shadow-[0_10px_30px_rgba(0,0,0,0.1)]"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center bg-[#E8EDF0] rounded-[20px] sm:rounded-[50px] p-[6px] gap-2 sm:gap-0 shadow-[0_10px_30px_rgba(0,0,0,0.1)]"
           >
             <input
               type="email"

@@ -50,11 +50,11 @@ export default function HowToInvest() {
 
         <div
           ref={wrapperRef}
-          className="flex items-start justify-center mx-auto"
+          className="flex flex-col md:flex-row items-center md:items-start justify-center mx-auto"
           style={{ maxWidth: 960 }}
         >
           {steps.map((step, i) => (
-            <div key={step.number} className="flex items-start" style={{ flex: i < steps.length - 1 ? 1 : undefined }}>
+            <div key={step.number} className="flex flex-col md:flex-row items-center md:items-start w-full md:w-auto" style={{ flex: i < steps.length - 1 ? 1 : undefined }}>
               {/* Step */}
               <div
                 className="timeline-step flex flex-col items-center relative z-[2] flex-shrink-0"
@@ -105,29 +105,51 @@ export default function HowToInvest() {
 
               {/* Connector line (not after last step) */}
               {i < steps.length - 1 && (
-                <div
-                  className="timeline-line relative flex-1"
-                  style={{
-                    height: 2,
-                    backgroundColor: "#A9B8C0",
-                    marginTop: 60,
-                    minWidth: 40,
-                  }}
-                >
-                  {/* Arrow */}
+                <>
                   <div
-                    className="arrow absolute"
+                    className="timeline-line relative flex-1 hidden md:block"
                     style={{
-                      left: "50%",
-                      top: "50%",
-                      transform: "translate(-50%, -50%) rotate(45deg)",
-                      width: 14,
-                      height: 14,
-                      borderRight: "2px solid #A9B8C0",
-                      borderTop: "2px solid #A9B8C0",
+                      height: 2,
+                      backgroundColor: "#A9B8C0",
+                      marginTop: 60,
+                      minWidth: 40,
                     }}
-                  />
-                </div>
+                  >
+                    {/* Arrow */}
+                    <div
+                      className="arrow absolute"
+                      style={{
+                        left: "50%",
+                        top: "50%",
+                        transform: "translate(-50%, -50%) rotate(45deg)",
+                        width: 14,
+                        height: 14,
+                        borderRight: "2px solid #A9B8C0",
+                        borderTop: "2px solid #A9B8C0",
+                      }}
+                    />
+                  </div>
+                  <div
+                    className="timeline-line relative flex-1 md:hidden w-[2px] h-[50px] my-[10px]"
+                    style={{
+                      backgroundColor: "#A9B8C0",
+                    }}
+                  >
+                    {/* Down Arrow */}
+                    <div
+                      className="arrow absolute"
+                      style={{
+                        left: "50%",
+                        top: "50%",
+                        transform: "translate(-50%, -50%) rotate(135deg)",
+                        width: 14,
+                        height: 14,
+                        borderRight: "2px solid #A9B8C0",
+                        borderTop: "2px solid #A9B8C0",
+                      }}
+                    />
+                  </div>
+                </>
               )}
             </div>
           ))}

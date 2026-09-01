@@ -3,7 +3,7 @@ export default function MediaPress() {
     <>
       <main>
         {/* MEDIA & IMPACT HERO */}
-        <section className="w-full bg-white block pt-[55px] p-0 overflow-hidden">
+        <section className="w-full bg-white block pt-[80px] md:pt-[100px] p-0 overflow-hidden">
           <img 
             src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208377/images/media/media.png.png"
             alt="Media Hero" 
@@ -20,7 +20,7 @@ export default function MediaPress() {
               Awards & Recognition
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[60px] max-w-[1140px] mx-auto justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-[60px] max-w-[1140px] mx-auto justify-center">
               <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl pb-[30px] text-center transition-all duration-300 ease-out hover:-translate-y-[5px] hover:shadow-[0_12px_24px_rgba(0,0,0,0.06)] flex flex-col items-center justify-start overflow-hidden">
                 <img 
                   src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208378/images/media/AARU_MOBILITY_AWARD.png.png"

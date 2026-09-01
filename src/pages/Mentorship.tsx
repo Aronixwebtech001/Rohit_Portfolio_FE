@@ -120,7 +120,7 @@ export default function Mentorship() {
       </section>
 
       {/* WHY CHOOSE MENTORSHIP */}
-      <section className="py-16 md:py-24 bg-white" style={{ padding: "80px 5%" }}>
+      <section className="py-16 md:py-24 bg-white px-4 md:px-[5%]">
         <div className="max-w-content mx-auto">
           <ScrollReveal className="text-center mb-12">
             <h2 className="font-serif text-[clamp(2rem,4vw,2.5rem)] font-normal text-navy">Why Choose Mentorship?</h2>
@@ -145,7 +145,7 @@ export default function Mentorship() {
       </section>
 
       {/* PACKAGES */}
-      <section className="py-16 md:py-24 bg-[#F8FBFE]" style={{ padding: "80px 5%" }}>
+      <section className="py-16 md:py-24 bg-[#F8FBFE] px-4 md:px-[5%]">
         <div className="max-w-content mx-auto">
           <ScrollReveal className="text-center mb-12">
             <h2 className="font-serif text-[clamp(2rem,4vw,2.5rem)] font-normal text-navy mb-4">Choose Your Mentorship Package</h2>
@@ -208,7 +208,7 @@ export default function Mentorship() {
       </section>
 
       {/* TOPICS */}
-      <section className="py-16 md:py-24 bg-[#d8d5d5]" style={{ padding: "90px 5%" }}>
+      <section className="py-16 md:py-24 bg-[#d8d5d5] px-4 md:px-[5%]">
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row gap-14 items-stretch">
           <div className="flex-1">
             <ScrollReveal>

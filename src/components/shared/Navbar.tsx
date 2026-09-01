@@ -143,22 +143,22 @@ export default function Navbar() {
 
           {/* Hamburger Button */}
           <button
-            className="flex lg:hidden flex-col justify-center gap-[5px] w-[30px] cursor-pointer z-[1001] bg-transparent border-none p-0"
+            className="flex lg:hidden flex-col justify-center items-center gap-[5px] w-[44px] h-[44px] cursor-pointer z-[1001] bg-transparent border-none p-1"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle mobile navigation"
           >
             <span
-              className={`block w-full h-[3px] bg-black rounded-[10px] transition-all duration-300 ${
+              className={`block w-[26px] h-[3px] bg-black rounded-[10px] transition-all duration-300 ${
                 mobileOpen ? "translate-y-[8px] rotate-45" : ""
               }`}
             />
             <span
-              className={`block w-full h-[3px] bg-black rounded-[10px] transition-all duration-300 ${
+              className={`block w-[26px] h-[3px] bg-black rounded-[10px] transition-all duration-300 ${
                 mobileOpen ? "opacity-0" : ""
               }`}
             />
             <span
-              className={`block w-full h-[3px] bg-black rounded-[10px] transition-all duration-300 ${
+              className={`block w-[26px] h-[3px] bg-black rounded-[10px] transition-all duration-300 ${
                 mobileOpen ? "-translate-y-[8px] -rotate-45" : ""
               }`}
             />

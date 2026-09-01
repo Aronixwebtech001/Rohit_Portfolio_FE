@@ -4,19 +4,19 @@ import ScrollReveal from "../shared/ScrollReveal";
 
 const caseStudies = [
   {
-    image: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208422/images/resources/CASE_STUDY_003.jpg.png",
+    image: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208441/images/resources/Casestudy1.png.png", // Mobility
     title: "Corporate Excellence Delivered",
     description: "How we turned an 18,000 sq.ft office into a scalable business asset",
     linkText: "Learn about Corporate Excellence Case Study →",
   },
   {
-    image: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208441/images/resources/Casestudy1.png.png",
+    image: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208435/images/resources/Casestudy2.jpg.jpg", // Farmhouse / Home
     title: "Beyond Boundaries Farmhouse",
     description: "How we delivered a 23,400 sq.ft luxury farmhouse with precision and excellence",
     linkText: "Explore Luxury Farmhouse Case Study →",
   },
   {
-    image: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208435/images/resources/Casestudy2.jpg.jpg",
+    image: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208422/images/resources/CASE_STUDY_003.jpg.png", // Corporate / Meeting room
     title: "Luxury Living Redefined",
     description: "How we built a world class 4 BHK home with zero operational waste",
     linkText: "View Luxury Living Redefined Details →",

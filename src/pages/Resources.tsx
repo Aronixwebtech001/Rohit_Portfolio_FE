@@ -4,7 +4,7 @@ export default function Resources() {
   return (
     <>
       {/* HERO SECTION */}
-      <section className="w-full bg-white block p-0 mt-[70px] mb-0 overflow-hidden">
+      <section className="w-full bg-white block p-0 pt-[80px] md:pt-[100px] mb-0 overflow-hidden">
         <img 
           src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208423/images/resources/RESOURCES.png.png" 
           alt="resource" 
@@ -28,7 +28,7 @@ export default function Resources() {
             className="bg-white rounded-xl overflow-hidden no-underline text-inherit border border-[#E5E7EB] transition-all duration-300 ease-out hover:-translate-y-[5px] hover:shadow-[0_12px_24px_rgba(0,0,0,0.06)] flex flex-col w-full group"
           >
             <img 
-              src="/images/team_culture.jpg" 
+              src="/images/team_culture_ai.jpg" 
               alt="Guide: Building a High Performance Team Culture" 
               loading="lazy"
               decoding="async"
@@ -53,7 +53,7 @@ export default function Resources() {
             className="bg-white rounded-xl overflow-hidden no-underline text-inherit border border-[#E5E7EB] transition-all duration-300 ease-out hover:-translate-y-[5px] hover:shadow-[0_12px_24px_rgba(0,0,0,0.06)] flex flex-col w-full group"
           >
             <img 
-              src="/images/startup_launch.jpg" 
+              src="/images/startup_launch_ai.jpg" 
               alt="Guide: Launching Your First Startup" 
               loading="lazy"
               decoding="async"
