@@ -1,25 +1,54 @@
-import investorIllustration from "../../assets/images/investor-hero.jpg";
+import ScrollReveal from "../shared/ScrollReveal";
 
 export default function InvestorHero() {
   return (
-    <section className="bg-[#DCE4E6]">
-      <div className="max-w-content mx-auto px-6 md:px-10 py-14 md:py-20 grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] mb-6 leading-[1.1] text-navy">
-            Investing in<br />Scalable Innovation
-          </h1>
-          <p className="text-muted text-[17px] max-w-lg leading-relaxed">
-            We partner with ambitious founders building high-growth technology businesses. Our
-            strategic capital and operational expertise help transform early-stage potential into
-            long-term market leadership.
-          </p>
-        </div>
-        <div className="flex justify-end">
-          <img
-            src={investorIllustration}
-            alt="Investment growth illustration"
-            className="w-full max-w-xl rounded-2xl object-cover"
-          />
+    <section
+      className="overflow-hidden relative"
+      style={{
+        backgroundColor: "#E6EBED",
+        padding: "100px 0 0px",
+        borderBottom: "1px solid #D1D5D8",
+      }}
+    >
+      <div className="mx-auto" style={{ maxWidth: 1400, padding: "0 4%" }}>
+        <div className="flex items-center justify-between gap-10 flex-col lg:flex-row">
+          {/* Text */}
+          <ScrollReveal direction="left" className="z-[2] flex-[1.2]">
+            <div>
+              <h1
+                className="font-serif text-[#0F1F22] leading-[1.1] font-normal"
+                style={{
+                  fontSize: "clamp(2.5rem, 4.5vw, 4rem)",
+                  marginBottom: 25,
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                Investing in Scalable Innovation
+              </h1>
+              <p
+                className="font-sans text-[#485E68] font-light leading-[1.6]"
+                style={{
+                  fontSize: "clamp(1rem, 1.1vw, 1.2rem)",
+                  maxWidth: 580,
+                }}
+              >
+                We partner with ambitious founders building high-growth technology businesses. Our strategic
+                capital and operational expertise help transform early-stage potential into longterm market
+                leadership.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Visual */}
+          <ScrollReveal direction="right" className="relative z-[1] flex-1 flex justify-end lg:-mr-[70px] lg:mt-[50px]">
+            <img
+              src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208334/images/ventures/invester_hero.png.png"
+              alt="Strategic Investment Illustration"
+              className="block h-auto"
+              style={{ maxWidth: "115%" }}
+              fetchPriority="high"
+            />
+          </ScrollReveal>
         </div>
       </div>
     </section>

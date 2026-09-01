@@ -1,20 +1,85 @@
+import ScrollReveal from "../shared/ScrollReveal";
+import aboutBg from "../../assets/images/about/about.bg.png";
+import aboutResponsive from "../../assets/images/about/about.responsive.png";
+
 export default function QuoteBanner() {
   return (
-    <section className="relative bg-navy-dark text-white overflow-hidden">
-      {/* Subtle background texture overlay */}
-      <div className="absolute inset-0 opacity-[0.08]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      />
-      <div className="relative max-w-content mx-auto px-6 md:px-10 py-20 text-center">
-        <p className="font-serif text-lg md:text-2xl leading-relaxed max-w-3xl mx-auto italic opacity-90">
-          "I believe leadership means turning ideas into impact. Success is not just about
-          building profitable businesses — it's about creating opportunities, empowering people,
-          and leaving a lasting legacy."
-        </p>
-        <p className="text-white/50 text-sm mt-8 tracking-wider">— Rohit Jangir</p>
+    <section
+      className="about-quote relative py-24 px-8 md:px-16 lg:px-24 flex flex-col items-start justify-center bg-cover bg-center bg-no-repeat overflow-hidden"
+      style={{
+        minHeight: "450px",
+        padding: "6rem 2rem",
+      }}
+    >
+      <div className="max-w-[1300px] w-full mx-auto relative z-10">
+        <ScrollReveal className="w-full">
+          <p
+            className="quote-text font-serif text-white text-justify leading-[1.6] m-0"
+            style={{
+              fontSize: "clamp(1rem, 2vw, 1.3rem)",
+              maxWidth: "55%",
+            }}
+          >
+            An idea is only the spark, it is the relentless hard work that turns it into a fire. I don't just
+            build businesses to reach a finish line, I design legacies that stand the Rest of Time. While
+            others focus on the transaction, I am focused on the foundation
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={200} className="w-full">
+          <span
+            className="quote-author block text-white font-sans text-right"
+            style={{
+              marginTop: "1rem",
+              fontWeight: 400,
+              fontSize: "clamp(1.5rem, 2vw, 1.8rem)",
+              maxWidth: "55%",
+            }}
+          >
+            -Rohit Jangir
+          </span>
+        </ScrollReveal>
       </div>
+
+      <style>{`
+        .about-quote {
+          background-image: linear-gradient(rgba(28, 50, 58, 0.4), rgba(28, 50, 58, 0.4)), url(${aboutBg});
+          background-attachment: fixed;
+          background-position: center;
+        }
+
+        @media (max-width: 992px) {
+          .about-quote {
+            background-attachment: scroll !important;
+            background-position: 80% center !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .about-quote {
+            background-image: linear-gradient(rgba(28, 50, 58, 0.65), rgba(28, 50, 58, 0.65)), url(${aboutResponsive}) !important;
+            background-attachment: scroll !important;
+            background-position: center !important;
+            padding: 6rem 1.5rem !important;
+          }
+          .quote-text, .quote-author {
+            max-width: 100% !important;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+          }
+        }
+
+        @media (max-width: 480px) {
+          .about-quote {
+            padding: 4rem 5% !important;
+          }
+          .quote-text {
+            font-size: 1.1rem !important;
+          }
+          .quote-author {
+            font-size: 1.25rem !important;
+            text-align: left !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

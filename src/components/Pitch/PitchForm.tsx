@@ -1,5 +1,7 @@
 import { useState, useRef } from "react";
 import { Upload } from "lucide-react";
+import { investorApi } from "../../feature/pitch/api.pitch";
+import { PitchPayload } from "../../feature/pitch/types.pitch";
 
 export default function PitchForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -91,6 +93,9 @@ export default function PitchForm() {
           <h2 className="font-serif text-3xl md:text-[34px] text-center mb-10 text-navy">
             Submit Your Pitch
           </h2>
+          <h2 className="font-serif text-3xl md:text-[34px] text-center mb-10 text-navy">
+            Submit Your Pitch
+          </h2>
 
           {submitted ? (
             <div className="text-center py-12 bg-[#F5F7F8] rounded-xl border border-teal/20">
@@ -100,7 +105,12 @@ export default function PitchForm() {
               <h3 className="font-serif text-2xl text-navy mb-2">
                 Pitch Submitted Successfully!
               </h3>
+              <h3 className="font-serif text-2xl text-navy mb-2">
+                Pitch Submitted Successfully!
+              </h3>
               <p className="text-muted text-[15px]">
+                Thank you for your interest. Our team will review your pitch and
+                get back to you soon.
                 Thank you for your interest. Our team will review your pitch and
                 get back to you soon.
               </p>
@@ -190,6 +200,17 @@ export default function PitchForm() {
                 />
               </div>
 
+              <button
+                type="submit"
+                disabled={loading}
+                className="px-10 py-3.5 bg-navy text-white font-medium rounded-xl hover:bg-navy-dark transition-colors text-[15px] w-full md:w-auto min-w-[200px]"
+              >
+                {loading ? "Submitting..." : "Submit Pitch"}
+              </button>
+
+              {error && (
+                <p className="text-red-600 text-sm mt-2 text-center">{error}</p>
+              )}
               <button
                 type="submit"
                 disabled={loading}

@@ -114,80 +114,108 @@ export default function Footer() {
         {success && <p className="text-green-400 text-xs mt-2">{success}</p>}
       </div>
 
-      {/* Footer columns */}
-      <div className="max-w-content mx-auto px-6 md:px-10 pb-12 grid grid-cols-1 md:grid-cols-4 gap-10">
-        {/* Brand column */}
-        <div>
-          <Link to="/" className="inline-block mb-3">
-            <img src={logo} alt="Rohit Jangir" className="h-8 w-auto brightness-0 invert opacity-90" />
-          </Link>
-          <p className="text-white/50 text-sm mb-5 leading-relaxed">
-            Building Businesses,
-            <br />
-            Empowering Entrepreneurs.
-          </p>
-          <Link
-            to="/pitch"
-            className="inline-block px-5 py-2 border border-white/25 rounded-full text-sm hover:bg-white hover:text-navy transition-colors"
-          >
-            Contact US
-          </Link>
-        </div>
-
-        {/* Quick Links */}
-        <div>
-          <p className="text-white/40 font-medium mb-4 uppercase tracking-wider text-xs">Quick Links</p>
-          <ul className="space-y-3 text-sm text-white/70">
-            {quickLinks.map((l) => (
-              <li key={l.to}>
-                <Link to={l.to} className="hover:text-teal transition-colors">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Opportunities */}
-        <div>
-          <p className="text-white/40 font-medium mb-4 uppercase tracking-wider text-xs">Opportunities</p>
-          <ul className="space-y-3 text-sm text-white/70">
-            {opportunities.map((l) => (
-              <li key={l.label}>
-                <Link to={l.to} className="hover:text-teal transition-colors">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Connect */}
-        <div>
-          <p className="text-white/40 font-medium mb-4 uppercase tracking-wider text-xs">Connect</p>
-          <a href="mailto:connect@rohitjangir.com" className="text-sm text-white/70 hover:text-teal transition-colors block mb-5">
-            connect@rohitjangir.com
-          </a>
-          <div className="flex gap-3">
-            {socialIcons.map((s) => (
-              <span
-                key={s.label}
-                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-teal transition-colors cursor-pointer"
-                title={s.label}
+        {/* Footer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_1fr_1fr] gap-10 max-w-content mx-auto">
+          {/* Column 1: Brand */}
+          <div>
+            <h4 className="text-white text-xl font-bold mb-[25px]">Rohit Jangir</h4>
+            <p className="text-white/90 text-base leading-relaxed mb-2.5">
+              Building Businesses,<br />Empowering Entrepreneurs.
+            </p>
+            <div className="mt-5">
+              <button
+                onClick={() => setIsConnectModalOpen(true)}
+                className="inline-flex items-center justify-center py-2 px-[18px] text-sm border-[1.5px] border-white rounded-md text-white no-underline font-semibold transition-all duration-300 hover:bg-white hover:text-navy cursor-pointer bg-transparent"
               >
-                {s.icon}
-              </span>
-            ))}
+                Contact Us
+              </button>
+            </div>
+          </div>
+
+          {/* Column 2: Quick Links */}
+          <div>
+            <h4 className="text-white text-xl font-bold mb-[25px]">Quick Links</h4>
+            <div className="flex flex-col">
+              <Link to="/about" className="text-white/90 no-underline text-base mb-3 transition-colors duration-300 hover:text-white hover:underline">About</Link>
+              <Link to="/ventures" className="text-white/90 no-underline text-base mb-3 transition-colors duration-300 hover:text-white hover:underline">Ventures</Link>
+              <Link to="/pitch" className="text-white/90 no-underline text-base mb-3 transition-colors duration-300 hover:text-white hover:underline">Pitch</Link>
+            </div>
+          </div>
+
+          {/* Column 3: Opportunities */}
+          <div>
+            <h4 className="text-white text-xl font-bold mb-[25px]">Opportunities</h4>
+            <div className="flex flex-col">
+              <Link to="/pitch" className="text-white/90 no-underline text-base mb-3 transition-colors duration-300 hover:text-white hover:underline">Pitch Your Ideas</Link>
+              <Link to="/mentorship" className="text-white/90 no-underline text-base mb-3 transition-colors duration-300 hover:text-white hover:underline">Book Consultation</Link>
+            </div>
+          </div>
+
+          {/* Column 4: Connect */}
+          <div>
+            <h4 className="text-white text-xl font-bold mb-[25px]">Connect</h4>
+            <div className="flex flex-col mb-4">
+              <a
+                href="mailto:connect@rohitjangir.com"
+                className="text-white/90 no-underline text-base mb-3 transition-colors duration-300 hover:text-white hover:underline"
+              >
+                connect@rohitjangir.com
+              </a>
+            </div>
+            <div className="flex gap-4">
+              <a
+                href="https://www.facebook.com/people/Rohit-Jangir/100047800952815/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="text-white/80 transition-colors duration-300 hover:text-white"
+              >
+                <FacebookIcon />
+              </a>
+              <a
+                href="https://x.com/RohitJa50047844"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+                className="text-white/80 transition-colors duration-300 hover:text-white"
+              >
+                <TwitterIcon />
+              </a>
+              <a
+                href="https://www.instagram.com/offical_rohitjangir"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-white/80 transition-colors duration-300 hover:text-white"
+              >
+                <InstagramIcon />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/rohit-kumar-733707129/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="text-white/80 transition-colors duration-300 hover:text-white"
+              >
+                <LinkedinIcon />
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom border */}
-      <div className="border-t border-white/5">
-        <div className="max-w-content mx-auto px-6 md:px-10 py-4 text-center text-white/30 text-xs">
-          © {new Date().getFullYear()} Rohit Jangir. All rights reserved.
+        {/* Footer Bottom */}
+        <div className="text-center border-t border-white/10 mt-10 pt-[15px] text-sm text-white/80">
+          <span>
+            &copy; 2025 - 2026 Rohit Jangir. All rights reserved. | Designed &amp; Developed by{" "}
+            <span className="underline">Aronix Web Tech</span>
+          </span>
         </div>
-      </div>
-    </footer>
+      </footer>
+
+      <ConnectModal 
+        isOpen={isConnectModalOpen} 
+        onClose={() => setIsConnectModalOpen(false)} 
+      />
+    </>
   );
 }

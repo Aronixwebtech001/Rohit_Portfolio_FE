@@ -1,36 +1,45 @@
-import { Check } from "lucide-react";
-import handshake from "../../assets/images/final/home-handshake.png";
+import ScrollReveal from "../shared/ScrollReveal";
 
-const points = [
-  "End to end planning and optimisation of daily bus routes and scheduling.",
-  "Dedicated fleet operations handled by experienced transport professionals.",
-  "Bus leasing and ownership options tailored to the institutions.",
-  "Reduced your administrative workload with complete transport support.",
-  "Reliable, safe and cost efficient mobility solutions.",
+const checklistItems = [
+  "Maximum efficiency with expert schedules.",
+  "Professional fleet management you can trust.",
+  "We handle the operations you save the time.",
+  "Safe, premium and cost effective mobility.",
+  "Custom rental plans built for your scale.",
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="bg-cream">
-      <div className="max-w-content mx-auto px-6 md:px-10 py-20 md:py-24 grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <div>
-          <h2 className="font-serif text-3xl md:text-4xl mb-8 leading-snug">
+    <section className="bg-white" style={{ padding: "5rem 0" }}>
+      <div className="max-w-content mx-auto px-[5%] flex flex-col lg:flex-row items-stretch gap-12 lg:gap-16">
+        {/* Left: Checklist */}
+        <ScrollReveal direction="left" className="flex-1 flex flex-col justify-start">
+          <h2 className="font-serif text-[clamp(2.5rem,5vw,4.5rem)] text-navy mb-10 leading-[1.0] font-normal text-left">
             Why we're the right choice
           </h2>
-          <ul className="space-y-5">
-            {points.map((pt) => (
-              <li key={pt} className="flex items-start gap-3 text-[15px] text-muted">
-                <span className="mt-1 shrink-0 w-5 h-5 rounded-full bg-teal/10 flex items-center justify-center">
-                  <Check size={13} className="text-teal" />
-                </span>
-                <span>{pt}</span>
+          <ul className="list-none p-0 m-0 space-y-5">
+            {checklistItems.map((item, i) => (
+              <li key={i} className="flex items-start gap-4 text-[clamp(1rem,2vw,1.15rem)] text-black leading-relaxed">
+                <span className="flex-shrink-0 text-xl text-black font-bold">✔</span>
+                {item}
               </li>
             ))}
           </ul>
-        </div>
-        <div className="rounded-2xl overflow-hidden aspect-[4/3] shadow-lg">
-          <img src={handshake} alt="Partnership handshake" className="w-full h-full object-cover" />
-        </div>
+        </ScrollReveal>
+
+        {/* Right: Video */}
+        <ScrollReveal direction="right" className="flex-none w-full lg:w-[clamp(300px,45vw,600px)]">
+          <div className="relative rounded-[18px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.08)] h-full aspect-video lg:aspect-auto min-h-[250px]">
+            <video
+              src="https://res.cloudinary.com/dqfuozgjq/video/upload/v1773208355/images/ventures/global/why.mp4.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
