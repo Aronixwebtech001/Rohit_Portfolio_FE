@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import ConnectModal from "./ConnectModal";
+import { subscribeApi } from "../../feature/subscribe/api.subscribe";
 
 const FacebookIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -18,11 +19,33 @@ const LinkedinIcon = () => (
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [isConnectModalOpen, setIsConnectModalOpen] = useState(false);
+   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-  const handleSubscribe = (e: React.FormEvent) => {
+ const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for subscribing!");
-    setEmail("");
+    setError("");
+    setSuccess("");
+
+    // Strict validations
+    if (!email) {
+      setError("Email address is required.");
+      return;
+    }
+    const strictEmailRegex = /^(?![0-9])[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (!strictEmailRegex.test(email)) {
+      setError("Please provide a valid email address.");
+      return;
+    }
+
+    try {
+      const res = await subscribeApi.create({ email: email.trim().toLowerCase() });
+      setSuccess(res.message);
+      setEmail("");
+    } catch (err: any) {
+      console.error(err);
+      setError("Subscription failed. Please try again.");
+    }
   };
 
   return (
