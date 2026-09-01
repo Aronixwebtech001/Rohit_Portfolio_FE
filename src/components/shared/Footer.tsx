@@ -1,55 +1,118 @@
 import { Link } from "react-router-dom";
+import logo from "../../assets/images/logo.png";
+import { subscribeApi } from "../../features/subscribe/api.subscribe";
 import { useState } from "react";
-import ConnectModal from "./ConnectModal";
 
-const FacebookIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-);
-const TwitterIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
-);
-const InstagramIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-);
-const LinkedinIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-);
+const quickLinks = [
+  { label: "About", to: "/about" },
+  { label: "Ventures", to: "/ventures" },
+  { label: "Pitch", to: "/pitch" },
+];
+
+const opportunities = [
+  { label: "Pitch Your Ideas", to: "/pitch" },
+  { label: "Book Consultation", to: "/mentorship" },
+  { label: "Case Study", to: "/case-study" },
+];
+
+/* Custom social SVG icons — lucide-react removed brand icons */
+function LinkedinIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+
+function XIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+    </svg>
+  );
+}
+
+function FacebookIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+    </svg>
+  );
+}
+
+const socialIcons = [
+  { icon: <LinkedinIcon />, label: "LinkedIn" },
+  { icon: <XIcon />, label: "X (Twitter)" },
+  { icon: <InstagramIcon />, label: "Instagram" },
+  { icon: <FacebookIcon />, label: "Facebook" },
+];
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-  const [isConnectModalOpen, setIsConnectModalOpen] = useState(false);
+   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-  const handleSubscribe = (e: React.FormEvent) => {
+
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for subscribing!");
-    setEmail("");
+    setError("");
+    setSuccess("");
+
+    if (!email) {
+      setError("Please enter your email.");
+      return;
+    }
+
+     const strictEmailRegex = /^(?![0-9])[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (!strictEmailRegex.test(email)) {
+      setError("Please provide a valid email address.");
+      return;
+    }
+
+    try {
+     
+      const res = await subscribeApi.create({ email: email.trim().toLowerCase() });
+      setSuccess(res.message);
+      setEmail("");
+    } catch (err: any) {
+      console.error(err);
+      setError("Subscription failed. Please try again.");
+    }
   };
 
   return (
-    <>
-      <footer className="bg-navy text-white font-sans" style={{ padding: "80px 5% 40px" }}>
-        {/* Newsletter Section */}
-        <div className="max-w-[600px] mx-auto mb-[60px] text-center">
-          <form
-            onSubmit={handleSubscribe}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center bg-[#E8EDF0] rounded-[20px] sm:rounded-[50px] p-[6px] gap-2 sm:gap-0 shadow-[0_10px_30px_rgba(0,0,0,0.1)]"
+    <footer className="bg-navy-dark text-white">
+      {/* Newsletter subscribe bar — top of footer */}
+      <div className="max-w-content mx-auto px-6 md:px-10 pt-14 pb-8 flex flex-col items-center">
+        <form
+          className="flex w-full max-w-md rounded-full overflow-hidden border border-white/20"
+          onSubmit={handleSubscribe}
+        >
+          <input
+            type="email"
+            placeholder="Email Address"
+            className="flex-1 px-5 py-3 text-white text-sm outline-none bg-transparent placeholder:text-white/40"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
+          <button
+            type="submit"
+            className="px-6 py-3 bg-white text-navy text-sm font-medium rounded-full m-0.5 hover:bg-cream transition-colors"
           >
-            <input
-              type="email"
-              placeholder="Email Address"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 bg-transparent border-none py-[15px] px-[25px] text-base text-[#333] outline-none placeholder:text-[#999]"
-            />
-            <button
-              type="submit"
-              className="bg-white text-navy border-none py-3 px-[35px] rounded-[50px] font-bold cursor-pointer transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.05)] hover:bg-black hover:text-white"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
+            Subscribe
+          </button>
+        </form>
+        {error && <p className="text-red-400 text-xs mt-2">{error}</p>}
+        {success && <p className="text-green-400 text-xs mt-2">{success}</p>}
+      </div>
 
         {/* Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_1fr_1fr] gap-10 max-w-content mx-auto">
