@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { subscribeApi } from "../../features/subscribe/api.subscribe";
 import { useState } from "react";
+import ConnectModal from "./ConnectModal";
 
 const quickLinks = [
   { label: "About", to: "/about" },
@@ -59,6 +60,7 @@ export default function Footer() {
    const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [isConnectModalOpen, setIsConnectModalOpen] = useState(false);
 
 
   const handleSubscribe = async (e: React.FormEvent) => {
@@ -89,6 +91,7 @@ export default function Footer() {
   };
 
   return (
+    <>
     <footer className="bg-navy-dark text-white">
       {/* Newsletter subscribe bar — top of footer */}
       <div className="max-w-content mx-auto px-6 md:px-10 pt-14 pb-8 flex flex-col items-center">
@@ -179,7 +182,7 @@ export default function Footer() {
                 aria-label="Twitter"
                 className="text-white/80 transition-colors duration-300 hover:text-white"
               >
-                <TwitterIcon />
+                <XIcon />
               </a>
               <a
                 href="https://www.instagram.com/offical_rohitjangir"
