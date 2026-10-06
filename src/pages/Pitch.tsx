@@ -129,7 +129,7 @@ export default function Pitch() {
                   className="w-full px-4 py-3 border border-navy/15 rounded-lg text-base outline-none transition-all duration-300 focus:border-accent focus:shadow-[0_0_0_3px_rgba(72,94,104,0.1)]" />
                 <input type="email" placeholder="Email *" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-3 border border-navy/15 rounded-lg text-base outline-none transition-all duration-300 focus:border-accent focus:shadow-[0_0_0_3px_rgba(72,94,104,0.1)]" />
-                <input type="tel" placeholder="Phone" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                <input type="tel" placeholder="Phone" value={formData.phone} maxLength={10} onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/[^0-9]/g, '') })}
                   className="w-full px-4 py-3 border border-navy/15 rounded-lg text-base outline-none transition-all duration-300 focus:border-accent focus:shadow-[0_0_0_3px_rgba(72,94,104,0.1)]" />
                 <input type="text" placeholder="Company Name" value={formData.company} onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                   className="w-full px-4 py-3 border border-navy/15 rounded-lg text-base outline-none transition-all duration-300 focus:border-accent focus:shadow-[0_0_0_3px_rgba(72,94,104,0.1)]" />

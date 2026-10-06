@@ -40,13 +40,12 @@ export default function InvestorHero() {
           </ScrollReveal>
 
           {/* Visual */}
-          <ScrollReveal direction="right" className="relative z-[1] flex-1 flex justify-end lg:-mr-[70px] lg:mt-[50px]">
+          <ScrollReveal direction="up" className="relative z-[1] flex-1 flex justify-center lg:justify-end lg:mt-[30px] w-full">
             <img
               src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208334/images/ventures/invester_hero.png.png"
               alt="Strategic Investment Illustration"
-              className="block h-auto"
-              style={{ maxWidth: "115%" }}
-              fetchPriority="high"
+              className="block w-full max-w-[520px] h-auto object-contain"
+              loading="eager"
             />
           </ScrollReveal>
         </div>

@@ -34,7 +34,7 @@ export default function JFAM() {
             src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208595/images/jfam/Home%20Image.png.png" 
             alt="JFAM Inspired Interior Space" 
             className="w-full h-full object-cover"
-            fetchPriority="high" 
+            loading="eager"
           />
           <div className="absolute inset-0 bg-black/40"></div>
         </div>

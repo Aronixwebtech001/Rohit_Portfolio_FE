@@ -79,11 +79,11 @@ export default function PartnershipsSection() {
   // On mobile, show stacked cards
   if (isMobile) {
     return (
-      <section className="bg-[#C9D3D7]" style={{ padding: "60px 0" }}>
-        <div className="px-[5%]">
-          <div className="bg-white rounded-[30px] p-5 md:p-10">
-            <ScrollReveal className="text-center mb-8">
-              <h2 className="font-serif text-[clamp(1.6rem,4vw,2.5rem)] text-navy font-normal">Partnerships</h2>
+      <section className="bg-[#C9D3D7] py-16 sm:py-20">
+        <div className="max-w-content mx-auto px-4 sm:px-6 md:px-8">
+          <div className="bg-white rounded-[32px] p-6 sm:p-10 pt-10 sm:pt-14 shadow-sm">
+            <ScrollReveal className="text-center mb-8 sm:mb-10">
+              <h2 className="font-serif text-[clamp(1.8rem,4vw,2.5rem)] text-navy font-normal">Partnerships</h2>
             </ScrollReveal>
             <div className="space-y-0">
               {steps.map((step, i) => (
@@ -93,7 +93,7 @@ export default function PartnershipsSection() {
                       {step.tag}
                     </span>
                     <h3 className="font-serif text-[clamp(1.6rem,5vw,2.2rem)] text-navy font-normal leading-tight mb-4">{step.title}</h3>
-                    <p className="text-[15px] text-black leading-[26px] mb-4 max-w-[520px] opacity-85 text-justify">{step.description}</p>
+                    <p className="text-[15px] text-black leading-[26px] mb-4 max-w-[520px] opacity-85 text-left">{step.description}</p>
                     <p className="font-sans font-medium text-black text-sm uppercase tracking-[0.2em] opacity-80">{step.designation}</p>
                   </div>
                 </ScrollReveal>
@@ -114,22 +114,22 @@ export default function PartnershipsSection() {
     >
       <div
         ref={stickyRef}
-        className="sticky top-[90px] flex items-center justify-center px-0"
+        className="sticky top-[80px] sm:top-[90px] flex items-center justify-center px-0 py-4 sm:py-6"
         style={{
-          height: "calc(100vh - 120px)",
-          paddingBottom: "20px",
+          height: "calc(100vh - 110px)",
+          paddingBottom: "24px",
         }}
       >
         <div
           className="bg-white rounded-[40px] w-[calc(100%-10%)] max-w-content mx-auto h-full flex flex-col justify-start overflow-hidden"
           style={{
-            padding: "20px 60px 40px",
+            padding: "48px 60px 36px",
             boxShadow: "0 40px 100px rgba(0,0,0,0.05)",
           }}
         >
           {/* Centered Header */}
-          <div className="text-center max-w-[800px] mx-auto mb-4">
-            <h2 className="font-serif text-[48px] text-navy font-normal tracking-[-0.01em]">Partnerships</h2>
+          <div className="text-center max-w-[800px] mx-auto mb-6 lg:mb-8">
+            <h2 className="font-serif text-[42px] lg:text-[48px] text-navy font-normal tracking-[-0.01em]">Partnerships</h2>
           </div>
 
           {/* Content: Text Column + Image Column */}

@@ -28,7 +28,7 @@ export default function MentorshipCalendar({ selectedDate, onSelectDate }: Mento
   const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
   return (
-    <div className="bg-white rounded-lg border border-gray-100 p-5 shadow-sm">
+    <div className="bg-white rounded-lg border border-gray-100 p-3 sm:p-5 shadow-sm">
       <div className="flex justify-between items-center mb-6">
         <button type="button" onClick={handlePrevMonth} className="p-1 hover:bg-gray-50 rounded">
           <ChevronLeft size={20} className="text-gray-600" />
@@ -41,7 +41,7 @@ export default function MentorshipCalendar({ selectedDate, onSelectDate }: Mento
         </button>
       </div>
 
-      <div className="grid grid-cols-7 gap-2 mb-4">
+      <div className="grid grid-cols-7 gap-1 sm:gap-2 mb-4">
         {days.map((day) => (
           <div key={day} className="text-center text-[10px] font-medium text-gray-400 tracking-wider">
             {day}
@@ -49,7 +49,7 @@ export default function MentorshipCalendar({ selectedDate, onSelectDate }: Mento
         ))}
       </div>
 
-      <div className="grid grid-cols-7 gap-2">
+      <div className="grid grid-cols-7 gap-1 sm:gap-2">
         {Array.from({ length: firstDayOfMonth }).map((_, index) => (
           <div key={`empty-${index}`} className="aspect-square"></div>
         ))}

@@ -15,8 +15,8 @@ export default function Resources() {
       </section>
 
       {/* RESOURCES SECTION */}
-      <section className="bg-white px-5 py-20">
-        <h2 className="font-forum text-[2.5rem] font-normal mb-[50px] text-center text-[#1f2937]">
+      <section className="bg-white px-4 sm:px-5 py-12 sm:py-16 md:py-20">
+        <h2 className="font-forum text-[clamp(2rem,4vw,2.5rem)] font-normal mb-8 sm:mb-[50px] text-center text-[#1f2937]">
           Latest Articles & Insights
         </h2>
 
