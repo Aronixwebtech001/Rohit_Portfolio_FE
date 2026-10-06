@@ -100,7 +100,7 @@ export default function CaseStudy() {
                 <h2 className="font-forum text-[clamp(2rem,3vw,2.5rem)] text-[#21333e] mb-5 leading-[1.2] font-normal">
                   {item.title}
                 </h2>
-                <p className="text-[1.05rem] text-[#475569] leading-[1.6] mb-[30px] max-w-[90%] font-normal text-justify">
+                <p className="text-[1.05rem] text-[#475569] leading-[1.6] mb-[30px] max-w-full lg:max-w-[90%] font-normal text-left sm:text-justify">
                   {item.desc}
                 </p>
               </div>

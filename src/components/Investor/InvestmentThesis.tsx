@@ -35,7 +35,7 @@ export default function InvestmentThesis() {
         <ScrollReveal>
           <h2
             className="font-serif text-[#0F1F22] font-normal"
-            style={{ fontSize: "3rem", marginBottom: 80 }}
+            style={{ fontSize: "clamp(2rem, 5vw, 3rem)", marginBottom: "clamp(40px, 6vw, 80px)" }}
           >
             Our Investment Thesis
           </h2>
@@ -51,7 +51,8 @@ export default function InvestmentThesis() {
                   border: "1px solid #E6EBED",
                   borderRadius: 24,
                   padding: "60px 30px 40px",
-                  width: 320,
+                  width: "min(320px, 100%)",
+                  maxWidth: "100%",
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLDivElement).style.boxShadow = "0 10px 30px rgba(15, 31, 34, 0.05)";

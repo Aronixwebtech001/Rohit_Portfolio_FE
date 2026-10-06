@@ -26,6 +26,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 body {
@@ -33,6 +35,23 @@ body {
   min-width: 320px;
   font-size: 1rem;
   line-height: 1.6;
+  overflow-x: clip;
+  max-width: 100%;
+  position: relative;
+}
+
+#root {
+  overflow-x: clip;
+  max-width: 100%;
+  width: 100%;
+}
+
+@supports not (overflow-x: clip) {
+  html,
+  body,
+  #root {
+    overflow-x: hidden;
+  }
 }
 
 /* ========================================

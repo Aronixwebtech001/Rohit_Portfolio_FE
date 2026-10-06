@@ -1,5 +1,4 @@
-import { useEffect, useRef, useCallback } from "react";
-import ScrollReveal from "../shared/ScrollReveal";
+import React from "react";
 
 const ventureLogos = [
   { src: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208329/images/ventures/aaru-care-logo.png.png", alt: "AARU CARE FOUNDATION" },
@@ -11,155 +10,151 @@ const ventureLogos = [
 ];
 
 export default function PartnerLogos() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number>(0);
-  const currentXRef = useRef(0);
-  const isDraggingRef = useRef(false);
-  const lastTimeRef = useRef(0);
-
-  const getLoopWidth = useCallback(() => {
-    const track = trackRef.current;
-    if (!track) return 0;
-    const items = Array.from(track.querySelectorAll(".venture-logo-item"));
-    const origCount = ventureLogos.length;
-    if (items.length <= origCount) return 0;
-    const first = items[0].getBoundingClientRect().left;
-    const cloneStart = items[origCount].getBoundingClientRect().left;
-    return cloneStart - first;
-  }, []);
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    // Clone items for seamless loop
-    const origItems = Array.from(track.querySelectorAll(".venture-logo-item"));
-    for (let i = 0; i < 2; i++) {
-      origItems.forEach((item) => {
-        const clone = item.cloneNode(true) as HTMLElement;
-        clone.classList.add("cloned");
-        track.appendChild(clone);
-      });
-    }
-
-    let loopWidth = getLoopWidth();
-
-    const animate = (time: number) => {
-      if (!lastTimeRef.current) lastTimeRef.current = time;
-      const dt = time - lastTimeRef.current;
-      lastTimeRef.current = time;
-
-      if (!isDraggingRef.current && loopWidth > 0) {
-        const speed = window.innerWidth <= 768 ? 0.6 : 1.2;
-        const move = speed * (dt / 16.66);
-        currentXRef.current -= move;
-        if (currentXRef.current <= -loopWidth) {
-          currentXRef.current += loopWidth;
-        }
-      }
-
-      track.style.transform = `translate3d(${currentXRef.current}px, 0, 0)`;
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    // Wait for images to load
-    const images = track.querySelectorAll("img");
-    let loaded = 0;
-    const checkReady = () => {
-      loaded++;
-      if (loaded >= images.length) {
-        loopWidth = getLoopWidth();
-        animationRef.current = requestAnimationFrame(animate);
-      }
-    };
-
-    images.forEach((img) => {
-      if (img.complete) checkReady();
-      else {
-        img.addEventListener("load", checkReady);
-        img.addEventListener("error", checkReady);
-      }
-    });
-
-    const onResize = () => {
-      loopWidth = getLoopWidth();
-    };
-    window.addEventListener("resize", onResize);
-
-    // Drag handlers
-    let startX = 0;
-    let dragStartShift = 0;
-
-    const startDrag = (e: MouseEvent | TouchEvent) => {
-      isDraggingRef.current = true;
-      startX = "touches" in e ? e.touches[0].clientX : e.clientX;
-      dragStartShift = currentXRef.current;
-      track.style.cursor = "grabbing";
-      lastTimeRef.current = performance.now();
-    };
-
-    const doDrag = (e: MouseEvent | TouchEvent) => {
-      if (!isDraggingRef.current) return;
-      const x = "touches" in e ? e.touches[0].clientX : e.clientX;
-      const diff = x - startX;
-      currentXRef.current = dragStartShift + diff;
-      if (currentXRef.current > 0) currentXRef.current -= loopWidth;
-      if (Math.abs(currentXRef.current) >= loopWidth) currentXRef.current += loopWidth;
-      track.style.transform = `translate3d(${currentXRef.current}px, 0, 0)`;
-    };
-
-    const stopDrag = () => {
-      isDraggingRef.current = false;
-      track.style.cursor = "grab";
-      lastTimeRef.current = performance.now();
-    };
-
-    track.addEventListener("mousedown", startDrag);
-    document.addEventListener("mousemove", doDrag);
-    document.addEventListener("mouseup", stopDrag);
-    track.addEventListener("touchstart", startDrag, { passive: true });
-    document.addEventListener("touchmove", doDrag, { passive: false });
-    document.addEventListener("touchend", stopDrag);
-
-    return () => {
-      cancelAnimationFrame(animationRef.current);
-      window.removeEventListener("resize", onResize);
-      track.removeEventListener("mousedown", startDrag);
-      document.removeEventListener("mousemove", doDrag);
-      document.removeEventListener("mouseup", stopDrag);
-      track.removeEventListener("touchstart", startDrag);
-      document.removeEventListener("touchmove", doDrag);
-      document.removeEventListener("touchend", stopDrag);
-    };
-  }, [getLoopWidth]);
-
   return (
-    <section className="bg-navy py-8 md:py-10 overflow-hidden">
-      <ScrollReveal className="text-center mb-6">
-        <h2 className="font-serif text-[clamp(1.8rem,4vw,2.8rem)] text-white">My Ventures</h2>
-      </ScrollReveal>
+    <>
+      <style>{`
+        #ventures {
+            position: relative;
+            overflow: hidden;
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            margin-top: -6rem;
+            z-index: 31;
+        }
 
-      <ScrollReveal>
-        <div className="overflow-hidden">
-          <div
-            ref={trackRef}
-            className="flex items-center gap-16 md:gap-24 will-change-transform cursor-grab"
-            style={{ backfaceVisibility: "hidden", perspective: 1000 }}
-          >
-            {ventureLogos.map((logo, i) => (
-              <div key={i} className="venture-logo-item flex-shrink-0">
-                <img
-                  src={logo.src}
-                  alt={logo.alt}
-                  className="h-[60px] md:h-[80px] lg:h-[100px] w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity duration-300 select-none pointer-events-none"
-                  loading="eager"
-                  draggable="false"
-                />
-              </div>
+        #ventures h2 {
+            display: none;
+        }
+
+        #ventures::before,
+        #ventures::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: #1C323A;
+            z-index: 5;
+        }
+
+        #ventures::before {
+            top: 0;
+            clip-path: polygon(0 60%, 50% 85%, 100% 60%, 150% 100%, 0 100%);
+        }
+
+        #ventures::after {
+            bottom: 0;
+            clip-path: polygon(0 0, 150% 0, 100% 35%, 50% 15%, 0 35%);
+        }
+
+        .ventures-wrapper {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            padding: 0;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .ventures-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            gap: 4rem;
+            animation: scrollVentures 40s linear infinite;
+            padding-left: 2rem;
+        }
+
+        .venture-logo {
+            height: clamp(50px, 10vw, 120px);
+            width: auto;
+            max-width: none;
+            object-fit: contain;
+            transition: all 0.3s ease;
+            filter: none;
+            opacity: 1;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        .venture-logo:hover {
+            transform: scale(1.1);
+            filter: grayscale(0);
+            opacity: 1;
+        }
+
+        @keyframes scrollVentures {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        @media (max-width: 1024px) {
+            #ventures {
+                min-height: auto !important;
+                margin-top: 0 !important;
+                padding: 2rem 0 !important;
+                background: #FFFFFF !important;
+                border-top: 1px solid #E5E7EB !important;
+                border-bottom: 1px solid #E5E7EB !important;
+            }
+            #ventures::before,
+            #ventures::after {
+                display: none !important;
+            }
+            .ventures-track {
+                gap: 3.5rem !important;
+                animation: scrollVentures 25s linear infinite !important;
+                padding-left: 0 !important;
+            }
+            .venture-logo {
+                height: 45px !important;
+                max-height: 48px !important;
+                filter: none !important;
+                opacity: 1 !important;
+                pointer-events: none;
+                user-select: none;
+                -webkit-user-drag: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            #ventures {
+                padding: 1.5rem 0 !important;
+            }
+            .ventures-track {
+                gap: 2.2rem !important;
+                animation: scrollVentures 18s linear infinite !important;
+            }
+            .venture-logo {
+                height: 38px !important;
+                max-height: 40px !important;
+            }
+        }
+      `}</style>
+
+      <section id="ventures">
+        <h2>My Ventures</h2>
+
+        <div className="ventures-wrapper">
+          <div className="ventures-track" id="venturesTrack">
+            {/* Render 4 times for a perfectly seamless continuous loop on all screens */}
+            {[...ventureLogos, ...ventureLogos, ...ventureLogos, ...ventureLogos].map((logo, i) => (
+              <img
+                key={i}
+                src={logo.src}
+                className="venture-logo"
+                alt={logo.alt}
+                decoding="async"
+                loading="lazy"
+                width={120}
+                height={50}
+              />
             ))}
           </div>
         </div>
-      </ScrollReveal>
-    </section>
+      </section>
+    </>
   );
 }

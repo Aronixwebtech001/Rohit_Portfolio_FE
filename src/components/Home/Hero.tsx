@@ -48,7 +48,7 @@ export default function Hero() {
         <img
           src="/assets/hero-rohit.png"
           alt="Rohit Jangir"
-          className="absolute bottom-[-4px] right-[3%] h-[345px] w-auto object-contain"
+          className="absolute bottom-[110px] right-[3%] h-[345px] w-auto "
         />
       </div>
 

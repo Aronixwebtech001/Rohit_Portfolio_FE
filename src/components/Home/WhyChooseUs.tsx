@@ -28,15 +28,17 @@ export default function WhyChooseUs() {
         </ScrollReveal>
 
         {/* Right: Video */}
-        <ScrollReveal direction="right" className="flex-none w-full lg:w-[clamp(300px,45vw,600px)]">
-          <div className="relative rounded-[18px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.08)] h-full aspect-video lg:aspect-auto min-h-[250px]">
+        <ScrollReveal direction="up" className="flex-none w-full lg:w-[clamp(300px,45vw,600px)] flex items-center">
+          <div className="relative rounded-[18px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.08)] w-full aspect-video min-h-[220px] sm:min-h-[280px] bg-black">
             <video
-              src="https://res.cloudinary.com/dqfuozgjq/video/upload/v1773208355/images/ventures/global/why.mp4.mp4"
+              src="https://res.cloudinary.com/dqfuozgjq/video/upload/q_auto,w_900/v1773208355/images/ventures/global/why.mp4.mp4"
+              poster="https://res.cloudinary.com/dqfuozgjq/video/upload/so_0,w_900,f_jpg,q_auto/v1773208355/images/ventures/global/why.mp4.jpg"
               autoPlay
               loop
               muted
               playsInline
-              className="w-full h-full object-cover"
+              preload="auto"
+              className="w-full h-full object-cover block"
             />
           </div>
         </ScrollReveal>

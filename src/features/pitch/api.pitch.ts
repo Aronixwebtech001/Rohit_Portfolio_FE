@@ -9,3 +9,4 @@ export const pitchApi = {
         });
     }
 }
+export const investorApi = pitchApi;
