@@ -66,7 +66,14 @@ export default function PitchForm() {
         formData.append("proposalFile", file);
       }
 
-      const res = await fetch("/api/pitch/submit", {
+      const rawEndpoint = import.meta.env.VITE_API_URL
+        ? `${import.meta.env.VITE_API_URL.replace(/\/+$/, '')}/pitch/submit`
+        : "/api/v1/pitch/submit";
+      const apiEndpoint = rawEndpoint.includes("localhost:")
+        ? rawEndpoint.replace("localhost:", "127.0.0.1:")
+        : rawEndpoint;
+
+      const res = await fetch(apiEndpoint, {
         method: "POST",
         body: formData,
       });

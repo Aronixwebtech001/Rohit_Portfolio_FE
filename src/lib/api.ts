@@ -1,4 +1,5 @@
-const BASE_URL = import.meta.env.VITE_API_URL;
+const rawBase = import.meta.env.VITE_API_URL || "/api/v1";
+const BASE_URL = rawBase.includes("localhost:") ? rawBase.replace("localhost:", "127.0.0.1:") : rawBase;
 
 export async function api<T>(
     endpoint: string,
@@ -10,7 +11,11 @@ export async function api<T>(
         ...options?.headers,
     };
 
-    const response = await fetch(`${BASE_URL}${endpoint}`, {
+    const cleanBase = BASE_URL.replace(/\/+$/, "");
+    const cleanEndpoint = endpoint.replace(/^\/+/, "").replace(/\/+$/, "");
+    const targetUrl = `${cleanBase}/${cleanEndpoint}`;
+
+    const response = await fetch(targetUrl, {
         ...options,
         headers,
     });
