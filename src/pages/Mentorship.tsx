@@ -94,7 +94,7 @@ export default function Mentorship() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-hero-bg" style={{ paddingTop: 80 }}>
+      <section className="bg-hero-bg overflow-hidden" style={{ paddingTop: 80 }}>
         <div className="max-w-content mx-auto px-[5%] py-16 md:py-24 flex flex-col lg:flex-row items-center gap-12">
           <ScrollReveal direction="left" className="flex-1">
             <h1 className="font-serif text-[clamp(2.5rem,6vw,4.5rem)] text-navy leading-[1.1] mb-6">
@@ -158,7 +158,7 @@ export default function Mentorship() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[1100px] mx-auto">
             {packages.map((pkg, i) => (
               <ScrollReveal key={i} delay={i * 100}>
-                <div className={`rounded-2xl p-8 flex flex-col h-full relative transition-all duration-300 border ${pkg.featured ? 'bg-[#102a43] border-[#102a43] text-white shadow-xl scale-105 z-10' : 'bg-white border-[#eef2f4] text-navy hover:shadow-lg'}`}>
+                <div className={`rounded-2xl p-8 flex flex-col h-full relative transition-all duration-300 border ${pkg.featured ? 'bg-[#102a43] border-[#102a43] text-white shadow-xl md:scale-105 z-10' : 'bg-white border-[#eef2f4] text-navy hover:shadow-lg'}`}>
                   {pkg.featured && (
                     <span className="absolute top-4 right-4 bg-accent text-white text-[11px] font-bold px-3 py-1 rounded-[4px] uppercase tracking-wider">
                       Featured
@@ -273,7 +273,7 @@ export default function Mentorship() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="py-[60px] bg-white">
+      <section className="py-[60px] bg-white overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-[4%]">
           <ScrollReveal>
             <h2 className="font-serif text-[clamp(2rem,4vw,2.8rem)] font-normal text-[#1a1a1a] mb-[70px] text-center">

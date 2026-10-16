@@ -30,7 +30,7 @@ const expertiseItems: ExpertiseItem[] = [
 
 export default function ExpertiseSection() {
   return (
-    <section className="expertise-section text-center" style={{ padding: "6rem 2rem", backgroundColor: "#ffffff" }}>
+    <section className="expertise-section text-center overflow-hidden w-full" style={{ padding: "6rem 2rem", backgroundColor: "#ffffff" }}>
       <div className="mx-auto" style={{ maxWidth: 1400, padding: "0 4%" }}>
         <ScrollReveal>
           <h2
@@ -52,6 +52,7 @@ export default function ExpertiseSection() {
                   borderRadius: 24,
                   padding: "60px 30px 40px",
                   width: 320,
+                  maxWidth: "100%",
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLDivElement).style.boxShadow = "0 10px 30px rgba(15, 31, 34, 0.05)";

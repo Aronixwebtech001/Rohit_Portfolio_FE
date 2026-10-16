@@ -61,10 +61,11 @@ export default function Footer() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isConnectModalOpen, setIsConnectModalOpen] = useState(false);
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setError("");
     setSuccess("");
 
@@ -79,14 +80,16 @@ export default function Footer() {
       return;
     }
 
+    setIsSubmitting(true);
     try {
-     
       const res = await subscribeApi.create({ email: email.trim().toLowerCase() });
-      setSuccess(res.message);
+      setSuccess(res.message || "Successfully subscribed!");
       setEmail("");
     } catch (err: any) {
       console.error(err);
-      setError("Subscription failed. Please try again.");
+      setError(err.message || "Subscription failed. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -94,23 +97,27 @@ export default function Footer() {
     <>
     <footer className="bg-navy-dark text-white">
       {/* Newsletter subscribe bar — top of footer */}
-      <div className="max-w-content mx-auto px-6 md:px-10 pt-14 pb-8 flex flex-col items-center">
+      <div className="max-w-content mx-auto px-4 sm:px-6 md:px-10 pt-10 sm:pt-14 pb-8 flex flex-col items-center">
         <form
-          className="flex w-full max-w-md rounded-full overflow-hidden border border-white/20"
+          className="flex items-center w-full max-w-md rounded-full overflow-hidden border border-white/20 relative p-0.5 sm:p-1"
           onSubmit={handleSubscribe}
         >
           <input
             type="email"
             placeholder="Email Address"
-            className="flex-1 px-5 py-3 text-white text-sm outline-none bg-transparent placeholder:text-white/40"
+            className="min-w-0 flex-1 px-3.5 sm:px-5 py-2 sm:py-3 text-white text-xs sm:text-sm outline-none bg-transparent placeholder:text-white/40"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            disabled={isSubmitting}
           />
           <button
             type="submit"
-            className="px-6 py-3 bg-white text-navy text-sm font-medium rounded-full m-0.5 hover:bg-cream transition-colors"
+            disabled={isSubmitting}
+            className={`shrink-0 whitespace-nowrap px-4 sm:px-6 py-2 sm:py-2.5 text-navy text-xs sm:text-sm font-medium rounded-full transition-colors ${
+              isSubmitting ? "bg-white/70 cursor-not-allowed" : "bg-white hover:bg-cream"
+            }`}
           >
-            Subscribe
+            {isSubmitting ? "Subscribing..." : "Subscribe"}
           </button>
         </form>
         {error && <p className="text-red-400 text-xs mt-2">{error}</p>}
@@ -118,17 +125,17 @@ export default function Footer() {
       </div>
 
         {/* Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_1fr_1fr] gap-10 max-w-content mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-[1.2fr_0.8fr_1fr_1fr] gap-x-6 gap-y-10 sm:gap-8 md:gap-10 max-w-content mx-auto px-6 md:px-10">
           {/* Column 1: Brand */}
-          <div>
-            <h4 className="text-white text-xl font-bold mb-[25px]">Rohit Jangir</h4>
-            <p className="text-white/90 text-base leading-relaxed mb-2.5">
+          <div className="flex flex-col">
+            <h4 className="text-white text-lg sm:text-xl font-bold mb-4 sm:mb-[25px]">Rohit Jangir</h4>
+            <p className="text-white/90 text-sm sm:text-base leading-relaxed mb-3 sm:mb-2.5">
               Building Businesses,<br />Empowering Entrepreneurs.
             </p>
-            <div className="mt-5">
+            <div className="mt-2 sm:mt-5">
               <button
                 onClick={() => setIsConnectModalOpen(true)}
-                className="inline-flex items-center justify-center py-2 px-[18px] text-sm border-[1.5px] border-white rounded-md text-white no-underline font-semibold transition-all duration-300 hover:bg-white hover:text-navy cursor-pointer bg-transparent"
+                className="inline-flex items-center justify-center py-2 px-3.5 sm:px-[18px] text-xs sm:text-sm border-[1.5px] border-white rounded-md text-white no-underline font-semibold transition-all duration-300 hover:bg-white hover:text-navy cursor-pointer bg-transparent w-fit"
               >
                 Contact Us
               </button>
@@ -136,36 +143,36 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Quick Links */}
-          <div>
-            <h4 className="text-white text-xl font-bold mb-[25px]">Quick Links</h4>
+          <div className="flex flex-col">
+            <h4 className="text-white text-lg sm:text-xl font-bold mb-4 sm:mb-[25px]">Quick Links</h4>
             <div className="flex flex-col">
-              <Link to="/about" className="text-white/90 no-underline text-base mb-3 transition-colors duration-300 hover:text-white hover:underline">About</Link>
-              <Link to="/ventures" className="text-white/90 no-underline text-base mb-3 transition-colors duration-300 hover:text-white hover:underline">Ventures</Link>
-              <Link to="/pitch" className="text-white/90 no-underline text-base mb-3 transition-colors duration-300 hover:text-white hover:underline">Pitch</Link>
+              <Link to="/about" className="text-white/90 no-underline text-sm sm:text-base mb-2.5 sm:mb-3 transition-colors duration-300 hover:text-white hover:underline">About</Link>
+              <Link to="/ventures" className="text-white/90 no-underline text-sm sm:text-base mb-2.5 sm:mb-3 transition-colors duration-300 hover:text-white hover:underline">Ventures</Link>
+              <Link to="/pitch" className="text-white/90 no-underline text-sm sm:text-base mb-2.5 sm:mb-3 transition-colors duration-300 hover:text-white hover:underline">Pitch</Link>
             </div>
           </div>
 
           {/* Column 3: Opportunities */}
-          <div>
-            <h4 className="text-white text-xl font-bold mb-[25px]">Opportunities</h4>
+          <div className="flex flex-col">
+            <h4 className="text-white text-lg sm:text-xl font-bold mb-4 sm:mb-[25px]">Opportunities</h4>
             <div className="flex flex-col">
-              <Link to="/pitch" className="text-white/90 no-underline text-base mb-3 transition-colors duration-300 hover:text-white hover:underline">Pitch Your Ideas</Link>
-              <Link to="/mentorship" className="text-white/90 no-underline text-base mb-3 transition-colors duration-300 hover:text-white hover:underline">Book Consultation</Link>
+              <Link to="/pitch" className="text-white/90 no-underline text-sm sm:text-base mb-2.5 sm:mb-3 transition-colors duration-300 hover:text-white hover:underline">Pitch Your Ideas</Link>
+              <Link to="/mentorship" className="text-white/90 no-underline text-sm sm:text-base mb-2.5 sm:mb-3 transition-colors duration-300 hover:text-white hover:underline">Book Consultation</Link>
             </div>
           </div>
 
           {/* Column 4: Connect */}
-          <div>
-            <h4 className="text-white text-xl font-bold mb-[25px]">Connect</h4>
+          <div className="flex flex-col">
+            <h4 className="text-white text-lg sm:text-xl font-bold mb-4 sm:mb-[25px]">Connect</h4>
             <div className="flex flex-col mb-4">
               <a
                 href="mailto:connect@rohitjangir.com"
-                className="text-white/90 no-underline text-base mb-3 transition-colors duration-300 hover:text-white hover:underline"
+                className="text-white/90 no-underline text-xs sm:text-sm md:text-base mb-3 transition-colors duration-300 hover:text-white hover:underline break-words"
               >
                 connect@rohitjangir.com
               </a>
             </div>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-3 sm:gap-4">
               <a
                 href="https://www.facebook.com/people/Rohit-Jangir/100047800952815/"
                 target="_blank"
@@ -207,10 +214,17 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <div className="text-center border-t border-white/10 mt-10 pt-[15px] text-sm text-white/80">
+        <div className="text-center border-t border-white/10 mt-10 pt-[15px] pb-6 px-4 text-xs sm:text-sm text-white/80">
           <span>
             &copy; 2025 - 2026 Rohit Jangir. All rights reserved. | Designed &amp; Developed by{" "}
-            <span className="underline">Aronix Web Tech</span>
+            <a
+              href="https://aronixwebtech.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline text-white font-medium hover:text-gold transition-colors"
+            >
+              Aronix Web Tech
+            </a>
           </span>
         </div>
       </footer>

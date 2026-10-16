@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { X } from "lucide-react";
 
 interface ConnectModalProps {
   isOpen: boolean;
@@ -13,6 +12,7 @@ export default function ConnectModal({ isOpen, onClose }: ConnectModalProps) {
     purpose: "",
     message: ""
   });
+  const [success, setSuccess] = useState(false);
 
   // Handle escape key to close modal
   useEffect(() => {
@@ -46,34 +46,42 @@ export default function ConnectModal({ isOpen, onClose }: ConnectModalProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(formData);
-    alert("Message sent successfully!");
-    onClose();
+    setSuccess(true);
     setFormData({ name: "", email: "", purpose: "", message: "" });
+    setTimeout(() => {
+      setSuccess(false);
+      onClose();
+    }, 2000);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm transition-opacity">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#1C323A]/80 backdrop-blur-sm p-4 overflow-y-auto">
       <div 
         className="absolute inset-0" 
         onClick={onClose}
         aria-hidden="true"
       />
       
-      <div className="bg-white rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.3)] w-full max-w-[560px] p-[30px_20px] md:p-[50px_40px] relative text-center z-10 animate-in fade-in zoom-in-95 duration-200">
-        <button 
-          onClick={onClose}
-          className="absolute top-[12px] right-[15px] md:top-[15px] md:right-[20px] text-[#999] hover:text-[#333] transition-colors p-1"
-          aria-label="Close modal"
-        >
-          <X size={28} strokeWidth={2} />
-        </button>
+      <div className="w-full max-w-[520px] mx-auto m-auto relative animate-fade-in z-10">
+        <div className="w-full bg-[#ffffff] rounded-[16px] shadow-[0_20px_60px_rgba(0,0,0,0.3)] p-5 sm:p-7 md:p-[30px_40px] text-center relative">
+          <button 
+            onClick={onClose} 
+            className="absolute top-[12px] right-[15px] text-[24px] cursor-pointer text-[#999] hover:text-[#333] leading-[1] bg-transparent border-none p-[5px]"
+          >
+            &times;
+          </button>
+          
+          <h2 className="text-[1.35rem] text-[#111] mb-[6px] font-serif font-normal leading-[1.2]">Connect with us</h2>
+          <p className="text-[0.85rem] text-[#777] mb-[15px] font-sans font-light">Stay up to date with all the latest from us.</p>
 
-        <h2 className="text-[1.25rem] md:text-[1.5rem] text-[#111] mb-2 font-serif font-normal">Connect with us</h2>
-        <p className="text-[0.85rem] md:text-[0.9rem] text-[#777] mb-5 md:mb-8 font-sans">Stay up to date with all the latest from us.</p>
+          {success && (
+            <div className="p-2 bg-green-50 text-green-700 rounded-lg mb-[15px] border border-green-200 text-sm">
+              Message sent successfully!
+            </div>
+          )}
 
-        <form onSubmit={handleSubmit} className="text-left font-sans">
-          <div className="mb-4 md:mb-5">
-            <label className="block text-[0.8rem] md:text-[0.85rem] text-[#444] mb-1.5 font-medium">Name*</label>
+          <form onSubmit={handleSubmit} className="text-left m-0 flex flex-col font-sans">
+            <label className="block text-[0.8rem] text-[#444] mb-[4px] font-medium">Name*</label>
             <input
               type="text"
               name="name"
@@ -81,24 +89,20 @@ export default function ConnectModal({ isOpen, onClose }: ConnectModalProps) {
               onChange={handleChange}
               required
               minLength={2}
-              className="w-full px-[15px] py-[12px] border-[1.5px] border-[#e0e0e0] rounded-xl text-[0.95rem] outline-none transition-colors focus:border-[#485E68]"
+              className="w-full px-[15px] py-[10px] border-[1.5px] border-[#e0e0e0] rounded-[10px] text-[0.9rem] outline-none transition-colors duration-300 focus:border-[#485E68] mb-[12px] font-sans"
             />
-          </div>
 
-          <div className="mb-4 md:mb-5">
-            <label className="block text-[0.8rem] md:text-[0.85rem] text-[#444] mb-1.5 font-medium">Email*</label>
+            <label className="block text-[0.8rem] text-[#444] mb-[4px] font-medium">Email*</label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-[15px] py-[12px] border-[1.5px] border-[#e0e0e0] rounded-xl text-[0.95rem] outline-none transition-colors focus:border-[#485E68]"
+              className="w-full px-[15px] py-[10px] border-[1.5px] border-[#e0e0e0] rounded-[10px] text-[0.9rem] outline-none transition-colors duration-300 focus:border-[#485E68] mb-[12px] font-sans"
             />
-          </div>
 
-          <div className="mb-4 md:mb-5">
-            <label className="block text-[0.8rem] md:text-[0.85rem] text-[#444] mb-1.5 font-medium">Purpose*</label>
+            <label className="block text-[0.8rem] text-[#444] mb-[4px] font-medium">Purpose*</label>
             <input
               type="text"
               name="purpose"
@@ -106,29 +110,31 @@ export default function ConnectModal({ isOpen, onClose }: ConnectModalProps) {
               onChange={handleChange}
               required
               minLength={2}
-              className="w-full px-[15px] py-[12px] border-[1.5px] border-[#e0e0e0] rounded-xl text-[0.95rem] outline-none transition-colors focus:border-[#485E68]"
+              className="w-full px-[15px] py-[10px] border-[1.5px] border-[#e0e0e0] rounded-[10px] text-[0.9rem] outline-none transition-colors duration-300 focus:border-[#485E68] mb-[12px] font-sans"
             />
-          </div>
 
-          <div className="mb-6 md:mb-7">
-            <label className="block text-[0.8rem] md:text-[0.85rem] text-[#444] mb-1.5 font-medium">Message*</label>
+            <label className="block text-[0.8rem] text-[#444] mb-[4px] font-medium">Message*</label>
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
               required
+              maxLength={1000}
               rows={3}
-              className="w-full px-[15px] py-[12px] border-[1.5px] border-[#e0e0e0] rounded-xl text-[0.95rem] outline-none transition-colors focus:border-[#485E68] min-h-[100px] resize-y"
+              className="w-full px-[15px] py-[10px] border-[1.5px] border-[#e0e0e0] rounded-[10px] text-[0.9rem] outline-none transition-colors duration-300 focus:border-[#485E68] min-h-[80px] resize-y mb-[12px] font-sans block"
             ></textarea>
-          </div>
 
-          <button
-            type="submit"
-            className="w-full py-[14px] px-[30px] bg-[#485E68] text-white rounded-full font-semibold text-[0.95rem] md:text-[1rem] cursor-pointer hover:bg-[#3A4B53] transition-colors"
-          >
-            SEND MESSAGE
-          </button>
-        </form>
+            <button
+              type="submit"
+              className="w-full py-[12px] px-[25px] bg-[#485E68] text-[#ffffff] border-none rounded-[30px] font-semibold text-[0.95rem] cursor-pointer transition-all duration-300 shadow-[0_8px_20px_rgba(72,94,104,0.3)] hover:bg-[#3A4B53] hover:-translate-y-[2px] hover:shadow-[0_12px_28px_rgba(72,94,104,0.45)] mt-[8px] block"
+            >
+              SEND MESSAGE
+            </button>
+            <div className="text-right text-[#FF4B4B] text-[0.75rem] font-medium mt-[6px]">
+              {formData.message.length}/1000
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

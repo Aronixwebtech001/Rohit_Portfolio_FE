@@ -56,26 +56,24 @@ export default function Navbar() {
     <>
       {/* Fixed Navbar Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-400
+        className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-400 bg-[rgba(249,251,251,0.92)] backdrop-blur-[12px] px-4 sm:px-6 lg:px-10
           ${scrolled
-            ? "py-2 shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
-            : "py-3.5"
-          }
-          bg-[rgba(249,251,251,0.92)] backdrop-blur-[12px]`}
-        style={{ paddingLeft: 15, paddingRight: 15 }}
+            ? "py-1.5 sm:py-[0.5rem] shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
+            : "py-2 sm:py-[0.8rem] lg:py-[0.9rem]"
+          }`}
       >
-        <nav className="w-full flex justify-between items-center h-[50px]">
+        <nav className="w-full max-w-[1400px] mx-auto flex justify-between items-center h-[48px] sm:h-[50px] relative">
           {/* Logo */}
-          <Link to="/" className="flex items-center relative z-[1001] h-full">
+          <Link to="/" className="flex items-center relative z-[1001] h-full after:content-[''] after:absolute after:inset-0 after:z-[2]">
             <img
-              src={logo}
+              src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208366/images/logos/rj-logo-new.png.png"
               alt="Rohit Jangir"
-              className="h-[45px] w-auto object-contain pointer-events-none relative z-[1]"
+              className="h-[52px] sm:h-[65px] lg:h-[90px] xl:h-[110px] w-auto max-w-[180px] sm:max-w-none object-contain object-left pointer-events-none relative z-[1]"
             />
           </Link>
 
           {/* Desktop Navigation Links */}
-          <ul className="hidden lg:flex items-center gap-10 list-none m-0 ml-auto mr-10">
+          <ul className="hidden lg:flex items-center gap-6 xl:gap-10 list-none m-0 ml-auto mr-6 xl:mr-10">
             {navLinks.map((link) => (
               <li key={link.to}>
                 <NavLink
@@ -136,7 +134,7 @@ export default function Navbar() {
           {/* Book Mentorship CTA */}
           <Link
             to="/mentorship"
-            className="hidden lg:inline-block py-[0.4rem] px-4 text-[0.85rem] font-medium border border-navy rounded-lg bg-white text-navy no-underline transition-all duration-300 hover:bg-navy hover:text-white"
+            className="hidden lg:inline-block py-[10px] px-[24px] text-[0.95rem] font-medium border-2 border-transparent rounded-[30px] bg-[#485E68] text-white no-underline transition-all duration-300 hover:bg-transparent hover:border-[#485E68] hover:text-[#485E68]"
           >
             Book Mentorship
           </Link>
@@ -175,8 +173,9 @@ export default function Navbar() {
 
       {/* Mobile Navigation Panel */}
       <nav
-        className={`fixed top-0 h-screen w-[85%] max-w-[400px] bg-white z-[1000] pt-20 px-[30px] pb-10 overflow-y-auto transition-[right] duration-300 shadow-[-5px_0_30px_rgba(0,0,0,0.2)] lg:hidden
-          ${mobileOpen ? "right-0" : "-right-full"}`}
+        className={`fixed top-0 right-0 h-screen w-[85%] max-w-[360px] sm:max-w-[400px] bg-white z-[1000] pt-20 px-[30px] pb-10 overflow-y-auto transition-transform duration-300 ease-in-out shadow-[-5px_0_30px_rgba(0,0,0,0.2)] lg:hidden ${
+          mobileOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         {/* Close Button */}
         <button

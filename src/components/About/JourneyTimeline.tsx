@@ -179,8 +179,8 @@ export default function JourneyTimeline() {
   return (
     <div
       ref={wrapperRef}
-      className="journey-scroll-wrapper"
-      style={{ height: `${journeySteps.length * 100}vh` }}
+      className="journey-scroll-wrapper relative overflow-hidden w-full max-w-full"
+      style={{ position: "relative", height: `${journeySteps.length * 100}vh` }}
     >
       <div
         ref={stickyRef}
@@ -285,6 +285,9 @@ export default function JourneyTimeline() {
       </div>
 
       <style>{`
+        .journey-scroll-wrapper {
+          position: relative !important;
+        }
         .journey-sticky.is-fixed {
           position: fixed !important;
           top: 0 !important;

@@ -36,7 +36,7 @@ const ventures: VentureItem[] = [
     heading: "AARU DEVELOPER",
     logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208333/images/ventures/aaru-logo.png.png",
     desc: "An elite real estate and infrastructure firm dedicated to high value residential and commercial projects.",
-    link: "/aaru-developers",
+    link: "https://aarudevelopers.com",
     accentColor: "#CD00AC",
     position: { top: "40%", left: "58.5%" },
     logoWidth: 160,
@@ -75,7 +75,7 @@ const ventures: VentureItem[] = [
     heading: "AARU CARE FOUNDATION",
     logo: "https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208314/images/ventures/aaru-care-logo-ventures.png.png",
     desc: "Driving social change through education, healthcare, and empowerment.",
-    link: "/aaru-care",
+    link: "https://aarucarefoundation.org",
     accentColor: "#0077CD",
     position: { top: "72%", left: "29%" },
     zIndex: 10,
@@ -156,7 +156,7 @@ function VentureCard({ venture }: { venture: VentureItem }) {
       rel={isExternal ? "noopener noreferrer" : ""}
       className="block no-underline"
     >
-      <div className="flex flex-col items-center text-center gap-2 p-5 bg-white rounded-lg"
+      <div className="flex flex-col items-center text-center gap-2 p-5 bg-white rounded-lg w-full"
         style={{ boxShadow: "0 2px 10px rgba(0,0,0,0.1)", maxWidth: 280 }}>
         <img
           src={venture.logo}
@@ -182,7 +182,7 @@ function VentureCard({ venture }: { venture: VentureItem }) {
 
 export default function VenturesDiagram() {
   return (
-    <section className="flex justify-center items-center" style={{ padding: "40px 20px" }}>
+    <section className="flex justify-center items-center overflow-hidden w-full max-w-full" style={{ padding: "40px 20px" }}>
       {/* Desktop: Infographic with positioned overlays */}
       <div className="hidden lg:block w-full">
         <ScrollReveal className="w-full">
@@ -230,21 +230,20 @@ export default function VenturesDiagram() {
         {/* Center RJ logo card first on mobile */}
         <div className="flex justify-center mb-5">
           <a href="/" className="block no-underline">
-            <div className="flex justify-center items-center bg-white rounded-lg p-0 overflow-hidden"
-              style={{ width: 280, height: 120, boxShadow: "0 2px 10px rgba(0,0,0,0.1)" }}>
+            <div className="flex justify-center items-center bg-white rounded-lg p-0 overflow-hidden w-full max-w-[280px]"
+              style={{ height: 120, boxShadow: "0 2px 10px rgba(0,0,0,0.1)" }}>
               <img
                 src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208363/images/logos/rj-logo.png.png"
                 alt="Rohit Jangir"
-                className="h-auto flex-shrink-0"
-                style={{ width: 450 }}
+                className="h-auto max-w-[90%] object-contain"
                 loading="lazy"
               />
             </div>
           </a>
         </div>
 
-        <div className="grid gap-5 px-5 justify-items-center"
-          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
+        <div className="grid gap-5 px-3 sm:px-5 justify-items-center w-full"
+          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(280px, 100%), 1fr))" }}>
           {ventures.map((v) => (
             <ScrollReveal key={v.name}>
               <VentureCard venture={v} />

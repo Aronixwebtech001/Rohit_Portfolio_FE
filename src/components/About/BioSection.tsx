@@ -3,7 +3,7 @@ import aboutBioPortrait from "../../assets/images/about/about.png";
 
 export default function BioSection() {
   return (
-    <section className="about-intro py-16 md:py-24" style={{ padding: "6rem 2rem", maxWidth: 1400, margin: "0 auto" }}>
+    <section className="about-intro py-16 md:py-24 overflow-hidden w-full" style={{ padding: "6rem 2rem", maxWidth: 1400, margin: "0 auto" }}>
       <div className="intro-grid grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Portrait */}
         <ScrollReveal direction="left" className="flex-1 w-full flex justify-center">

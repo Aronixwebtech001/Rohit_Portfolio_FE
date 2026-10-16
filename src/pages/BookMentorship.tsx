@@ -90,7 +90,11 @@ export default function BookMentorship() {
                   type="tel"
                   name="phone"
                   value={formData.phone}
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                    handleChange(e);
+                  }}
+                  maxLength={10}
                   placeholder="Enter 10-digit mobile number"
                   className="w-full px-4 py-3.5 rounded-lg border border-[#e5e7eb] font-sans text-[15px] text-[#1a1a1a] bg-white focus:outline-none focus:border-[#1a1a1a] transition-colors"
                   required
@@ -112,7 +116,7 @@ export default function BookMentorship() {
                 />
               </div>
               
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1">
                   <label className="block font-sans text-[14px] font-semibold text-[#1a1a1a] mb-2">
                     Plan Name*
@@ -132,7 +136,7 @@ export default function BookMentorship() {
                   </select>
                 </div>
                 
-                <div className="w-[120px]">
+                <div className="w-full sm:w-[120px]">
                   <label className="block font-sans text-[14px] font-semibold text-[#1a1a1a] mb-2">
                     Price (₹)*
                   </label>

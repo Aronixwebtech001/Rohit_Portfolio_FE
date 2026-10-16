@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { Upload } from "lucide-react";
-import { investorApi } from "../../feature/pitch/api.pitch";
-import { PitchPayload } from "../../feature/pitch/types.pitch";
+import { pitchApi } from "../../features/pitch/api.pitch";
+import { PitchPayload } from "../../features/pitch/types.pitch";
 
 export default function PitchForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -66,20 +66,11 @@ export default function PitchForm() {
         formData.append("proposalFile", file);
       }
 
-      const rawEndpoint = import.meta.env.VITE_API_URL
-        ? `${import.meta.env.VITE_API_URL.replace(/\/+$/, '')}/pitch/submit`
-        : "/api/v1/pitch/submit";
-      const apiEndpoint = rawEndpoint.includes("localhost:")
-        ? rawEndpoint.replace("localhost:", "127.0.0.1:")
-        : rawEndpoint;
+      await pitchApi.create(formData);
 
-      const res = await fetch(apiEndpoint, {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!res.ok) throw new Error("Submission failed");
       setSubmitted(true);
+      form.reset();
+      if (fileRef.current) fileRef.current.value = "";
       setTimeout(() => setSubmitted(false), 5000);
     } catch (err: any) {
       setError(err.message || "Submission failed");
@@ -95,12 +86,9 @@ export default function PitchForm() {
 
   return (
     <section id="form" className="bg-[#F0F4F5]">
-      <div className="max-w-content mx-auto px-6 md:px-10 py-20">
-        <div className="max-w-3xl mx-auto bg-white rounded-2xl p-8 md:p-12 shadow-sm">
-          <h2 className="font-serif text-3xl md:text-[34px] text-center mb-10 text-navy">
-            Submit Your Pitch
-          </h2>
-          <h2 className="font-serif text-3xl md:text-[34px] text-center mb-10 text-navy">
+      <div className="max-w-content mx-auto px-4 sm:px-6 md:px-10 py-12 sm:py-16 md:py-20">
+        <div className="max-w-3xl mx-auto bg-white rounded-2xl p-5 sm:p-8 md:p-12 shadow-sm">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-[34px] text-center mb-8 sm:mb-10 text-navy">
             Submit Your Pitch
           </h2>
 
@@ -112,12 +100,7 @@ export default function PitchForm() {
               <h3 className="font-serif text-2xl text-navy mb-2">
                 Pitch Submitted Successfully!
               </h3>
-              <h3 className="font-serif text-2xl text-navy mb-2">
-                Pitch Submitted Successfully!
-              </h3>
               <p className="text-muted text-[15px]">
-                Thank you for your interest. Our team will review your pitch and
-                get back to you soon.
                 Thank you for your interest. Our team will review your pitch and
                 get back to you soon.
               </p>
@@ -174,6 +157,10 @@ export default function PitchForm() {
                 type="tel"
                 placeholder="Contact Number"
                 required
+                maxLength={10}
+                onInput={(e) => {
+                  e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, '');
+                }}
                 onBlur={handleBlur}
                 className={`${baseClass} ${fieldErrors.contactNumber ? errorClass : validClass}`}
               />
@@ -207,17 +194,6 @@ export default function PitchForm() {
                 />
               </div>
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="px-10 py-3.5 bg-navy text-white font-medium rounded-xl hover:bg-navy-dark transition-colors text-[15px] w-full md:w-auto min-w-[200px]"
-              >
-                {loading ? "Submitting..." : "Submit Pitch"}
-              </button>
-
-              {error && (
-                <p className="text-red-600 text-sm mt-2 text-center">{error}</p>
-              )}
               <button
                 type="submit"
                 disabled={loading}

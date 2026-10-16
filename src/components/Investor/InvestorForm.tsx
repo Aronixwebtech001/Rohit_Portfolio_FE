@@ -120,8 +120,8 @@ export default function InvestorForm() {
 
   return (
     <section className="bg-[#F0F4F5]">
-      <div className="max-w-content mx-auto px-6 md:px-10 py-20">
-        <div className="max-w-3xl mx-auto bg-white rounded-2xl p-8 md:p-12 shadow-sm">
+      <div className="max-w-content mx-auto px-4 sm:px-6 md:px-10 py-12 sm:py-16 md:py-20">
+        <div className="max-w-3xl mx-auto bg-white rounded-2xl p-5 sm:p-8 md:p-12 shadow-sm">
           <h2 className="font-serif text-3xl md:text-[34px] text-center mb-2 text-navy">
             Investor Relations
           </h2>
@@ -186,7 +186,11 @@ export default function InvestorForm() {
                   type="tel"
                   name="mobileNumber"
                   value={form.mobileNumber}
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                    handleChange(e);
+                  }}
+                  maxLength={10}
                   className={inputClass}
                 />
                 {errors.mobileNumber && (
@@ -199,13 +203,20 @@ export default function InvestorForm() {
                 <label className="block text-[15px] font-medium text-navy mb-2">
                   Country *
                 </label>
-                <input
-                  type="text"
+                <select
                   name="country"
                   value={form.country}
                   onChange={handleChange}
                   className={inputClass}
-                />
+                >
+                  <option value="">Select a country</option>
+                  <option value="India">India</option>
+                  <option value="United States">United States</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                  <option value="Canada">Canada</option>
+                  <option value="Australia">Australia</option>
+                  <option value="Other">Other</option>
+                </select>
                 {errors.country && (
                   <p className="text-red-500 text-sm">{errors.country}</p>
                 )}
