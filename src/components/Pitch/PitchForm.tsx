@@ -11,22 +11,23 @@ export default function PitchForm() {
   const fileRef = useRef<HTMLInputElement>(null);
 
   const validateField = (name: string, value: string) => {
+    const val = value.trim();
     switch (name) {
       case "fullName":
-        return /^[a-zA-Z\s]+$/.test(value) && value.length >= 3 && value.length <= 100;
+        return val.length >= 2 && val.length <= 100;
       case "companyName":
-        return /^[a-zA-Z0-9\s&]+$/.test(value) && value.length >= 2 && value.length <= 100;
+        return val.length >= 2 && val.length <= 100;
       case "sector":
-        return /^[a-zA-Z\s]+$/.test(value) && value.length > 0 && value.length <= 50;
+        return val.length > 0 && val.length <= 50;
       case "investmentRequired":
-        const num = Number(value);
-        return Number.isInteger(num) && num >= 1000 && num <= 1000000000;
+        const num = Number(val.replace(/[^0-9.]/g, ""));
+        return !isNaN(num) && num >= 100;
       case "email":
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        return val.length >= 3 && val.includes("@");
       case "contactNumber":
-        return /^\+?[0-9]{10,15}$/.test(value);
+        return val.replace(/\D/g, "").length >= 5;
       case "pitchSummary":
-        return value.length >= 50 && value.length <= 2000 && !/<[^>]*>/g.test(value);
+        return val.length >= 5 && val.length <= 5000;
       default:
         return true;
     }
@@ -47,22 +48,25 @@ export default function PitchForm() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    // Validate all fields before submission
+    // Validate all text fields before submission (excluding proposalFile)
     const errors: Record<string, boolean> = {};
     for (const [name, value] of formData.entries()) {
+      if (name === "proposalFile") continue;
       errors[name] = !validateField(name, value as string);
     }
     setFieldErrors(errors);
 
     if (Object.values(errors).some((err) => err)) {
-      return; // stop submission if any field invalid
+      setError("Please fill in all required fields properly.");
+      return;
     }
 
     try {
       setLoading(true);
 
       const file = fileRef.current?.files?.[0];
-      if (file) {
+      formData.delete("proposalFile");
+      if (file && file.size > 0) {
         formData.append("proposalFile", file);
       }
 
@@ -73,7 +77,7 @@ export default function PitchForm() {
       if (fileRef.current) fileRef.current.value = "";
       setTimeout(() => setSubmitted(false), 5000);
     } catch (err: any) {
-      setError(err.message || "Submission failed");
+      setError(err.message || "Submission failed. Please check your details and try again.");
     } finally {
       setLoading(false);
     }
