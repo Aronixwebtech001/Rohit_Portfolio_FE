@@ -16,6 +16,8 @@ export default function InvestorForm() {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const validate = (): boolean => {
     const newErrors: Record<string, string> = {};
@@ -104,14 +106,27 @@ export default function InvestorForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
+    setSubmitError(null);
 
     try {
-      const response = await investorApi.create(form);
-      console.log(response.message);
+      setLoading(true);
+      await investorApi.create(form);
       setSubmitted(true);
+      setForm({
+        fullName: "",
+        organizationName: "",
+        mobileNumber: "",
+        country: "",
+        investorCategory: "",
+        emailAddress: "",
+        message: "",
+        isInvestorEnquiry: false,
+      });
       setTimeout(() => setSubmitted(false), 5000);
     } catch (err: any) {
-      alert(err.message);
+      setSubmitError(err.message || "Failed to submit investor inquiry.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -295,13 +310,19 @@ export default function InvestorForm() {
               )}
 
               {/* Submit */}
-              <div className="pt-4 flex justify-center">
+              <div className="pt-4 flex flex-col items-center">
                 <button
                   type="submit"
-                  className="px-10 py-3.5 bg-navy text-white font-medium rounded-xl hover:bg-navy-dark transition-colors text-[15px] w-full md:w-auto min-w-[200px]"
+                  disabled={loading}
+                  className="px-10 py-3.5 bg-navy disabled:bg-gray-400 text-white font-medium rounded-xl hover:bg-navy-dark transition-colors text-[15px] w-full md:w-auto min-w-[200px]"
                 >
-                  Submit Form
+                  {loading ? "Submitting..." : "Submit Form"}
                 </button>
+                {submitError && (
+                  <p className="text-red-600 text-sm mt-3 text-center font-medium bg-red-50 py-2 px-3 rounded-lg border border-red-200">
+                    {submitError}
+                  </p>
+                )}
               </div>
             </form>
           )}

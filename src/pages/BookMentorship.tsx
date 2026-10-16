@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import MentorshipCalendar from "../components/Mentorship/MentorshipCalendar";
+import { mentorshipApi } from "../features/mentorship/api.mentorship";
 
 export default function BookMentorship() {
   const location = useLocation();
@@ -21,6 +22,9 @@ export default function BookMentorship() {
   const [selectedTime, setSelectedTime] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("razorpay");
   const [agreed, setAgreed] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (formData.planName) {
@@ -40,14 +44,133 @@ export default function BookMentorship() {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const loadRazorpay = (): Promise<boolean> => {
+    return new Promise((resolve) => {
+      if ((window as any).Razorpay) {
+        resolve(true);
+        return;
+      }
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!agreed) {
-      alert("Please agree to the terms.");
+      alert("Please agree to the non-refundable terms before proceeding.");
       return;
     }
-    console.log({ ...formData, duration, selectedDate, selectedTime, paymentMethod });
-    alert("Mentorship session booked successfully!");
+    setError(null);
+    try {
+      setLoading(true);
+      const res = await mentorshipApi.create({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        planName: formData.planName,
+        price: formData.price,
+        pitchDetails: formData.pitchDetails,
+        duration,
+        selectedDate: selectedDate ? selectedDate.toISOString().split("T")[0] : undefined,
+        selectedTime,
+        paymentMethod,
+      });
+
+      const order = res.order;
+      if (!order) {
+        setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+
+      // Resolve configured Razorpay Key ID
+      const razorpayKey =
+        res.key_id ||
+        (import.meta as any).env?.VITE_RAZORPAY_KEY_ID ||
+        (window as any).RAZORPAY_KEY_ID ||
+        "rzp_live_SPnVUwnnJpfX90";
+
+      if (!razorpayKey) {
+        throw new Error(
+          "Razorpay Key ID is not configured. Please add your RAZORPAY_KEY_ID in .env to open the real Razorpay checkout."
+        );
+      }
+
+      // Load official Razorpay Checkout SDK
+      await loadRazorpay();
+
+      if (!(window as any).Razorpay) {
+        throw new Error("Unable to load Razorpay checkout script. Please check your network connection.");
+      }
+
+      const options: any = {
+        key: razorpayKey,
+        amount: order.amount,
+        currency: order.currency || "INR",
+        name: "Rohit Jangir",
+        description: `${formData.planName || "Founder Mentorship"} Session`,
+        handler: async function (response: any) {
+          try {
+            setLoading(true);
+            await mentorshipApi.verifyPayment({
+              razorpayOrderId: response.razorpay_order_id || order.id,
+              razorpayPaymentId: response.razorpay_payment_id,
+              razorpaySignature: response.razorpay_signature,
+            });
+            setSubmitted(true);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          } catch (err: any) {
+            setError(err.message || "Payment verification failed.");
+          } finally {
+            setLoading(false);
+          }
+        },
+        modal: {
+          ondismiss: async function () {
+            setLoading(false);
+            try {
+              await mentorshipApi.paymentFailed({
+                orderId: order.id,
+              });
+            } catch {}
+            setError("Payment was cancelled. You can retry whenever you are ready.");
+          },
+        },
+        prefill: {
+          name: formData.name,
+          email: formData.email,
+          contact: formData.phone,
+        },
+        theme: {
+          color: "#102a43",
+        },
+      };
+
+      if (order.is_server_order) {
+        options.order_id = order.id;
+      }
+
+      const rzp = new (window as any).Razorpay(options);
+      rzp.on("payment.failed", async function (response: any) {
+        try {
+          await mentorshipApi.paymentFailed({
+            orderId: order.id,
+          });
+        } catch {}
+        setError(response.error?.description || "Payment failed. Please try again.");
+        setLoading(false);
+      });
+
+      rzp.open();
+    } catch (err: any) {
+      setError(err.message || "Failed to initiate Razorpay checkout. Please check your configuration.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -62,14 +185,52 @@ export default function BookMentorship() {
           </p>
         </div>
 
+        {submitted ? (
+          <div className="text-center py-12 px-6 bg-[#f0fdf4] rounded-2xl border border-emerald-200 shadow-sm">
+            <div className="w-16 h-16 bg-emerald-600 text-white rounded-full flex items-center justify-center mx-auto mb-5 text-2xl font-bold shadow-md">
+              ✓
+            </div>
+            <h3 className="font-serif text-2xl text-[#102a43] mb-2">
+              Mentorship Session Booked Successfully!
+            </h3>
+            <p className="text-gray-600 text-[15px] max-w-lg mx-auto mb-6">
+              Thank you, <strong className="text-gray-900">{formData.name}</strong>. Your session for{" "}
+              <strong className="text-gray-900">{formData.planName}</strong> has been confirmed and verified via Razorpay. Our team will review your discussion points and email you the calendar invite and meeting link shortly.
+            </p>
+            <div className="inline-flex gap-4">
+              <button
+                onClick={() => {
+                  setSubmitted(false);
+                  setFormData({
+                    name: "",
+                    phone: "",
+                    email: "",
+                    company: "",
+                    pitchDetails: "",
+                    planName: "",
+                    price: "",
+                  });
+                }}
+                className="px-6 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 transition-colors text-sm"
+              >
+                Book Another Session
+              </button>
+              <Link
+                to="/"
+                className="px-6 py-2.5 rounded-xl bg-[#102a43] text-white font-medium hover:bg-black transition-colors text-sm"
+              >
+                Return to Home
+              </Link>
+            </div>
+          </div>
+        ) : (
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
-            
             {/* Left Column */}
             <div className="flex-1 space-y-5">
               <div>
                 <label className="block font-sans text-[14px] font-semibold text-[#1a1a1a] mb-2">
-                  Your Name*
+                  Full Name*
                 </label>
                 <input
                   type="text"
@@ -90,17 +251,13 @@ export default function BookMentorship() {
                   type="tel"
                   name="phone"
                   value={formData.phone}
-                  onChange={(e) => {
-                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
-                    handleChange(e);
-                  }}
-                  maxLength={10}
-                  placeholder="Enter 10-digit mobile number"
+                  onChange={handleChange}
+                  placeholder="Enter 10-digit number"
                   className="w-full px-4 py-3.5 rounded-lg border border-[#e5e7eb] font-sans text-[15px] text-[#1a1a1a] bg-white focus:outline-none focus:border-[#1a1a1a] transition-colors"
                   required
                 />
               </div>
-
+              
               <div>
                 <label className="block font-sans text-[14px] font-semibold text-[#1a1a1a] mb-2">
                   Email Address*
@@ -110,21 +267,41 @@ export default function BookMentorship() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="your@email.com"
+                  placeholder="Enter your email"
                   className="w-full px-4 py-3.5 rounded-lg border border-[#e5e7eb] font-sans text-[15px] text-[#1a1a1a] bg-white focus:outline-none focus:border-[#1a1a1a] transition-colors"
                   required
+                />
+              </div>
+              
+              <div>
+                <label className="block font-sans text-[14px] font-semibold text-[#1a1a1a] mb-2">
+                  Company / Venture Name
+                </label>
+                <input
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  placeholder="Enter your company name"
+                  className="w-full px-4 py-3.5 rounded-lg border border-[#e5e7eb] font-sans text-[15px] text-[#1a1a1a] bg-white focus:outline-none focus:border-[#1a1a1a] transition-colors"
                 />
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1">
                   <label className="block font-sans text-[14px] font-semibold text-[#1a1a1a] mb-2">
-                    Plan Name*
+                    Mentorship Plan*
                   </label>
                   <select
                     name="planName"
                     value={formData.planName}
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      const p = e.target.value;
+                      let pr = "999";
+                      if (p.includes("Deep-Dive")) pr = "2499";
+                      if (p.includes("Strategy")) pr = "1499";
+                      setFormData({ ...formData, planName: p, price: pr });
+                    }}
                     className="w-full px-4 py-3.5 rounded-lg border border-[#e5e7eb] font-sans text-[15px] text-[#1a1a1a] bg-white focus:outline-none focus:border-[#1a1a1a] transition-colors appearance-none cursor-pointer"
                     style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 16px center" }}
                     required
@@ -145,10 +322,9 @@ export default function BookMentorship() {
                     name="price"
                     value={formData.price}
                     onChange={handleChange}
-                    placeholder="e.g. 999"
+                    placeholder="e.g. 1"
                     className="w-full px-4 py-3.5 rounded-lg border border-[#e5e7eb] font-sans text-[15px] text-[#1a1a1a] bg-white focus:outline-none focus:border-[#1a1a1a] transition-colors"
                     required
-                    readOnly
                   />
                 </div>
               </div>
@@ -271,13 +447,19 @@ export default function BookMentorship() {
             
             <button
               type="submit"
-              className="w-full bg-[#102a43] hover:bg-[#000000] text-white py-4 rounded-xl font-sans text-lg font-medium transition-all duration-300 hover:shadow-[0_10px_20px_rgba(16,42,67,0.15)] hover:-translate-y-[2px]"
+              disabled={loading}
+              className="w-full bg-[#102a43] hover:bg-[#000000] disabled:bg-gray-400 text-white py-4 rounded-xl font-sans text-lg font-medium transition-all duration-300 hover:shadow-[0_10px_20px_rgba(16,42,67,0.15)] hover:-translate-y-[2px] cursor-pointer"
             >
-              Book Your Session
+              {loading ? "Processing..." : `Pay ₹${formData.price || "999"} via Razorpay`}
             </button>
+            {error && (
+              <p className="text-red-600 text-sm mt-3 text-center font-medium bg-red-50 py-2 px-3 rounded-lg border border-red-200">
+                {error}
+              </p>
+            )}
           </div>
-
         </form>
+        )}
       </div>
     </div>
   );

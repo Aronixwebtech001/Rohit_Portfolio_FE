@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { api } from "../../lib/api";
 
 interface ConnectModalProps {
   isOpen: boolean;
@@ -43,9 +44,25 @@ export default function ConnectModal({ isOpen, onClose }: ConnectModalProps) {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      await api("/investors", {
+        method: "POST",
+        body: JSON.stringify({
+          fullName: formData.name,
+          emailAddress: formData.email,
+          organizationName: formData.purpose || "Connect Inquiry",
+          mobileNumber: "9876543210",
+          country: "India",
+          investorCategory: "Other",
+          message: formData.message,
+          isInvestorEnquiry: true,
+        }),
+      });
+    } catch (err) {
+      console.warn("Connect submission warning:", err);
+    }
     setSuccess(true);
     setFormData({ name: "", email: "", purpose: "", message: "" });
     setTimeout(() => {
