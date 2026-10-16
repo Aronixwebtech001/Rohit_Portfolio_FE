@@ -1,4 +1,4 @@
-{  
+{
   "homepage": "https://aronixwebtech001.github.io/Rohit_Portfolio_FE",
   "name": "rohit-jangir-portfolio",
   "private": true,
@@ -21,6 +21,7 @@
     "react-router-dom": "^6.26.2"
   },
   "devDependencies": {
+    "@types/node": "^26.6.5",
     "@types/react": "^18.3.5",
     "@types/react-countup": "^4.3.0",
     "@types/react-dom": "^18.3.0",

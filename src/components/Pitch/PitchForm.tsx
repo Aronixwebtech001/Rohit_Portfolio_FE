@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Upload } from "lucide-react";
-import { investorApi } from "../../features/pitch/api.pitch";
+import { pitchApi } from "../../features/pitch/api.pitch";
 import { PitchPayload } from "../../features/pitch/types.pitch";
 
 export default function PitchForm() {
@@ -66,13 +66,11 @@ export default function PitchForm() {
         formData.append("proposalFile", file);
       }
 
-      const res = await fetch("/api/pitch/submit", {
-        method: "POST",
-        body: formData,
-      });
+      await pitchApi.create(formData);
 
-      if (!res.ok) throw new Error("Submission failed");
       setSubmitted(true);
+      form.reset();
+      if (fileRef.current) fileRef.current.value = "";
       setTimeout(() => setSubmitted(false), 5000);
     } catch (err: any) {
       setError(err.message || "Submission failed");
