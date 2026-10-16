@@ -29,7 +29,7 @@ export default function AaruDevelopers() {
             </a>
           </ScrollReveal>
           
-          <ScrollReveal direction="right" className="flex-1 relative">
+          <ScrollReveal direction="right" className="flex-1 relative overflow-hidden md:overflow-visible">
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
               <img 
                 src="https://res.cloudinary.com/dqfuozgjq/image/upload/v1773208577/images/aaru-dev/Aaru_Developer.jpg.png" 
@@ -39,7 +39,7 @@ export default function AaruDevelopers() {
               />
             </div>
             {/* Background decorative blob */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-accent/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[500px] bg-accent/10 rounded-full blur-3xl z-0 pointer-events-none"></div>
           </ScrollReveal>
         </div>
       </section>

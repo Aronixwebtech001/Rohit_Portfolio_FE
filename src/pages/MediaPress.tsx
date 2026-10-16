@@ -1,7 +1,7 @@
 export default function MediaPress() {
   return (
     <>
-      <main>
+      <div className="w-full overflow-hidden">
         {/* MEDIA & IMPACT HERO */}
         <section className="w-full bg-white block pt-[80px] md:pt-[100px] p-0 overflow-hidden">
           <img 
@@ -12,11 +12,11 @@ export default function MediaPress() {
           />
         </section>
 
-        <section className="bg-white pb-20">
+        <section className="bg-white pb-20 overflow-hidden">
           
           {/* AWARDS */}
-          <div className="max-w-[1200px] mx-auto px-5 pt-10 pb-5">
-            <h2 className="font-forum text-[2.5rem] font-normal mb-[50px] text-center text-[#1f2937]">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-5 pt-8 sm:pt-10 pb-5">
+            <h2 className="font-forum text-[clamp(2rem,4vw,2.5rem)] font-normal mb-8 sm:mb-[50px] text-center text-[#1f2937]">
               Awards & Recognition
             </h2>
 
@@ -63,9 +63,9 @@ export default function MediaPress() {
           </div>
 
           {/* PRESS */}
-          <section className="bg-[#F9FAFB] py-20 px-5 mt-10">
+          <section className="bg-[#F9FAFB] py-12 sm:py-16 md:py-20 px-4 sm:px-5 mt-10">
             <div className="max-w-[1200px] mx-auto">
-              <h2 className="font-forum text-[2.5rem] font-normal mb-[50px] text-center text-[#1f2937]">
+              <h2 className="font-forum text-[clamp(2rem,4vw,2.5rem)] font-normal mb-8 sm:mb-[50px] text-center text-[#1f2937]">
                 Press & Media Coverage
               </h2>
 
@@ -155,13 +155,13 @@ export default function MediaPress() {
           </section>
 
           {/* IMPACT */}
-          <div className="py-20 px-5 max-w-[1200px] mx-auto">
-            <h2 className="font-forum text-[2.5rem] font-normal mb-[50px] text-center text-[#1f2937]">
+          <div className="py-12 sm:py-16 md:py-20 px-4 sm:px-5 max-w-[1200px] mx-auto">
+            <h2 className="font-forum text-[clamp(2rem,4vw,2.5rem)] font-normal mb-8 sm:mb-[50px] text-center text-[#1f2937]">
               Aaru Care Foundation Impact
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px]">
-              <div className="bg-[#F9FAFB] border border-[#E5E7EB] p-[60px_40px] rounded-xl text-center flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.05)]">
+              <div className="bg-[#F9FAFB] border border-[#E5E7EB] p-8 sm:p-10 md:p-[60px_40px] rounded-xl text-center flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.05)]">
                 <img 
                   src="https://img.icons8.com/ios/50/1a2a32/open-book.png" 
                   alt="Education Impact Icon"
@@ -173,7 +173,7 @@ export default function MediaPress() {
                 <p className="font-outfit text-[0.95rem] text-[#1a2a32] font-normal m-0">Students Educated</p>
               </div>
 
-              <div className="bg-[#F9FAFB] border border-[#E5E7EB] p-[60px_40px] rounded-xl text-center flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.05)]">
+              <div className="bg-[#F9FAFB] border border-[#E5E7EB] p-8 sm:p-10 md:p-[60px_40px] rounded-xl text-center flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.05)]">
                 <img 
                   src="https://img.icons8.com/ios/50/1a2a32/hospital.png" 
                   alt="Healthcare Impact Icon"
@@ -185,7 +185,7 @@ export default function MediaPress() {
                 <p className="font-outfit text-[0.95rem] text-[#1a2a32] font-normal m-0">Free Medical Camps</p>
               </div>
 
-              <div className="bg-[#F9FAFB] border border-[#E5E7EB] p-[60px_40px] rounded-xl text-center flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.05)]">
+              <div className="bg-[#F9FAFB] border border-[#E5E7EB] p-8 sm:p-10 md:p-[60px_40px] rounded-xl text-center flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.05)]">
                 <img 
                   src="https://img.icons8.com/ios/50/1a2a32/like--v1.png" 
                   alt="Social Welfare Icon"
@@ -200,7 +200,7 @@ export default function MediaPress() {
           </div>
 
         </section>
-      </main>
+      </div>
     </>
   );
 }

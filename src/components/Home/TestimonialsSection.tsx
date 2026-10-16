@@ -75,26 +75,26 @@ export default function TestimonialsSection() {
   const visibleTestimonials = testimonials.slice(startIdx, startIdx + cardsPerPage);
 
   return (
-    <section className="bg-white" style={{ padding: "100px 0 40px" }}>
-      <div className="max-w-content mx-auto px-[5%]">
+    <section className="bg-white overflow-hidden py-16 sm:py-24">
+      <div className="max-w-content mx-auto px-4 sm:px-6 md:px-8 lg:px-[5%] w-full">
         <ScrollReveal>
           {/* Header with arrows */}
-          <div className="flex items-center justify-between mb-[50px]">
-            <h2 className="font-serif text-[3rem] text-navy font-normal">What Our Clients Say</h2>
-            <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-12">
+            <h2 className="font-serif text-[clamp(2rem,4vw,3rem)] text-navy font-normal">What Our Clients Say</h2>
+            <div className="flex gap-3 self-end sm:self-auto">
               <button
                 onClick={() => { goPrev(); resetAutoScroll(); }}
-                className="w-12 h-12 rounded-full border border-navy flex items-center justify-center text-navy bg-transparent hover:bg-navy/5 transition-all duration-300 cursor-pointer"
+                className="w-11 sm:w-12 h-11 sm:h-12 rounded-full border border-navy flex items-center justify-center text-navy bg-transparent hover:bg-navy/5 transition-all duration-300 cursor-pointer"
                 aria-label="Previous Testimonial"
               >
-                <ArrowLeft size={20} />
+                <ArrowLeft size={18} />
               </button>
               <button
                 onClick={() => { goNext(); resetAutoScroll(); }}
-                className="w-12 h-12 rounded-full border border-navy flex items-center justify-center text-white bg-navy hover:bg-navy-light transition-all duration-300 cursor-pointer"
+                className="w-11 sm:w-12 h-11 sm:h-12 rounded-full border border-navy flex items-center justify-center text-white bg-navy hover:bg-navy-light transition-all duration-300 cursor-pointer"
                 aria-label="Next Testimonial"
               >
-                <ArrowRight size={20} />
+                <ArrowRight size={18} />
               </button>
             </div>
           </div>
@@ -103,8 +103,8 @@ export default function TestimonialsSection() {
         <ScrollReveal>
           {/* Cards Grid */}
           <div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]"
-            style={{ padding: "20px 15px", margin: "0 -15px" }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-[30px]"
+            style={{ padding: "10px 0" }}
             onMouseEnter={() => clearInterval(autoScrollRef.current)}
             onMouseLeave={startAutoScroll}
           >

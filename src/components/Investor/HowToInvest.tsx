@@ -39,11 +39,11 @@ export default function HowToInvest() {
   }, []);
 
   return (
-    <section style={{ padding: "60px 0", backgroundColor: "#FFFFFF" }}>
+    <section className="overflow-hidden" style={{ padding: "60px 0", backgroundColor: "#FFFFFF" }}>
       <div className="mx-auto text-center" style={{ maxWidth: 1400, padding: "0 4%" }}>
         <h2
           className="font-serif text-[#0F1F22] font-normal text-center"
-          style={{ fontSize: "3rem", marginBottom: 80 }}
+          style={{ fontSize: "clamp(2.2rem, 4vw, 3rem)", marginBottom: "clamp(40px, 6vw, 80px)" }}
         >
           How to Invest?
         </h2>

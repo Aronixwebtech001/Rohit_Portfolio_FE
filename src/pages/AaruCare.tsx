@@ -31,7 +31,7 @@ export default function AaruCare() {
               src={slide} 
               alt={`AARU Care Foundation Slide ${index + 1}`} 
               className="w-full h-full object-cover opacity-80"
-              fetchPriority={index === 0 ? "high" : "auto"}
+              loading={index === 0 ? "eager" : "lazy"}
             />
           </div>
         ))}
